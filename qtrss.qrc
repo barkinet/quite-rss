@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/html">
+        <file>test1.html</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="addFeed">images/add.png</file>
+        <file alias="deleteFeed">images/delete.png</file>
+        <file>QtRSS.ico</file>
+    </qresource>
+    <qresource prefix="/style">
+        <file alias="qstyle">style/QtRSS.qss</file>
+    </qresource>
+</RCC>
