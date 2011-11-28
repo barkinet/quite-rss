@@ -107,6 +107,7 @@ private:
     QMenu *fileMenu_;
     QMenu *viewMenu_;
     QMenu *feedMenu_;
+    QMenu *toolsMenu_;
     QToolBar *toolBar_;
 
     QLineEdit *feedEdit_;
