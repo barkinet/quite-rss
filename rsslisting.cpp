@@ -850,8 +850,13 @@ void RSSListing::showOptionDlg()
   OptionsDialog *optionsDialog = new OptionsDialog(this);
   optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
   optionsDialog->setProxy(networkProxy_);
-  optionsDialog->exec();
+  int result = optionsDialog->exec();
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
+
+  if (result == QDialog::Rejected) return;
+
+  networkProxy_ = optionsDialog->proxy();
+  setProxyAct_->setChecked(networkProxy_.type() == QNetworkProxy::HttpProxy);
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
@@ -884,7 +889,7 @@ void RSSListing::createTrayMenu()
   setProxyAct_->setText(tr("Proxy enabled"));
   setProxyAct_->setCheckable(true);
   setProxyAct_->setChecked(false);
-  connect(setProxyAct_, SIGNAL(triggered(bool)), this, SLOT(slotSetProxy()));
+  connect(setProxyAct_, SIGNAL(toggled(bool)), this, SLOT(slotSetProxy()));
   trayMenu_->addAction(setProxyAct_);
   trayMenu_->addSeparator();
 
