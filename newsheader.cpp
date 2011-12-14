@@ -3,16 +3,18 @@
 NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
     QHeaderView(orientation, parent)
 {
+  setObjectName("newsHeader");
   setContextMenuPolicy(Qt::CustomContextMenu);
   setMovable(true);
   setDefaultAlignment(Qt::AlignLeft);
   setMinimumSectionSize(40);
+  setStretchLastSection(true);
 
   viewMenu_ = new QMenu(this);
   QAction *pAct_ = new QAction(tr("Test"), this);
   viewMenu_->addAction(pAct_);
 
-  buttonColumnView = new QPushButton(this);
+  buttonColumnView = new QPushButton();
   buttonColumnView->setIcon(QIcon(":/images/images/triangleT.png"));
   buttonColumnView->setObjectName("buttonColumnView");
   buttonColumnView->setMaximumWidth(30);
@@ -77,9 +79,6 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
     }
     event->ignore();
     return true;
-  } else if (event->type() == QEvent::MouseMove) {
-    qDebug() << "1";
-    return false;
   } else {
     return false;
   }
