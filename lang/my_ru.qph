@@ -1,0 +1,279 @@
+<!DOCTYPE QPH>
+<QPH sourcelanguage="en_GB" language="ru_RU">
+<phrase>
+    <source>Pause</source>
+    <target>Пауза</target>
+</phrase>
+<phrase>
+    <source>Next</source>
+    <target>Следущий файл</target>
+</phrase>
+<phrase>
+    <source>Open</source>
+    <target>Открыть</target>
+</phrase>
+<phrase>
+    <source>Play</source>
+    <target>Воспроизвести</target>
+</phrase>
+<phrase>
+    <source>Stop</source>
+    <target>Остановить</target>
+</phrase>
+<phrase>
+    <source>Previous</source>
+    <target>Предыдущий файл</target>
+</phrase>
+<phrase>
+    <source>Volume</source>
+    <target>Громкость</target>
+</phrase>
+<phrase>
+    <source>Playlist (show/hide)</source>
+    <target>Показать/спрятать плейлист</target>
+</phrase>
+<phrase>
+    <source>Open File...</source>
+    <target>Открыть файл...</target>
+</phrase>
+<phrase>
+    <source>Aspect ratio</source>
+    <target>Пропорции</target>
+</phrase>
+<phrase>
+    <source>Scale mode</source>
+    <target>Режим масштабирования</target>
+</phrase>
+<phrase>
+    <source>Default</source>
+    <target>По умолчанию</target>
+</phrase>
+<phrase>
+    <source>Stretch to window</source>
+    <target>Растянуть до размера окна</target>
+</phrase>
+<phrase>
+    <source>Mute</source>
+    <target>Отключить звук</target>
+</phrase>
+<phrase>
+    <source>Full screen</source>
+    <target>Во весь экран</target>
+</phrase>
+<phrase>
+    <source>Media files (all types)</source>
+    <target>Медиа файлы (все типы)</target>
+</phrase>
+<phrase>
+    <source>Video files</source>
+    <target>Видео файлы</target>
+</phrase>
+<phrase>
+    <source>Audio files</source>
+    <target>Аудио файлы</target>
+</phrase>
+<phrase>
+    <source>All files</source>
+    <target>Все файлы</target>
+</phrase>
+<phrase>
+    <source>&amp;File</source>
+    <target>&amp;Файл</target>
+</phrase>
+<phrase>
+    <source>&amp;Add...</source>
+    <target>&amp;Добавить...</target>
+</phrase>
+<phrase>
+    <source>&amp;Delete...</source>
+    <target>&amp;Удалить...</target>
+</phrase>
+<phrase>
+    <source>Delete selected feed</source>
+    <target>Удалить новостную ленту</target>
+</phrase>
+<phrase>
+    <source>Add new feed</source>
+    <target>Добавить новую новостную ленту</target>
+</phrase>
+<phrase>
+    <source>&amp;View</source>
+    <target>Отображение</target>
+</phrase>
+<phrase>
+    <source>&amp;Tools</source>
+    <target>Настройки</target>
+</phrase>
+<phrase>
+    <source>&amp;Help</source>
+    <target>Сп&amp;равка</target>
+</phrase>
+<phrase>
+    <source>&amp;View</source>
+    <target>&amp;Вид</target>
+</phrase>
+<phrase>
+    <source>&amp;Edit</source>
+    <target>&amp;Правка</target>
+</phrase>
+<phrase>
+    <source>E&amp;xit</source>
+    <target>В&amp;ыход</target>
+</phrase>
+<phrase>
+    <source>&amp;Tools</source>
+    <target>&amp;Настройки</target>
+</phrase>
+<phrase>
+    <source>Fee&amp;ds</source>
+    <target>&amp;Новостные ленты</target>
+</phrase>
+<phrase>
+    <source>&amp;News</source>
+    <target>Новос&amp;ти</target>
+</phrase>
+<phrase>
+    <source>Fee&amp;ds</source>
+    <target>Новостные &amp;ленты</target>
+</phrase>
+<phrase>
+    <source>Options...</source>
+    <target>Настройки...</target>
+</phrase>
+<phrase>
+    <source>Show window</source>
+    <target>Показать окно</target>
+</phrase>
+<phrase>
+    <source>&amp;Import feeds...</source>
+    <target>&amp;Импортировать новостные ленты...</target>
+</phrase>
+<phrase>
+    <source>Import feeds from OPML file</source>
+    <target>Импортировать новостные ленты из OPML-файла</target>
+</phrase>
+<phrase>
+    <source>Proxy enabled</source>
+    <target>Прокси включен</target>
+</phrase>
+<phrase>
+    <source>Select OPML-file</source>
+    <target>Выберите OPML-файл</target>
+</phrase>
+<phrase>
+    <source>OPML-files (*.opml)</source>
+    <target>OPML-файлы (*.opml)</target>
+</phrase>
+<phrase>
+    <source>Import canceled</source>
+    <target>Отмена импортирования</target>
+</phrase>
+<phrase>
+    <source>Import: can&apos;t open a file</source>
+    <target>Импортирование: не может открыть файл</target>
+</phrase>
+<phrase>
+    <source>Feeds</source>
+    <target>Новостные ленты</target>
+</phrase>
+<phrase>
+    <source>Update</source>
+    <target>Обновить</target>
+</phrase>
+<phrase>
+    <source>Update current feed</source>
+    <target>Обновить выбранную новостную ленту</target>
+</phrase>
+<phrase>
+    <source>Update all</source>
+    <target>Обновить все</target>
+</phrase>
+<phrase>
+    <source>Update all feeds</source>
+    <target>Обновить все новостные ленты</target>
+</phrase>
+<phrase>
+    <source> All: </source>
+    <target> Всего: </target>
+</phrase>
+<phrase>
+    <source> Unread: </source>
+    <target> Непрочитанных: </target>
+</phrase>
+<phrase>
+    <source>&amp;ToolBar</source>
+    <target>&amp;Панель инструментов</target>
+</phrase>
+<phrase>
+    <source>Show ToolBar</source>
+    <target>Показать панель инструментов</target>
+</phrase>
+<phrase>
+    <source>ToolBar</source>
+    <target>Панель инструментов</target>
+</phrase>
+<phrase>
+    <source>Password:</source>
+    <target>Пароль:</target>
+</phrase>
+<phrase>
+    <source>Port:</source>
+    <target>Порт:</target>
+</phrase>
+<phrase>
+    <source>Network Connections</source>
+    <target>Сетевые подключения</target>
+</phrase>
+<phrase>
+    <source>System proxy configuration (if available)</source>
+    <target>Системные настройки прокси (если имеются)</target>
+</phrase>
+<phrase>
+    <source>Apply</source>
+    <target>Применить</target>
+</phrase>
+<phrase>
+    <source>Update feeds... (%p%)</source>
+    <target>Обновление лент... (%p%)</target>
+</phrase>
+<phrase>
+    <source>Received</source>
+    <target>Получено</target>
+</phrase>
+<phrase>
+    <source>Title</source>
+    <target>Заголовок</target>
+</phrase>
+<phrase>
+    <source>Open options gialog</source>
+    <target>Открыть окно настроек</target>
+</phrase>
+<phrase>
+    <source>Are you sure to delete the feed &apos;%1&apos;?</source>
+    <target>Вы действительно хотите удалить новостную ленту &quot;%1&quot;?</target>
+</phrase>
+<phrase>
+    <source>Username:</source>
+    <target>Имя пользователя:</target>
+</phrase>
+<phrase>
+    <source>Proxy server:</source>
+    <target>Прокси-сервер:</target>
+</phrase>
+<phrase>
+    <source>Date</source>
+    <target>Дата</target>
+</phrase>
+<phrase>
+    <source>Delete feed</source>
+    <target>Удаление новостной ленты</target>
+</phrase>
+<phrase>
+    <source>Options</source>
+    <target>Настройки</target>
+</phrase>
+<phrase>
+    <source>Add feed</source>
+    <target>Добавление новостной ленты</target>
+</phrase>
+</QPH>
