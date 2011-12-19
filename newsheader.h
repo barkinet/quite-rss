@@ -2,13 +2,20 @@
 #define NEWSHEADER_H
 
 #include <QtGui>
+#include "newsmodel.h"
 
 class NewsHeader : public QHeaderView
 {
   Q_OBJECT
 public:
   NewsHeader(Qt::Orientation orientation, QWidget * parent = 0);
-  void init();
+  NewsModel *model_;
+  void initColumn();
+  void createMenu();
+  void overload();
+
+public slots:
+
 protected:
   bool eventFilter(QObject *, QEvent *);
   virtual void mousePressEvent(QMouseEvent*);
@@ -16,14 +23,13 @@ protected:
 
 private slots:
   void slotButtonColumnView();
+  void columnVisibled(QAction *);
 
 signals:
 
 private:
   QMenu *viewMenu_;
   QPushButton *buttonColumnView;
-  int startColFix;
-  int stopColFix;
   int idxCol;
   int posX;
 

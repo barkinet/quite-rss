@@ -11,11 +11,9 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   setStretchLastSection(true);
 
   viewMenu_ = new QMenu(this);
-  QAction *pAct_ = new QAction(tr("Test"), this);
-  viewMenu_->addAction(pAct_);
 
   buttonColumnView = new QPushButton();
-  buttonColumnView->setIcon(QIcon(":/images/images/triangleT.png"));
+  buttonColumnView->setIcon(QIcon(":/images/images/column.png"));
   buttonColumnView->setObjectName("buttonColumnView");
   buttonColumnView->setMaximumWidth(30);
   connect(buttonColumnView, SIGNAL(clicked()), this, SLOT(slotButtonColumnView()));
@@ -28,64 +26,123 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   this->installEventFilter(this);
 }
 
-void NewsHeader::init()
+void NewsHeader::initColumn()
 {
-  for (int i = 0; i < count(); i++) {
-    if (!isSectionHidden(i)) {
-      startColFix = visualIndex(i);
-      break;
-    }
+  setSectionHidden(model_->fieldIndex("id"), true);
+  setSectionHidden(model_->fieldIndex("guid"), true);
+  setSectionHidden(model_->fieldIndex("description"), true);
+  setSectionHidden(model_->fieldIndex("modified"), true);
+  setSectionHidden(model_->fieldIndex("author"), true);
+  setSectionHidden(model_->fieldIndex("category"), true);
+  setSectionHidden(model_->fieldIndex("label"), true);
+  setSectionHidden(model_->fieldIndex("new"), true);
+  setSectionHidden(model_->fieldIndex("sticky"), true);
+  setSectionHidden(model_->fieldIndex("deleted"), true);
+  setSectionHidden(model_->fieldIndex("attachment"), true);
+  setSectionHidden(model_->fieldIndex("feed"), true);
+  setSectionHidden(model_->fieldIndex("location"), true);
+  setSectionHidden(model_->fieldIndex("link"), true);
+}
+
+void NewsHeader::createMenu()
+{
+  QActionGroup *pActGroup_ = new QActionGroup(viewMenu_);
+  pActGroup_->setExclusive(false);
+  connect(pActGroup_, SIGNAL(triggered(QAction*)), this, SLOT(columnVisibled(QAction*)));
+  for (int i = 0; i < model_->columnCount(); i++) {
+    QAction *action = pActGroup_->addAction(
+          model_->headerData(logicalIndex(i),
+          Qt::Horizontal, Qt::EditRole).toString());
+    action->setData(logicalIndex(i));
+    action->setCheckable(true);
+    action->setChecked(!isSectionHidden(logicalIndex(i)));
+    viewMenu_->addAction(action);
   }
-  for (int i = count()-1; i >= 0; i--) {
-    if (!isSectionHidden(i)) {
-      stopColFix = visualIndex(i);
-      break;
-    }
+}
+
+void NewsHeader::overload()
+{
+  for (int i = 0; i < model_->columnCount(); i++) {
+    model_->setHeaderData(i, Qt::Horizontal,
+                          model_->headerData(i, Qt::Horizontal, Qt::DisplayRole),
+                          Qt::EditRole);
   }
+  model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"), Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Date"), Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"), Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/markRead"), Qt::DecorationRole);
 }
 
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   if (event->type() == QEvent::Resize) {
-
     QResizeEvent *resizeEvent = static_cast<QResizeEvent*>(event);
     bool minSize = false;
-    bool sizeOk = false;
     int oldWidth = resizeEvent->oldSize().width();
+    int newWidth = resizeEvent->size().width();
     if (oldWidth > 0) {
-      int newWidth = resizeEvent->size().width();
-      if (oldWidth > newWidth) minSize = true;
-
-      for (int i = count()-1; i >= 0; i--) {
-        if (i != startColFix) {
-          int lIdx = logicalIndex(i);
-          if ((sectionSize(lIdx) > 40) && minSize) {
-            int width = newWidth - sectionSize(logicalIndex(startColFix));
-            for (int y = 0; y < count(); y++) {
-              if (!((y == startColFix) || (y == i)))
-                width = width - sectionSize(logicalIndex(y));
-            }
-            if (width > 40) resizeSection(lIdx, width);
-            else resizeSection(lIdx, 40);
-            sizeOk = true;
+      int size = 0;
+      int widthCol[count()];
+      memset(widthCol, 0, sizeof(widthCol));
+      static int idxColSize = count()-1;
+      int tWidth = 0;
+      for (int i = 0; i < count(); i++) tWidth += sectionSize(i);
+      if (tWidth > newWidth) {
+        minSize = true;
+        size = tWidth - newWidth;
+      } else {
+        size = newWidth - tWidth;
+      }
+      int countCol = 0;
+      bool sizeOne = false;
+      while (size) {
+        int lIdx = logicalIndex(idxColSize);
+        if (!isSectionHidden(lIdx)) {
+          if (((sectionSize(lIdx) >= 40) && !minSize) ||
+              ((sectionSize(lIdx) - widthCol[idxColSize] > 40) && minSize)) {
+            widthCol[idxColSize]++;
+            size--;
+            sizeOne = true;
           }
+        }
+        if (idxColSize == 0) idxColSize = count()-1;
+        else idxColSize--;
+
+        if (++countCol == count()) {
+          if (!sizeOne) break;
+          sizeOne = false;
+          countCol = 0;
         }
       }
 
-      if ((sectionSize(logicalIndex(startColFix)) > 40) || !minSize) {
-        if (sizeOk) newWidth = newWidth;
-        int width = newWidth;
-        for (int i = 0; i < count(); i++) {
-          if (i != startColFix) {
-            width = width - sectionSize(logicalIndex(i));
+      for (int i = count()-1; i >= 0; i--) {
+        int lIdx = logicalIndex(i);
+        if (!isSectionHidden(lIdx) && (sectionSize(lIdx) >= 40)) {
+          if (!minSize) {
+            resizeSection(lIdx, sectionSize(lIdx) + widthCol[i]);
+          } else {
+            resizeSection(lIdx, sectionSize(lIdx) - widthCol[i]);
           }
         }
-        if (width > 40) resizeSection(logicalIndex(startColFix), width);
-        else resizeSection(logicalIndex(startColFix), 40);
       }
       event->ignore();
       return true;
     } else return false;
+  } else if ((event->type() == QEvent::HoverMove) ||
+             (event->type() == QEvent::HoverEnter) ||
+             (event->type() == QEvent::HoverLeave)) {
+    QHoverEvent *hoverEvent = static_cast<QHoverEvent*>(event);
+    if (hoverEvent->pos().x() > width() - buttonColumnView->width()) {
+      if (event->type() == QEvent::HoverMove) {
+        QHoverEvent* pe =
+                    new QHoverEvent(QEvent::HoverLeave, hoverEvent->oldPos(), hoverEvent->pos());
+        QApplication::sendEvent(this, pe);
+      }
+      return true;
+    } else {
+      return false;
+    }
   } else {
     return false;
   }
@@ -108,6 +165,13 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
   if (event->buttons() & Qt::LeftButton) {
     int oldWidth = width();
     int newWidth = 0;
+    int stopColFix = 0;
+    for (int i = count()-1; i >= 0; i--) {
+      if (!isSectionHidden(i)) {
+        stopColFix = visualIndex(i);
+        break;
+      }
+    }
     for (int i = 0; i < count(); i++) newWidth += sectionSize(i);
     if (posX > event->pos().x()) sizeMin =  true;
     if (!sizeMin) {
@@ -159,4 +223,10 @@ void NewsHeader::slotButtonColumnView()
   pPoint.setX(mapToGlobal(QPoint(0,0)).x() + width() - viewMenu_->width());
   pPoint.setY(mapToGlobal(QPoint(0,0)).y() + height());
   viewMenu_->popup(pPoint);
+}
+
+void NewsHeader::columnVisibled(QAction *action)
+{
+  int idx = action->data().toInt();
+  setSectionHidden(idx, !isSectionHidden(idx));
 }

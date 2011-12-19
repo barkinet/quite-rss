@@ -106,6 +106,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->setSortingEnabled(true);
 
     newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_);
+    newsHeader_->model_ = newsModel_;
     newsView_->setHeader(newsHeader_);
 
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
@@ -221,9 +222,11 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->setCurrentIndex(feedsModel_->index(0, 0));
     slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
 
+    newsHeader_->initColumn();
+
     readSettings();
 
-    newsHeader_->init();
+    newsHeader_->createMenu();
 
     //Установка шрифтов и их настроек для элементов
     QFont font_ = newsDock_->font();
@@ -946,32 +949,9 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
   newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
   newsModel_->select();
-  newsView_->setColumnHidden(newsModel_->fieldIndex("id"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("guid"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("description"), true);
+
+  newsHeader_->overload();
   newsView_->setColumnHidden(newsModel_->fieldIndex("content"), true);
-  // title
-  // published
-  newsView_->setColumnHidden(newsModel_->fieldIndex("modified"), true);
-  // received
-  newsView_->setColumnHidden(newsModel_->fieldIndex("author"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("category"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("label"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("new"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("sticky"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("deleted"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("attachment"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("feed"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("location"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("link"), true);
-//  newsView_->setSortingEnabled(true);
-//  newsView_->sortByColumn(newsModel_->fieldIndex("published"));
-  // Переименование колонок новостей
-  newsModel_->setHeaderData(newsModel_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
-  newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
-  newsModel_->setHeaderData(newsModel_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
-  newsModel_->setHeaderData(newsModel_->fieldIndex("read"), Qt::Horizontal, "");
-  newsModel_->setHeaderData(newsModel_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/markRead"), Qt::DecorationRole);
 
   newsView_->setCurrentIndex(newsModel_->index(0, 0));
   slotNewsViewClicked(newsModel_->index(0, 0));
