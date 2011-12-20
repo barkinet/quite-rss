@@ -1,0 +1,167 @@
+/* Simple Style */
+QWidget {
+	/*font: normal 12px "Tahoma";*/
+	/*background-color: rgb(245, 245, 245);*/
+}
+
+QMenuBar {
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+										stop:0 #e0eee0,
+										stop:0.4 #d8eed8,
+										stop:0.5 #cceecc,
+										stop:1 #e0eee0);
+	padding: 1px;
+}
+
+QMenuBar::item {
+	padding: 3px 6px;
+	background: transparent;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+QMenuBar::item:selected {
+	border: 1px solid #84cc84;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #e9ffe9,
+								stop:0.4 #e1eee1,
+								stop:0.5 #d9eed9,
+								stop:1 #e9ffe9);
+}
+
+QMenuBar::item:pressed {
+	border-top: 1px solid #34aa34;
+	border-left: 1px solid #34aa34;
+	border-right: 1px solid #34aa34;
+	border-bottom: 0px;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #7acc7a,
+								stop:0.4 #70c870,
+								stop:0.5 #60c460,
+								stop:1 #7acc7a);
+	color: white;
+}
+
+/*QMenu {
+	background-color: #f0fff0;
+	padding: 5px 5px;
+}
+
+QMenu::item {
+	spacing: 10px;
+	padding: 3px 20px;;
+	background: transparent;
+	border-radius: 3px;
+}
+
+QMenu::item:selected {
+	border: 1px solid #84cc84;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #d1eed1,
+								stop:0.2 #f0fff0,
+								stop:0.6 #f0fff0,
+								stop:1 #d1eed1);
+}*/
+
+#feedsTreeView_ {
+	background: #F9FFF9;
+}
+
+QTabWidget::pane { /* Рамка виджета со вкладками */
+	
+}
+
+QTabWidget::tab-bar {
+	/*left: 5px;*/ /* сдвигаем вправо на 5px */
+}
+
+/* Применяем стиль ко вкладке используя субэлемент управления tab. Обратите внимание на то, что
+ оно читается как QTabBar, а _не_ QTabWidget */
+QTabBar::tab {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+								stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+	border: 1px solid #C4C4C3;
+	border-bottom: 0px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	min-width: 8ex;
+	padding: 4px 4px 5px 4px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+}
+
+QTabBar::tab:selected {
+	border-color: #9B9B9B;
+}
+
+QTabBar::tab:!selected {
+	margin-top: 2px;
+}
+
+#feedsDock::title, #newsDock::title {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+	border: 1px solid #9B9B9B;
+	border-bottom: 0px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	padding: 4px;
+}
+#feedsDock::title {
+	text-align: center;
+}
+
+QToolBar{
+	border-style: none;
+}
+
+#toolBarNull {
+	background-color: #f0f0f0;
+}
+
+#pushButtonNull {
+	background: #e0e0e0;
+	border-style: none;
+}
+
+#buttonColumnView {
+	border-left: 1px solid #D5D5D5;
+	border-top: 0px solid #D5D5D5;
+	border-right: 1px solid #D5D5D5;
+	border-bottom: 1px solid #D5D5D5;
+	padding: 5px 0px 1px 0px;
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #ffffff, stop: 0.4 #ffffff,
+								stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
+}
+
+
+#buttonColumnView:hover, #buttonColumnView:pressed {
+	border-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #88CBEB, stop: 0.4 #88CBEB,
+								stop: 0.5 #69BBE3, stop: 1.0 #69BBE3);
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E3F7FF, stop: 0.4 #E3F7FF,
+								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
+}
+
+#progressBar_ {
+  border: 1px solid #34aa34;
+	border-radius: 3px;
+	text-align: center;
+}
+
+#progressBar_::chunk {
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #7acc7a,
+								stop:0.4 #70c870,
+								stop:0.5 #60c460,
+								stop:1 #7acc7a);
+  width: 20px;
+}
