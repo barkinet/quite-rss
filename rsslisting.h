@@ -27,6 +27,7 @@ public slots:
     void slotGetFeed();
     void slotGetAllFeeds();
     void slotNewsViewClicked(QModelIndex index);
+    void slotNewsViewDoubleClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
     void slotNewsKeyUpDownPressed();
     void showOptionDlg();
