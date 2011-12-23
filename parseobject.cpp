@@ -85,9 +85,10 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomContentString.clear();
       }
       currentTag = xml.name().toString();
-//      qDebug() << itemCount << ":" << currentTag;
+//      if (xml.namespaceUri().isEmpty()) qDebug() << itemCount << ":" << currentTag;
+//      else qDebug() << itemCount << ":" << xml.qualifiedName();
 //      for (int i = 0 ; i < xml.attributes().count(); ++i)
-//        qDebug() << "     " << xml.attributes().at(i).name() << "=" << xml.attributes().at(i).value();
+//        qDebug() << "      " << xml.attributes().at(i).name() << "=" << xml.attributes().at(i).value();
       if (currentTag == "link")
         linkString = xml.attributes().value("href").toString();
     } else if (xml.isEndElement()) {
@@ -217,6 +218,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
       else if (currentTag == "link")
         linkString += xml.text().toString();
       else if (currentTag == "author")  //rss
+        authorString += xml.text().toString();
+      else if (currentTag == "creator")  //rss::dc:creator
         authorString += xml.text().toString();
       else if (currentTag == "name")   //atom::author
         authorString += xml.text().toString();
