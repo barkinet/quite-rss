@@ -115,6 +115,9 @@ private:
     NewsView *newsView_;
     NewsHeader *newsHeader_;
 
+    QLabel *webPanelTitle_;
+    QWidget *webPanel_;
+
     QWidget *webWidget_;
     QWebView *webView_;
     QProgressBar *webViewProgress_;
