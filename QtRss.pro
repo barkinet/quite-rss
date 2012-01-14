@@ -5,6 +5,9 @@ LIBS += libkernel32 \
 TARGET = QuiteRSS
 TEMPLATE = app
 
+INCLUDEPATH = $$[QT_INSTALL_PREFIX]/../../../../QtSources/4.7.4/src/3rdparty/sqlite
+SOURCES += $$[QT_INSTALL_PREFIX]/../../../../QtSources/4.7.4/src/3rdparty/sqlite/sqlite3.c
+
 HEADERS += \
     src/VersionNo.h \
     src/updatethread.h \
@@ -56,5 +59,4 @@ if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
 CODECFORTR  = UTF-8
 CODECFORSRC = UTF-8
 include(lang/lang.pri)
-
 
