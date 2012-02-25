@@ -15,23 +15,16 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   filtersTree->setColumnCount(3);
   filtersTree->setColumnHidden(0, true);
   filtersTree->header()->resizeSection(1, 150);
+  filtersTree->header()->setResizeMode(2, QHeaderView::Stretch);
   filtersTree->header()->setMovable(false);
 
   QStringList treeItem;
-  treeItem << tr("Id") << tr("Name filter") << tr("Locations");
+  treeItem << "Id" << tr("Name filter") << tr("Location");
   filtersTree->setHeaderLabels(treeItem);
-
-//  treeItem.clear();
-//  treeItem << QString::number(filtersTree->topLevelItemCount())
-//           << tr("Test filter %1").arg(filtersTree->topLevelItemCount())
-//           << "Feed 1";
-//  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-//  treeWidgetItem->setCheckState(1, Qt::Checked);
-//  filtersTree->addTopLevelItem(treeWidgetItem);
 
   QPushButton *newButton = new QPushButton(tr("New..."), this);
   connect(newButton, SIGNAL(clicked()), this, SLOT(newFilter()));
-  editButton = new QPushButton(tr("Edit.."), this);
+  editButton = new QPushButton(tr("Edit..."), this);
   editButton->setEnabled(false);
   connect(editButton, SIGNAL(clicked()), this, SLOT(editFilter()));
   deleteButton = new QPushButton(tr("Delete..."), this);
@@ -98,11 +91,22 @@ void NewsFiltersDialog::newFilter()
     return;
   }
 
+  QString strFeeds;
+  QTreeWidgetItem *treeWidgetItem =
+      filterRulesDialog->feedsTree->topLevelItem(0);
+
+  for (int i = 0; i < treeWidgetItem->childCount(); i++) {
+    if (treeWidgetItem->child(i)->checkState(0) == Qt::Checked) {
+      if (!strFeeds.isNull()) strFeeds.append(", ");
+      strFeeds.append(treeWidgetItem->child(i)->text(0));
+    }
+  }
+
   QStringList treeItem;
   treeItem << QString::number(filtersTree->topLevelItemCount())
            << filterRulesDialog->filterName->text()
-           << "All news";
-  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+           << strFeeds;
+  treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setCheckState(1, Qt::Checked);
   filtersTree->addTopLevelItem(treeWidgetItem);
 

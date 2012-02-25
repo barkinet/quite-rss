@@ -9,16 +9,14 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   setWindowTitle(tr("Filter rules"));
   setMinimumHeight(300);
 
-  feedsTree = new QTreeWidget();
+  feedsTree = new QTreeWidget(this);
   feedsTree->setObjectName("feedsTreeFR");
-  feedsTree->setSelectionBehavior(QAbstractItemView::SelectRows);
-  feedsTree->setSelectionMode(QAbstractItemView::SingleSelection);
   feedsTree->setColumnCount(2);
   feedsTree->setColumnHidden(1, true);
   feedsTree->header()->setMovable(false);
 
   QStringList treeItem;
-  treeItem << tr("Locations") << tr("Id") ;
+  treeItem << tr("Location") << "Id";
   feedsTree->setHeaderLabels(treeItem);
 
   treeItem.clear();
@@ -26,8 +24,8 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setCheckState(0, Qt::Unchecked);
   feedsTree->addTopLevelItem(treeWidgetItem);
-  connect(feedsTree, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
-          this, SLOT(feedsTreeClicked(QTreeWidgetItem*,int)));
+  connect(feedsTree, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+          this, SLOT(feedItemChanged(QTreeWidgetItem*,int)));
 
   foreach (QString str, *feedsList_) {
     treeItem.clear();
@@ -38,55 +36,55 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   }
   feedsTree->expandAll();
 
-  filterName = new QLineEdit();
+  filterName = new QLineEdit(this);
 
   QHBoxLayout *filterNamelayout = new QHBoxLayout();
   filterNamelayout->addWidget(new QLabel(tr("Filter name:")));
   filterNamelayout->addWidget(filterName);
 
-  QRadioButton *matchAllFollowing_ =
-      new QRadioButton(tr("Match all of the following"));
-  matchAllFollowing_->setChecked(true);
-  QRadioButton *matchAnyFollowing_ =
-      new QRadioButton(tr("Match any of the following"));
-  QRadioButton *matchAllNews_ =
-      new QRadioButton(tr("Match all news"));
+  matchAllCondition_ = new QRadioButton(tr("Match all conditions"), this);
+  matchAllCondition_->setChecked(true);
+  matchAnyCondition_ = new QRadioButton(tr("Match any condition"), this);
+  matchAllNews_ = new QRadioButton(tr("Match all"), this);
+  connect(matchAllCondition_, SIGNAL(clicked()), this, SLOT(selectMatch()));
+  connect(matchAnyCondition_, SIGNAL(clicked()), this, SLOT(selectMatch()));
+  connect(matchAllNews_, SIGNAL(clicked()), this, SLOT(selectMatch()));
 
   QHBoxLayout *matchLayout = new QHBoxLayout();
   matchLayout->setSpacing(10);
-  matchLayout->addWidget(matchAllFollowing_);
-  matchLayout->addWidget(matchAnyFollowing_);
+  matchLayout->addWidget(matchAllCondition_);
+  matchLayout->addWidget(matchAnyCondition_);
   matchLayout->addWidget(matchAllNews_);
   matchLayout->addStretch();
 
-  infoScrollArea = new QScrollArea();
-  infoScrollArea->setWidgetResizable(true);
+  conditionScrollArea = new QScrollArea(this);
+  conditionScrollArea->setWidgetResizable(true);
 
-  infoLayout = new QVBoxLayout();
-  infoLayout->setMargin(5);
-  addFilterRules();
+  conditionLayout = new QVBoxLayout();
+  conditionLayout->setMargin(5);
+  addCondition();
 
-  infoWidget = new QWidget();
-  infoWidget->setObjectName("infoWidgetFR");
-  infoWidget->setLayout(infoLayout);
-  infoScrollArea->setWidget(infoWidget);
+  conditionWidget = new QWidget(this);
+  conditionWidget->setObjectName("infoWidgetFR");
+  conditionWidget->setLayout(conditionLayout);
+  conditionScrollArea->setWidget(conditionWidget);
 
   QVBoxLayout *splitterLayoutV1 = new QVBoxLayout();
   splitterLayoutV1->setMargin(0);
   splitterLayoutV1->addLayout(matchLayout);
-  splitterLayoutV1->addWidget(infoScrollArea, 1);
+  splitterLayoutV1->addWidget(conditionScrollArea, 1);
 
-  QWidget *splitterWidget1 = new QWidget();
+  QWidget *splitterWidget1 = new QWidget(this);
   splitterWidget1->setLayout(splitterLayoutV1);
 
-  actionsScrollArea = new QScrollArea();
+  actionsScrollArea = new QScrollArea(this);
   actionsScrollArea->setWidgetResizable(true);
 
   actionsLayout = new QVBoxLayout();
   actionsLayout->setMargin(5);
-  addFilterAction();
+  addAction();
 
-  actionsWidget = new QWidget();
+  actionsWidget = new QWidget(this);
   actionsWidget->setObjectName("actionsWidgetFR");
   actionsWidget->setLayout(actionsLayout);
   actionsScrollArea->setWidget(actionsWidget);
@@ -96,12 +94,11 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   splitterLayoutV2->addWidget(new QLabel(tr("Perform these actions:")));
   splitterLayoutV2->addWidget(actionsScrollArea, 1);
 
-  QWidget *splitterWidget2 = new QWidget();
+  QWidget *splitterWidget2 = new QWidget(this);
   splitterWidget2->setLayout(splitterLayoutV2);
 
-  QSplitter *spliter = new QSplitter(Qt::Vertical);
+  QSplitter *spliter = new QSplitter(Qt::Vertical, this);
   spliter->setChildrenCollapsible(false);
-  spliter->setMinimumWidth(420);
   spliter->addWidget(splitterWidget1);
   spliter->addWidget(splitterWidget2);
 
@@ -110,10 +107,10 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   rulesLayout->addLayout(filterNamelayout);
   rulesLayout->addWidget(spliter);
 
-  QWidget *rulesWidget = new QWidget();
+  QWidget *rulesWidget = new QWidget(this);
   rulesWidget->setLayout(rulesLayout);
 
-  QSplitter *mainSpliter = new QSplitter();
+  QSplitter *mainSpliter = new QSplitter(this);
   mainSpliter->setChildrenCollapsible(false); 
   mainSpliter->addWidget(rulesWidget);
   mainSpliter->addWidget(feedsTree);
@@ -131,7 +128,6 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
 
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
-  resize(600, 350);
   restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
 }
 
@@ -140,69 +136,89 @@ void FilterRulesDialog::closeDialog()
   settings_->setValue("filterRulesDlg/geometry", saveGeometry());
 }
 
-void FilterRulesDialog::feedsTreeClicked(QTreeWidgetItem *item, int column)
+void FilterRulesDialog::selectMatch()
 {
-  qDebug() << "*02";
-  if (feedsTree->indexOfTopLevelItem(item) == 0) {
-    if (item->checkState(0) == Qt::Unchecked) {
-      for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
-        feedsTree->topLevelItem(0)->child(i)->setCheckState(0, Qt::Unchecked);
-      }
-    } else {
-      for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
-        feedsTree->topLevelItem(0)->child(i)->setCheckState(0, Qt::Checked);
-      }
-    }
+  if (matchAllNews_->isChecked()) {
+    conditionWidget->setEnabled(false);
   } else {
-    feedsTree->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
-    qDebug() << "*01";
+    conditionWidget->setEnabled(true);
   }
 }
 
-void FilterRulesDialog::addFilterRules()
+void FilterRulesDialog::feedItemChanged(QTreeWidgetItem *item, int column)
 {
-  infoLayout->removeItem(infoLayout->itemAt(infoLayout->count()-1));
-  infoLayout->removeItem(infoLayout->itemAt(infoLayout->count()-1));
-  ItemRules *itemRules = new ItemRules();
-  infoLayout->addWidget(itemRules);
-  infoLayout->addStretch();
-  infoLayout->addSpacing(25);
-  connect(itemRules->addButton, SIGNAL(clicked()), this, SLOT(addFilterRules()));
-  connect(itemRules, SIGNAL(signalDeleteFilterRules(ItemRules*)),
-          this, SLOT(deleteFilterRules(ItemRules*)));
+  static bool rootChecked = false;
+  static bool notRootChecked = false;
 
-  QScrollBar *scrollBar = infoScrollArea->verticalScrollBar();
+  if (column != 0) return;
+
+  if (feedsTree->indexOfTopLevelItem(item) == 0) {
+    if (!rootChecked) {
+      notRootChecked = true;
+      if (item->checkState(0) == Qt::Unchecked) {
+        for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
+          feedsTree->topLevelItem(0)->child(i)->setCheckState(0, Qt::Unchecked);
+        }
+      } else {
+        for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
+          feedsTree->topLevelItem(0)->child(i)->setCheckState(0, Qt::Checked);
+        }
+      }
+      notRootChecked = false;
+    }
+  } else {
+    if (!notRootChecked) {
+      rootChecked = true;
+      feedsTree->topLevelItem(0)->setCheckState(0, Qt::PartiallyChecked);
+      rootChecked = false;
+    }
+  }
+}
+
+void FilterRulesDialog::addCondition()
+{
+  conditionLayout->removeItem(conditionLayout->itemAt(conditionLayout->count()-1));
+  conditionLayout->removeItem(conditionLayout->itemAt(conditionLayout->count()-1));
+  ItemCondition *itemCondition = new ItemCondition(this);
+  conditionLayout->addWidget(itemCondition);
+  conditionLayout->addStretch();
+  conditionLayout->addSpacing(25);
+  connect(itemCondition->addButton, SIGNAL(clicked()), this, SLOT(addCondition()));
+  connect(itemCondition, SIGNAL(signalDeleteCondition(ItemCondition*)),
+          this, SLOT(deleteCondition(ItemCondition*)));
+
+  QScrollBar *scrollBar = conditionScrollArea->verticalScrollBar();
   scrollBar->setValue(scrollBar->maximum() -
                       scrollBar->minimum() +
                       scrollBar->pageStep());
-  itemRules->lineEdit->setFocus();
+  itemCondition->lineEdit->setFocus();
 }
 
-void FilterRulesDialog::deleteFilterRules(ItemRules *item)
+void FilterRulesDialog::deleteCondition(ItemCondition *item)
 {
   delete item;
-  if (infoLayout->count() == 2) {
-    addFilterRules();
+  if (conditionLayout->count() == 2) {
+    addCondition();
   }
 }
 
-void FilterRulesDialog::addFilterAction()
+void FilterRulesDialog::addAction()
 {
   actionsLayout->removeItem(actionsLayout->itemAt(actionsLayout->count()-1));
   actionsLayout->removeItem(actionsLayout->itemAt(actionsLayout->count()-1));
-  ItemAction *itemAction = new ItemAction();
+  ItemAction *itemAction = new ItemAction(this);
   actionsLayout->addWidget(itemAction);
   actionsLayout->addStretch();
   actionsLayout->addSpacing(25);
-  connect(itemAction->addButton, SIGNAL(clicked()), this, SLOT(addFilterAction()));
-  connect(itemAction, SIGNAL(signalDeleteFilterAction(ItemAction*)),
-          this, SLOT(deleteFilterAction(ItemAction*)));
+  connect(itemAction->addButton, SIGNAL(clicked()), this, SLOT(addAction()));
+  connect(itemAction, SIGNAL(signalDeleteAction(ItemAction*)),
+          this, SLOT(deleteAction(ItemAction*)));
 }
 
-void FilterRulesDialog::deleteFilterAction(ItemAction *item)
+void FilterRulesDialog::deleteAction(ItemAction *item)
 {
   delete item;
   if (actionsLayout->count() == 2) {
-    addFilterAction();
+    addAction();
   }
 }
