@@ -3,21 +3,22 @@
 
 #include <QtGui>
 
-class ItemRules : public QWidget
+class ItemCondition : public QWidget
 {
   Q_OBJECT
 private:
   QToolButton *deleteButton;
+  QComboBox *comboBox1;
   QComboBox *comboBox2;
   QComboBox *comboBox3;
 
 public:
-  ItemRules(QWidget * parent = 0) : QWidget(parent)
+  ItemCondition(QWidget * parent = 0) : QWidget(parent)
   {
-    QComboBox *comboBox1 = new QComboBox();
-    comboBox2 = new QComboBox();
-    comboBox3 = new QComboBox();
-    lineEdit = new QLineEdit();
+    comboBox1 = new QComboBox(this);
+    comboBox2 = new QComboBox(this);
+    comboBox3 = new QComboBox(this);
+    lineEdit = new QLineEdit(this);
 
     QStringList itemList;
     itemList << tr("Title")  << tr("Description")
@@ -29,13 +30,15 @@ public:
     itemList << tr("New") << tr("Read") << tr("Stared");
     comboBox3->addItems(itemList);
 
-    currentIndexChanged("Title");
+    currentIndexChanged(tr("Title"));
 
-    addButton = new QToolButton();
+    addButton = new QToolButton(this);
     addButton->setIcon(QIcon(":/images/addFeed"));
+    addButton->setToolTip(tr("Add condition"));
     addButton->setAutoRaise(true);
-    deleteButton = new QToolButton();
+    deleteButton = new QToolButton(this);
     deleteButton->setIcon(QIcon(":/images/deleteFeed"));
+    deleteButton->setToolTip(tr("Delete condition"));
     deleteButton->setAutoRaise(true);
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
@@ -62,7 +65,7 @@ public:
 private slots:
   void deleteFilterRules()
   {
-    emit signalDeleteFilterRules(this);
+    emit signalDeleteCondition(this);
   }
 
   void currentIndexChanged(QString str)
@@ -72,24 +75,24 @@ private slots:
     comboBox2->clear();
     comboBox3->setVisible(false);
     lineEdit->setVisible(true);
-    if (str == "Title") {
+    if (str == tr("Title")) {
       itemList << tr("contains") << tr("doesn't contains")
                << tr("is") << tr("isn't")
                << tr("begins with") << tr("ends with");
       comboBox2->addItems(itemList);
-    } else if (str == "Description") {
+    } else if (str == tr("Description")) {
       itemList << tr("contains") << tr("doesn't contains")
                << tr("is") << tr("isn't");
       comboBox2->addItems(itemList);
-    } else if (str == "Author") {
+    } else if (str == tr("Author")) {
       itemList << tr("contains") << tr("doesn't contains")
                << tr("is") << tr("isn't");
       comboBox2->addItems(itemList);
-    } else if (str == "Category") {
+    } else if (str == tr("Category")) {
       itemList << tr("is") << tr("isn't")
                << tr("begins with") << tr("ends with");
       comboBox2->addItems(itemList);
-    } else if (str == "Status") {
+    } else if (str == tr("Status")) {
       itemList << tr("is") << tr("isn't");
       comboBox2->addItems(itemList);
       comboBox3->setVisible(true);
@@ -106,7 +109,7 @@ private slots:
   }
 
 signals:
-   void signalDeleteFilterRules(ItemRules *item);
+   void signalDeleteCondition(ItemCondition *item);
 };
 
 class ItemAction : public QWidget
@@ -114,25 +117,28 @@ class ItemAction : public QWidget
   Q_OBJECT
 private:
   QToolButton *deleteButton;
+  QComboBox *comboBox1;
   QComboBox *comboBox2;
 
 public:
   ItemAction(QWidget * parent = 0) : QWidget(parent)
   {
     QStringList itemList;
-    QComboBox *comboBox1 = new QComboBox();
-    itemList << tr("Move news")  << tr("Copy news")
+    comboBox1 = new QComboBox(this);
+    itemList << tr("Move news to")  << tr("Copy news to")
              << tr("Mark news as read") << tr("Add star")
              << tr("Delete");
     comboBox1->addItems(itemList);
 
-    comboBox2 = new QComboBox();
+    comboBox2 = new QComboBox(this);
 
-    addButton = new QToolButton();
+    addButton = new QToolButton(this);
     addButton->setIcon(QIcon(":/images/addFeed"));
+    addButton->setToolTip(tr("Add action"));
     addButton->setAutoRaise(true);
-    deleteButton = new QToolButton();
+    deleteButton = new QToolButton(this);
     deleteButton->setIcon(QIcon(":/images/deleteFeed"));
+    deleteButton->setToolTip(tr("Delete action"));
     deleteButton->setAutoRaise(true);
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
@@ -157,7 +163,7 @@ public:
 private slots:
   void deleteFilterAction()
   {
-    emit signalDeleteFilterAction(this);
+    emit signalDeleteAction(this);
   }
 
   void currentIndexChanged(int index)
@@ -167,7 +173,7 @@ private slots:
   }
 
 signals:
-   void signalDeleteFilterAction(ItemAction *item);
+   void signalDeleteAction(ItemAction *item);
 };
 
 class FilterRulesDialog : public QDialog
@@ -177,35 +183,40 @@ private:
   QSettings *settings_;
   QDialogButtonBox *buttonBox;
 
-  QScrollArea *infoScrollArea;
-  QVBoxLayout *infoLayout;
-  QWidget *infoWidget;
+  QRadioButton *matchAllCondition_;
+  QRadioButton *matchAnyCondition_;
+  QRadioButton *matchAllNews_;
+
+  QScrollArea *conditionScrollArea;
+  QVBoxLayout *conditionLayout;
+  QWidget *conditionWidget;
 
   QScrollArea *actionsScrollArea;
   QVBoxLayout *actionsLayout;
   QWidget *actionsWidget;
-
-  QTreeWidget *feedsTree;
 
 public:
   explicit FilterRulesDialog(QWidget *parent = 0, QSettings *settings = 0,
                              QStringList *feedsList_ = 0);
   QLineEdit *filterName;
   QStringList feedsList_;
+  QTreeWidget *feedsTree;
 
 signals:
 
 public slots:
 
 private slots:
-  void feedsTreeClicked(QTreeWidgetItem *item, int column);
+  void feedItemChanged(QTreeWidgetItem *item, int column);
   void closeDialog();
 
-  void addFilterRules();
-  void deleteFilterRules(ItemRules *item);
+  void addCondition();
+  void deleteCondition(ItemCondition *item);
 
-  void addFilterAction();
-  void deleteFilterAction(ItemAction *item);
+  void addAction();
+  void deleteAction(ItemAction *item);
+
+  void selectMatch();
 
 };
 
