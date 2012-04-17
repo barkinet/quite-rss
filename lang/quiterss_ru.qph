@@ -1,0 +1,996 @@
+<!DOCTYPE QPH>
+<QPH sourcelanguage="en_GB" language="ru_RU">
+<phrase>
+    <source>Pause</source>
+    <target>Пауза</target>
+</phrase>
+<phrase>
+    <source>Next</source>
+    <target>Следущий файл</target>
+</phrase>
+<phrase>
+    <source>Open</source>
+    <target>Открыть</target>
+</phrase>
+<phrase>
+    <source>Play</source>
+    <target>Воспроизвести</target>
+</phrase>
+<phrase>
+    <source>Stop</source>
+    <target>Остановить</target>
+</phrase>
+<phrase>
+    <source>Previous</source>
+    <target>Предыдущий файл</target>
+</phrase>
+<phrase>
+    <source>Volume</source>
+    <target>Громкость</target>
+</phrase>
+<phrase>
+    <source>Playlist (show/hide)</source>
+    <target>Показать/спрятать плейлист</target>
+</phrase>
+<phrase>
+    <source>Open File...</source>
+    <target>Открыть файл...</target>
+</phrase>
+<phrase>
+    <source>Aspect ratio</source>
+    <target>Пропорции</target>
+</phrase>
+<phrase>
+    <source>Scale mode</source>
+    <target>Режим масштабирования</target>
+</phrase>
+<phrase>
+    <source>Default</source>
+    <target>По умолчанию</target>
+</phrase>
+<phrase>
+    <source>Stretch to window</source>
+    <target>Растянуть до размера окна</target>
+</phrase>
+<phrase>
+    <source>Mute</source>
+    <target>Отключить звук</target>
+</phrase>
+<phrase>
+    <source>Full screen</source>
+    <target>Во весь экран</target>
+</phrase>
+<phrase>
+    <source>Media files (all types)</source>
+    <target>Медиа файлы (все типы)</target>
+</phrase>
+<phrase>
+    <source>Video files</source>
+    <target>Видео файлы</target>
+</phrase>
+<phrase>
+    <source>Audio files</source>
+    <target>Аудио файлы</target>
+</phrase>
+<phrase>
+    <source>All files</source>
+    <target>Все файлы</target>
+</phrase>
+<phrase>
+    <source>&amp;File</source>
+    <target>&amp;Файл</target>
+</phrase>
+<phrase>
+    <source>&amp;Add...</source>
+    <target>&amp;Добавить...</target>
+</phrase>
+<phrase>
+    <source>&amp;Delete...</source>
+    <target>&amp;Удалить...</target>
+</phrase>
+<phrase>
+    <source>Delete selected feed</source>
+    <target>Удалить новостную ленту</target>
+</phrase>
+<phrase>
+    <source>Add new feed</source>
+    <target>Добавить новую новостную ленту</target>
+</phrase>
+<phrase>
+    <source>&amp;View</source>
+    <target>Отображение</target>
+</phrase>
+<phrase>
+    <source>&amp;Tools</source>
+    <target>Настройки</target>
+</phrase>
+<phrase>
+    <source>&amp;Help</source>
+    <target>Сп&amp;равка</target>
+</phrase>
+<phrase>
+    <source>&amp;View</source>
+    <target>&amp;Вид</target>
+</phrase>
+<phrase>
+    <source>&amp;Edit</source>
+    <target>&amp;Правка</target>
+</phrase>
+<phrase>
+    <source>E&amp;xit</source>
+    <target>В&amp;ыход</target>
+</phrase>
+<phrase>
+    <source>&amp;Tools</source>
+    <target>&amp;Настройки</target>
+</phrase>
+<phrase>
+    <source>Fee&amp;ds</source>
+    <target>&amp;Новостные ленты</target>
+</phrase>
+<phrase>
+    <source>&amp;News</source>
+    <target>Новос&amp;ти</target>
+</phrase>
+<phrase>
+    <source>Fee&amp;ds</source>
+    <target>Новостные &amp;ленты</target>
+</phrase>
+<phrase>
+    <source>Options...</source>
+    <target>Настройки...</target>
+</phrase>
+<phrase>
+    <source>Show window</source>
+    <target>Показать окно</target>
+</phrase>
+<phrase>
+    <source>&amp;Import feeds...</source>
+    <target>&amp;Импортировать новостные ленты...</target>
+</phrase>
+<phrase>
+    <source>Import feeds from OPML file</source>
+    <target>Импортировать новостные ленты из OPML-файла</target>
+</phrase>
+<phrase>
+    <source>Proxy enabled</source>
+    <target>Прокси включен</target>
+</phrase>
+<phrase>
+    <source>Select OPML-file</source>
+    <target>Выберите OPML-файл</target>
+</phrase>
+<phrase>
+    <source>OPML-files (*.opml)</source>
+    <target>OPML-файлы (*.opml)</target>
+</phrase>
+<phrase>
+    <source>Import canceled</source>
+    <target>Отмена импортирования</target>
+</phrase>
+<phrase>
+    <source>Import: can&apos;t open a file</source>
+    <target>Импортирование: не может открыть файл</target>
+</phrase>
+<phrase>
+    <source>Feeds</source>
+    <target>Новостные ленты</target>
+</phrase>
+<phrase>
+    <source>Update</source>
+    <target>Обновить</target>
+</phrase>
+<phrase>
+    <source>Update current feed</source>
+    <target>Обновить выбранную новостную ленту</target>
+</phrase>
+<phrase>
+    <source>Update all</source>
+    <target>Обновить все</target>
+</phrase>
+<phrase>
+    <source>Update all feeds</source>
+    <target>Обновить все новостные ленты</target>
+</phrase>
+<phrase>
+    <source> All: </source>
+    <target> Всего: </target>
+</phrase>
+<phrase>
+    <source> Unread: </source>
+    <target> Непрочитанных: </target>
+</phrase>
+<phrase>
+    <source>&amp;ToolBar</source>
+    <target>&amp;Панель инструментов</target>
+</phrase>
+<phrase>
+    <source>Show ToolBar</source>
+    <target>Показать панель инструментов</target>
+</phrase>
+<phrase>
+    <source>ToolBar</source>
+    <target>Панель инструментов</target>
+</phrase>
+<phrase>
+    <source>Password:</source>
+    <target>Пароль:</target>
+</phrase>
+<phrase>
+    <source>Port:</source>
+    <target>Порт:</target>
+</phrase>
+<phrase>
+    <source>Network Connections</source>
+    <target>Сетевые подключения</target>
+</phrase>
+<phrase>
+    <source>System proxy configuration (if available)</source>
+    <target>Системные настройки прокси (если имеются)</target>
+</phrase>
+<phrase>
+    <source>Apply</source>
+    <target>Применить</target>
+</phrase>
+<phrase>
+    <source>Update feeds... (%p%)</source>
+    <target>Обновление лент... (%p%)</target>
+</phrase>
+<phrase>
+    <source>Received</source>
+    <target>Получено</target>
+</phrase>
+<phrase>
+    <source>Title</source>
+    <target>Заголовок</target>
+</phrase>
+<phrase>
+    <source>Open options dialog</source>
+    <target>Открыть окно настроек</target>
+</phrase>
+<phrase>
+    <source>Are you sure to delete the feed &apos;%1&apos;?</source>
+    <target>Вы действительно хотите удалить новостную ленту &quot;%1&quot;?</target>
+</phrase>
+<phrase>
+    <source>Username:</source>
+    <target>Имя пользователя:</target>
+</phrase>
+<phrase>
+    <source>Proxy server:</source>
+    <target>Прокси-сервер:</target>
+</phrase>
+<phrase>
+    <source>Date</source>
+    <target>Дата</target>
+</phrase>
+<phrase>
+    <source>Delete feed</source>
+    <target>Удаление новостной ленты</target>
+</phrase>
+<phrase>
+    <source>Options</source>
+    <target>Настройки</target>
+</phrase>
+<phrase>
+    <source>Add feed</source>
+    <target>Добавление новостной ленты</target>
+</phrase>
+<phrase>
+    <source>author</source>
+    <target>Автор</target>
+</phrase>
+<phrase>
+    <source>Read</source>
+    <target>Прочитано</target>
+</phrase>
+<phrase>
+    <source>Star</source>
+    <target>Звёздочка</target>
+</phrase>
+<phrase>
+    <source>Author</source>
+    <target>Автор</target>
+</phrase>
+<phrase>
+    <source>Show All</source>
+    <target>Показать все</target>
+</phrase>
+<phrase>
+    <source>Show Unread</source>
+    <target>Показать непрочитанные</target>
+</phrase>
+<phrase>
+    <source>Filter</source>
+    <target>Фильтр</target>
+</phrase>
+<phrase>
+    <source>Error loading to WebView</source>
+    <target>Ошибка загрузки WebView</target>
+</phrase>
+<phrase>
+    <source>Loading... (%p%)</source>
+    <target>Загрузка... (%p%)</target>
+</phrase>
+<phrase>
+    <source>Mark Read</source>
+    <target>Отметить прочитанной</target>
+</phrase>
+<phrase>
+    <source>Mark current news read</source>
+    <target>Отметить текущую новость прочитанной</target>
+</phrase>
+<phrase>
+    <source>Mark all news Read</source>
+    <target>Отметить все новости прочитанными</target>
+</phrase>
+<phrase>
+    <source>About</source>
+    <target>О программе</target>
+</phrase>
+<phrase>
+    <source>Version </source>
+    <target>Версия</target>
+</phrase>
+<phrase>
+    <source>The authors:</source>
+    <target>Авторы:</target>
+</phrase>
+<phrase>
+    <source>&amp;Close</source>
+    <target>&amp;Закрыть</target>
+</phrase>
+<phrase>
+    <source>Feed Title:</source>
+    <target>Название новостной ленты:</target>
+</phrase>
+<phrase>
+    <source>Feed Title:</source>
+    <target>Название ленты:</target>
+</phrase>
+<phrase>
+    <source>Feed Url:</source>
+    <target>Адрес ленты:</target>
+</phrase>
+<phrase>
+    <source>Feed Title:</source>
+    <target>Заголовок ленты:</target>
+</phrase>
+<phrase>
+    <source>Mark all news Read</source>
+    <target>Отметить все прочитанными</target>
+</phrase>
+<phrase>
+    <source>&amp;Load images</source>
+    <target>&amp;Загружать изображения</target>
+</phrase>
+<phrase>
+    <source>Open in Browser</source>
+    <target>Открыть в браузере</target>
+</phrase>
+<phrase>
+    <source>Delete</source>
+    <target>Удалить</target>
+</phrase>
+<phrase>
+    <source>Open in Browser</source>
+    <target>Открыть в браузере</target>
+</phrase>
+<phrase>
+    <source>Mark feed read</source>
+    <target>Отметить ленту прочитанной</target>
+</phrase>
+<phrase>
+    <source>Properties</source>
+    <target>Свойства</target>
+</phrase>
+<phrase>
+    <source>Properties feed</source>
+    <target>Свойства ленты</target>
+</phrase>
+<phrase>
+    <source>Author:</source>
+    <target>Автор:</target>
+</phrase>
+<phrase>
+    <source>Title:</source>
+    <target>Заголовок:</target>
+</phrase>
+<phrase>
+    <source>Auto load images to news view</source>
+    <target>Автоматическая загрузка изображений</target>
+</phrase>
+<phrase>
+    <source>Language</source>
+    <target>Язык</target>
+</phrase>
+<phrase>
+    <source>Automatically update the feeds on start-up</source>
+    <target>Автоматическое обновление лент при запуске</target>
+</phrase>
+<phrase>
+    <source>Automatically update the feeds every</source>
+    <target>Автоматическое обновление лент каждые</target>
+</phrase>
+<phrase>
+    <source>General</source>
+    <target>Общие</target>
+</phrase>
+<phrase>
+    <source>English (%1)</source>
+    <target>Английский (%1)</target>
+</phrase>
+<phrase>
+    <source>* - changes will take effect after restart</source>
+    <target>* - изменения вступят в силу после перезапуска</target>
+</phrase>
+<phrase>
+    <source>Russian (%1)</source>
+    <target>Русский (%1)</target>
+</phrase>
+<phrase>
+    <source>Choose language:*</source>
+    <target>Выберите язык:*</target>
+</phrase>
+<phrase>
+    <source>Show New</source>
+    <target>Показать новые</target>
+</phrase>
+<phrase>
+    <source>Check for updates...</source>
+    <target>Проверить наличие обновлений...</target>
+</phrase>
+<phrase>
+    <source> Unread: %1 </source>
+    <target> Непрочитанных: %1 </target>
+</phrase>
+<phrase>
+    <source> All: %1 </source>
+    <target> Всего: %1 </target>
+</phrase>
+<phrase>
+    <source>Checking for updates...</source>
+    <target>Проверка наличия обновлений...</target>
+</phrase>
+<phrase>
+    <source>Check for updates</source>
+    <target>Проверить наличие обновлений</target>
+</phrase>
+<phrase>
+    <source>You already have the latest version</source>
+    <target>У вас уже есть последняя версия</target>
+</phrase>
+<phrase>
+    <source>A new version of QuiteRSS is available!</source>
+    <target>Новая версия QuiteRSS доступна!</target>
+</phrase>
+<phrase>
+    <source>Click here to go to the download page</source>
+    <target>Нажмите здесь, чтобы перейти на страницу загрузки</target>
+</phrase>
+<phrase>
+    <source>Current version is: </source>
+    <target>Текущая версия: </target>
+</phrase>
+<phrase>
+    <source>Error checking updates</source>
+    <target>Ошибка при проверке обновлений</target>
+</phrase>
+<phrase>
+    <source>Fonts</source>
+    <target>Шрифты</target>
+</phrase>
+<phrase>
+    <source>Choose language:</source>
+    <target>Выберите язык:</target>
+</phrase>
+<phrase>
+    <source>Type</source>
+    <target>Тип</target>
+</phrase>
+<phrase>
+    <source>Font</source>
+    <target>Шрифт</target>
+</phrase>
+<phrase>
+    <source>Feeds list font</source>
+    <target>Шрифт списка лент</target>
+</phrase>
+<phrase>
+    <source>News list font</source>
+    <target>Шрифт списка новостей</target>
+</phrase>
+<phrase>
+    <source>News font</source>
+    <target>Шрифт новости</target>
+</phrase>
+<phrase>
+    <source>News font</source>
+    <target>Шрифт новости</target>
+</phrase>
+<phrase>
+    <source>Change...</source>
+    <target>Изменить...</target>
+</phrase>
+<phrase>
+    <source>Reset</source>
+    <target>Сброс</target>
+</phrase>
+<phrase>
+    <source>Load feed title</source>
+    <target>Загрузить заголовок ленты</target>
+</phrase>
+<phrase>
+    <source>Feed URL:</source>
+    <target>URL ленты:</target>
+</phrase>
+<phrase>
+    <source>Homepage:</source>
+    <target>Домашняя страница:</target>
+</phrase>
+<phrase>
+    <source>System tray</source>
+    <target>Системный трей</target>
+</phrase>
+<phrase>
+    <source>minutes</source>
+    <target>минуты</target>
+</phrase>
+<phrase>
+    <source>starting QuiteRSS</source>
+    <target>при запуске QuiteRSS</target>
+</phrase>
+<phrase>
+    <source>minimizing QuiteRSS</source>
+    <target>при минимизации QuiteRSS</target>
+</phrase>
+<phrase>
+    <source>closing QuiteRSS</source>
+    <target>при закрытии QuiteRSS</target>
+</phrase>
+<phrase>
+    <source>Single click instead of double click for show window</source>
+    <target>Один клик вместо двойного клика для отображения окна</target>
+</phrase>
+<phrase>
+    <source>Empty working set on minimize to tray</source>
+    <target>Освобождение памяти при минимизации в трей</target>
+</phrase>
+<phrase>
+    <source>Move to the system tray when:</source>
+    <target>Помещать в сиcтемный трей:</target>
+</phrase>
+<phrase>
+    <source>No load images</source>
+    <target>Не загружать изображения</target>
+</phrase>
+<phrase>
+    <source>No load images to news view</source>
+    <target>Не загружать изображения</target>
+</phrase>
+<phrase>
+    <source>Load images</source>
+    <target>Загружать изображения</target>
+</phrase>
+<phrase>
+    <source>Style</source>
+    <target>Стиль</target>
+</phrase>
+<phrase>
+    <source>Icon</source>
+    <target>Иконка</target>
+</phrase>
+<phrase>
+    <source>Text</source>
+    <target>Текст</target>
+</phrase>
+<phrase>
+    <source>Text beside icon</source>
+    <target>Текст рядом с иконкой</target>
+</phrase>
+<phrase>
+    <source>Text under icon</source>
+    <target>Текст под иконкой</target>
+</phrase>
+<phrase>
+    <source>Big</source>
+    <target>Большой</target>
+</phrase>
+<phrase>
+    <source>Normal</source>
+    <target>Нормальный</target>
+</phrase>
+<phrase>
+    <source>Small</source>
+    <target>Маленький</target>
+</phrase>
+<phrase>
+    <source>Mark current news read/unread</source>
+    <target>Отметить текущую новость прочитанной/непрочитанной</target>
+</phrase>
+<phrase>
+    <source>Mark Read/Unread</source>
+    <target>Отметить прочитанной/непрочитанной</target>
+</phrase>
+<phrase>
+    <source>Update feed</source>
+    <target>Обновить ленту</target>
+</phrase>
+<phrase>
+    <source>Icon size</source>
+    <target>Размер иконки</target>
+</phrase>
+<phrase>
+    <source>Show amount of new news</source>
+    <target>Показывать количество новых новостей</target>
+</phrase>
+<phrase>
+    <source>Mark selected news as read after</source>
+    <target>Отметить выделенную новость как прочитанную после</target>
+</phrase>
+<phrase>
+    <source>seconds</source>
+    <target>секунд</target>
+</phrase>
+<phrase>
+    <source>Mark selected news as read after</source>
+    <target>Пометить выделенную новость прочитанной после</target>
+</phrase>
+<phrase>
+    <source>Reading</source>
+    <target>Чтение</target>
+</phrase>
+<phrase>
+    <source>New news: %1
+</source>
+    <target>Новых новостей: %1</target>
+</phrase>
+<phrase>
+    <source>Show static icon</source>
+    <target>Показывать статическую иконку</target>
+</phrase>
+<phrase>
+    <source>Change icon for incoming new news</source>
+    <target>Изменять иконку при входящих новых новостях</target>
+</phrase>
+<phrase>
+    <source>Show the count of new news</source>
+    <target>Показывать количество новых новостей</target>
+</phrase>
+<phrase>
+    <source>Show the count of unread news</source>
+    <target>Показывать количество непрочитанных новостей</target>
+</phrase>
+<phrase>
+    <source>Tray icon behavior:</source>
+    <target>Поведение иконки в трее:</target>
+</phrase>
+<phrase>
+    <source>New news: %1</source>
+    <target>Новых новостей: %1</target>
+</phrase>
+<phrase>
+    <source>Mark all feeds Read</source>
+    <target>Отметить все ленты прочитанными</target>
+</phrase>
+<phrase>
+    <source>Clear status new on minimize to tray</source>
+    <target>Очистить статус новые при минимизации в трей</target>
+</phrase>
+<phrase>
+    <source>Published</source>
+    <target>Опубликовано</target>
+</phrase>
+<phrase>
+    <source>Browser</source>
+    <target>Браузер</target>
+</phrase>
+<phrase>
+    <source>Use the embedded browser</source>
+    <target>Использовать внутренний браузер</target>
+</phrase>
+<phrase>
+    <source>Show count of new news</source>
+    <target>Показывать количество новых новостей</target>
+</phrase>
+<phrase>
+    <source>Show count of unread news</source>
+    <target>Показывать количество непрочитанных новостей</target>
+</phrase>
+<phrase>
+    <source>Update done</source>
+    <target>Обновление завершено</target>
+</phrase>
+<phrase>
+    <source>Acknowledgements:</source>
+    <target>Благодарности:</target>
+</phrase>
+<phrase>
+    <source>Export canceled</source>
+    <target>Отмена экспортирования</target>
+</phrase>
+<phrase>
+    <source>Export: can&apos;t open a file</source>
+    <target>Экспортирование: не может открыть файл</target>
+</phrase>
+<phrase>
+    <source>&amp;Export feeds...</source>
+    <target>&amp;Экспортировать новостные ленты...</target>
+</phrase>
+<phrase>
+    <source>Export feeds to OPML file</source>
+    <target>Экспортировать новостные ленты из OPML-файла</target>
+</phrase>
+<phrase>
+    <source>Loading history...</source>
+    <target>Загрузка истории...</target>
+</phrase>
+<phrase>
+    <source>News filters...</source>
+    <target>Фильтры новостей... </target>
+</phrase>
+<phrase>
+    <source>Filter news...</source>
+    <target>Фильтр новостей...</target>
+</phrase>
+<phrase>
+    <source>Category</source>
+    <target>Категория</target>
+</phrase>
+<phrase>
+    <source>Play sound for incoming new news</source>
+    <target>Воспроизведение звука при входящих новых новостях</target>
+</phrase>
+<phrase>
+    <source>Enable JavaScript</source>
+    <target>Включить JavaScript</target>
+</phrase>
+<phrase>
+    <source>Enable plug-ins</source>
+    <target>Включить плагины</target>
+</phrase>
+<phrase>
+    <source>Notifications</source>
+    <target>Уведомления</target>
+</phrase>
+<phrase>
+    <source>Are you sure to delete the filter &apos;%1&apos;?</source>
+    <target>Вы действительно хотите удалить фильтр &apos;%1&apos;?</target>
+</phrase>
+<phrase>
+    <source>Delete...</source>
+    <target>Удалить...</target>
+</phrase>
+<phrase>
+    <source>New...</source>
+    <target>Создать...</target>
+</phrase>
+<phrase>
+    <source>Edit...</source>
+    <target>Изменить...</target>
+</phrase>
+<phrase>
+    <source>Move up</source>
+    <target>Вверх</target>
+</phrase>
+<phrase>
+    <source>Move down</source>
+    <target>Вниз</target>
+</phrase>
+<phrase>
+    <source>Delete filter</source>
+    <target>Удалить фильтр</target>
+</phrase>
+<phrase>
+    <source>Name filter</source>
+    <target>Имя фильтра</target>
+</phrase>
+<phrase>
+    <source>Location</source>
+    <target>Расположение</target>
+</phrase>
+<phrase>
+    <source>Status</source>
+    <target>Состояние</target>
+</phrase>
+<phrase>
+    <source>New</source>
+    <target>Новое</target>
+</phrase>
+<phrase>
+    <source>Add condition</source>
+    <target>Добавить условие</target>
+</phrase>
+<phrase>
+    <source>Delete condition</source>
+    <target>Удалить условие</target>
+</phrase>
+<phrase>
+    <source>Description</source>
+    <target>Описание</target>
+</phrase>
+<phrase>
+    <source>doesn&apos;t contains</source>
+    <target>не содержит</target>
+</phrase>
+<phrase>
+    <source>is</source>
+    <target>совпадает с</target>
+</phrase>
+<phrase>
+    <source>doesn&apos;t contains</source>
+    <target>не содержит</target>
+</phrase>
+<phrase>
+    <source>contains</source>
+    <target>содержит</target>
+</phrase>
+<phrase>
+    <source>isn&apos;t</source>
+    <target>не совпадает с</target>
+</phrase>
+<phrase>
+    <source>begins with</source>
+    <target>начинается с</target>
+</phrase>
+<phrase>
+    <source>ends with</source>
+    <target>заканчивается на</target>
+</phrase>
+<phrase>
+    <source>Add action</source>
+    <target>Добавить действие</target>
+</phrase>
+<phrase>
+    <source>Delete action</source>
+    <target>Удалить действие</target>
+</phrase>
+<phrase>
+    <source>Add star</source>
+    <target>Отметить звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Mark news as read</source>
+    <target>Отметить как прочитанной</target>
+</phrase>
+<phrase>
+    <source>Filter rules</source>
+    <target>Правила фильтрации</target>
+</phrase>
+<phrase>
+    <source>Perform these actions:</source>
+    <target>Выполнить следующие действия:</target>
+</phrase>
+<phrase>
+    <source>Move news</source>
+    <target>Переместить новость</target>
+</phrase>
+<phrase>
+    <source>Copy news</source>
+    <target>Копировать новость</target>
+</phrase>
+<phrase>
+    <source>Copy news to</source>
+    <target>Копировать новость в</target>
+</phrase>
+<phrase>
+    <source>Move news to</source>
+    <target>Переместить новость в</target>
+</phrase>
+<phrase>
+    <source>Match all conditions</source>
+    <target>Соответствует всем условиям</target>
+</phrase>
+<phrase>
+    <source>Match any condition</source>
+    <target>Соответствует любому условию</target>
+</phrase>
+<phrase>
+    <source>Mark news star</source>
+    <target>Отметить новость звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Delete selected news</source>
+    <target>Удалить выбранные новости</target>
+</phrase>
+<phrase>
+    <source>Previous feed</source>
+    <target>Предыдущая лента</target>
+</phrase>
+<phrase>
+    <source>Next feed</source>
+    <target>Следующая лента</target>
+</phrase>
+<phrase>
+    <source>Previous news</source>
+    <target>Предыдущая новость</target>
+</phrase>
+<phrase>
+    <source>Next news</source>
+    <target>Следующая новость</target>
+</phrase>
+<phrase>
+    <source>Shortcut:</source>
+    <target>Сочетание клавиш:</target>
+</phrase>
+<phrase>
+    <source>Keyboard shortcuts</source>
+    <target>Горячие клавиши</target>
+</phrase>
+<phrase>
+    <source>hours</source>
+    <target>часы</target>
+</phrase>
+<phrase>
+    <source>Action</source>
+    <target>Действие</target>
+</phrase>
+<phrase>
+    <source>Clear</source>
+    <target>Очистить</target>
+</phrase>
+<phrase>
+    <source>Show splash screen on startup</source>
+    <target>Показать заставку при запуске</target>
+</phrase>
+<phrase>
+    <source>Show system tray icon</source>
+    <target>Показать иконку в системном трее</target>
+</phrase>
+<phrase>
+    <source>Reopen last opened feeds on startup</source>
+    <target>Повторно открывать последнюю открытую ленту при запуске</target>
+</phrase>
+<phrase>
+    <source>Show news&apos; description instead of loading web page</source>
+    <target>Показывать описание новости вместо загрузки веб-страницы</target>
+</phrase>
+<phrase>
+    <source>Maximum number of news to keep:</source>
+    <target>Максимальное количество сохраняемых новостей:</target>
+</phrase>
+<phrase>
+    <source>Maximum age of news in days to keep:</source>
+    <target>Максимальный возраст сохраняемых новостей в днях:</target>
+</phrase>
+<phrase>
+    <source>Delete read news</source>
+    <target>Удалять прочитанные новости</target>
+</phrase>
+<phrase>
+    <source>Never delete unread news</source>
+    <target>Никогда не удалять непрочитанные новости</target>
+</phrase>
+<phrase>
+    <source>Never delete starred news</source>
+    <target>Никогда не удалять новости отмеченные звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Clean Up</source>
+    <target>Очистка</target>
+</phrase>
+<phrase>
+    <source>German (%1)</source>
+    <target>Немецкий (%1)</target>
+</phrase>
+<phrase>
+    <source>Starred</source>
+    <target>Отмечена звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Style application</source>
+    <target>Стиль приложения</target>
+</phrase>
+<phrase>
+    <source>System</source>
+    <target>Системный</target>
+</phrase>
+<phrase>
+    <source>Default</source>
+    <target>По умолчанию</target>
+</phrase>
+<phrase>
+    <source>French (%1)</source>
+    <target>Французский (%1)</target>
+</phrase>
+</QPH>
