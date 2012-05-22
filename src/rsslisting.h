@@ -11,10 +11,11 @@
 #include "feedsview.h"
 #include "newsheader.h"
 #include "newsmodel.h"
+#include "newstabwidget.h"
+#include "newsview.h"
 #include "parsethread.h"
 #include "updateappdialog.h"
 #include "updatethread.h"
-#include "newsview.h"
 #include "webview.h"
 
 class RSSListing : public QMainWindow
@@ -35,7 +36,8 @@ public slots:
   void slotImportFeeds();
   void slotExportFeeds();
   void slotFeedsTreeClicked(QModelIndex index);
-  void slotFeedsTreeSelected(QModelIndex index, bool clicked = false);
+  void slotFeedsTreeSelected(QModelIndex index, bool clicked = false,
+                             bool createTab = false);
   void slotGetFeed();
   void slotGetAllFeeds();
   void slotNewsViewClicked(QModelIndex index);
@@ -67,7 +69,7 @@ private:
 
   void showProgressBar(int addToMaximum);
   void createFeedsDock();
-  void createNewsDock();
+  void createNewsTab(bool on = true);
   void createToolBarNull();
   void createWebWidget();
   void createActions();
@@ -100,6 +102,8 @@ private:
   QString dbFileName_;
   FeedsModel *feedsModel_;
   NewsModel *newsModel_;
+  QTabWidget *tabWidget_;
+  QTabBar* tabBar_;
 
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;
@@ -161,6 +165,7 @@ private:
   QAction *webExternalBrowserAct_;
   QAction *switchFocusAct_;
   QAction *visibleFeedsDockAct_;
+  QAction *openNewTabAct_;
 
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;
@@ -203,6 +208,8 @@ private:
   QWidget *newsTitleLabel_;
   QLabel *newsIconTitle_;
   QLabel *newsTextTitle_;
+
+  NewsTabWidget *currentNewsTab;
 
   QLabel *webPanelTitle_;
   QLabel *webPanelTitleLabel_;
@@ -281,6 +288,8 @@ private:
 
   bool reopenFeedStartup_;
 
+  QModelIndex selectFeedIndex;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();
@@ -288,14 +297,15 @@ private slots:
   void slotDockLocationChanged(Qt::DockWidgetArea area);
   void slotSetItemRead(QModelIndex index, int read);
   void markNewsRead();
-  void markAllNewsRead();
+  void markAllNewsRead(bool openFeed = true);
+  void markFeedRead();
   void slotLoadStarted();
   void slotLoadFinished(bool ok);
   void setFeedsFilter(QAction*, bool clicked = true);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
   void slotNewsDockLocationChanged(Qt::DockWidgetArea area);
-  void slotUpdateStatus();
+  void slotUpdateStatus(bool openFeed = true);
   void setFeedRead(int feedId);
   void slotShowAboutDlg();
   void deleteNews();
@@ -336,6 +346,9 @@ private slots:
   void slotSwitchFocus();
   void slotOpenNewsWebView();
   void slotWebViewSetContent(QString content);
+  void slotOpenNewTab();
+  void slotTabCloseRequested(int index);
+  void slotTabCurrentChanged(int);
 
 signals:
   void signalPlaceToTray();
