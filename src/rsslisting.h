@@ -9,6 +9,8 @@
 #include "faviconloader.h"
 #include "feedsmodel.h"
 #include "feedsview.h"
+#include "feedstreemodel.h"
+#include "feedstreeview.h"
 #include "findfeed.h"
 #include "newsheader.h"
 #include "newsmodel.h"
@@ -36,6 +38,8 @@ public:
   QSqlDatabase db_;
   FeedsModel *feedsModel_;
   FeedsView *feedsView_;
+  FeedsTreeModel *feedsTreeModel_;
+  FeedsTreeView *feedsTreeView_;
   QTabWidget *tabWidget_;
   WebView *webView_;
 
@@ -94,6 +98,7 @@ public:
 
 public slots:
   void addFeed();
+  void addFolder();
   void deleteFeed();
   void slotImportFeeds();
   void slotExportFeeds();
@@ -171,6 +176,7 @@ private:
   QStringList listDefaultShortcut_;
 
   QAction *addFeedAct_;
+  QAction *addFolderAct_;
   QAction *deleteFeedAct_;
   QAction *importFeedsAct_;
   QAction *exportFeedsAct_;
