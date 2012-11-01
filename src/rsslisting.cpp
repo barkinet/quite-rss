@@ -356,6 +356,9 @@ void RSSListing::slotCloseApp()
     } else {
       oldState = windowState();
 
+      qDebug() << QString::number(oldState, 16)
+          << QString::number(((QWindowStateChangeEvent*)event)->oldState(), 16);
+
       if (tabWidget_->count() &&
           !(((QWindowStateChangeEvent*)event)->oldState() & Qt::WindowMinimized)) {
         QString stateStr;
@@ -475,6 +478,12 @@ void RSSListing::createFeedsDock()
   feedsModel_ = new FeedsModel(this);
   feedsModel_->setTable("feeds");
   feedsModel_->select();
+  feedsTreeModel_ = new FeedsTreeModel("feeds",
+      QStringList() << QObject::tr("ID") << QObject::tr("PARENTID") << QObject::tr("TEXT")
+          << QObject::tr("UNREAD") << QObject::tr("UNDELETECOUNT") << QObject::tr("UPDATED"),
+      QStringList() << "id" << "parentId" << "text" << "unread" << "undeleteCount" << "updated",
+      0,
+      "text");
 
   feedsView_ = new FeedsView(this);
   feedsView_->setFrameStyle(QFrame::NoFrame);
@@ -486,6 +495,26 @@ void RSSListing::createFeedsDock()
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("undeleteCount"), QHeaderView::ResizeToContents);
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("updated"), QHeaderView::ResizeToContents);
+  feedsTreeView_ = new FeedsTreeView(this);
+  feedsTreeView_->setFrameStyle(QFrame::NoFrame);
+  feedsTreeView_->setModel(feedsTreeModel_);
+  for (int i = 0; i < feedsTreeModel_->columnCount(); ++i)
+    feedsTreeView_->hideColumn(i);
+  feedsTreeView_->showColumn(feedsTreeModel_->proxyColumnByOriginal("text"));
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("text"), QHeaderView::Stretch);
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+
+  feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("id"),Qt::AscendingOrder);
+  feedsTreeView_->setColumnHidden("id", true);
+  feedsTreeView_->setColumnHidden("parentId", true);
+  feedsTreeView_->setSelectionBehavior(QAbstractItemView::SelectRows);
+  feedsTreeView_->setSelectionMode(QAbstractItemView::SingleSelection);
+  feedsTreeView_->setDragDropMode(QAbstractItemView::InternalMove);
+  feedsTreeView_->setDragEnabled(true);
+  feedsTreeView_->setAcceptDrops(true);
+  feedsTreeView_->setDropIndicatorShown(true);
 
   //! Create title DockWidget
   feedsTitleLabel_ = new QLabel(this);
@@ -529,6 +558,7 @@ void RSSListing::createFeedsDock()
   feedsLayout->setSpacing(0);
   feedsLayout->addWidget(findFeedsWidget_);
   feedsLayout->addWidget(feedsView_, 1);
+  feedsLayout->addWidget(feedsTreeView_, 1);
   QFrame *feedsWidget_ = new QFrame(this);
   feedsWidget_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   feedsWidget_->setLayout(feedsLayout);
@@ -646,6 +676,11 @@ void RSSListing::createActions()
   addFeedAct_->setObjectName("addFeedAct");
   addFeedAct_->setIcon(QIcon(":/images/add"));
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
+
+  addFolderAct_ = new QAction(this);
+  addFolderAct_->setObjectName("addCategoryAct");
+  addFolderAct_->setIcon(QIcon(":/images/addCategory"));
+  connect(addFolderAct_, SIGNAL(triggered()), this, SLOT(addFolder()));
 
   openFeedNewTabAct_ = new QAction(this);
   openFeedNewTabAct_->setObjectName("openNewTabAct");
@@ -1113,6 +1148,7 @@ void RSSListing::createMenu()
   fileMenu_ = new QMenu(this);
   menuBar()->addMenu(fileMenu_);
   fileMenu_->addAction(addFeedAct_);
+  fileMenu_->addAction(addFolderAct_);
   fileMenu_->addSeparator();
   fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addAction(exportFeedsAct_);
@@ -1421,6 +1457,7 @@ void RSSListing::readSettings()
 
   formatDateTime_ = settings_->value("formatDataTime", "dd.MM.yy hh:mm").toString();
   feedsModel_->formatDateTime_ = formatDateTime_;
+  feedsTreeModel_->formatDateTime_ = formatDateTime_;
 
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
@@ -1696,6 +1733,28 @@ void RSSListing::addFeed()
   slotUpdateFeed(addFeedWizard->feedUrlString_, true);
 
   delete addFeedWizard;
+}
+
+void RSSListing::addFolder()
+{
+  QSqlQuery q(db_);
+
+  // Вычисляем номер ряда для папки, вставляемой в корень
+  int rowToParent = 0;
+  q.exec("SELECT max(rowToParent) FROM feeds WHERE parentId=0");
+  qDebug() << q.lastQuery();
+  qDebug() << q.lastError();
+  if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+
+  // Добавляем папку
+  q.prepare("INSERT INTO feeds(text, created, rowToParent) "
+            "VALUES (:text, :feedCreateTime, :rowToParent)");
+  q.bindValue(":text", "New folder");
+  q.bindValue(":feedCreateTime",
+              QLocale::c().toString(QDateTime::currentDateTimeUtc(), "yyyy-MM-ddTHH:mm:ss"));
+  q.bindValue(":rowToParent", rowToParent);
+  q.exec();
+  q.finish();
 }
 
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
@@ -2951,6 +3010,7 @@ void RSSListing::createMenuFeed()
 {
   feedContextMenu_ = new QMenu(this);
   feedContextMenu_->addAction(addFeedAct_);
+  feedContextMenu_->addAction(addFolderAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(openFeedNewTabAct_);
   feedContextMenu_->addSeparator();
@@ -3141,6 +3201,9 @@ void RSSListing::retranslateStrings() {
 
   addFeedAct_->setText(tr("&Add Feed..."));
   addFeedAct_->setToolTip(tr("Add New Feed"));
+
+  addFolderAct_->setText(tr("&Add Folder..."));
+  addFolderAct_->setToolTip(tr("Add New Folder"));
 
   openFeedNewTabAct_->setText(tr("Open in New Tab"));
 
@@ -3986,6 +4049,10 @@ void RSSListing::feedsColumnVisible(QAction *action)
 {
   int idx = action->data().toInt();
   feedsView_->setColumnHidden(idx, !action->isChecked());
+  if (action->isChecked())
+    feedsTreeView_->showColumn(feedsTreeModel_->proxyColumnByOriginal(idx));
+  else
+    feedsTreeView_->hideColumn(feedsTreeModel_->proxyColumnByOriginal(idx));
 }
 
 //! Установка позиции браузера
