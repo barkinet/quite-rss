@@ -1,0 +1,218 @@
+/* QuiteRSS System2 Style */
+
+#feedsTreeView_::item, #newsView_::item, #newsCategoriesTree_::item {
+	min-height: 20px;
+}
+
+QTabWidget::pane { /* Рамка виджета со вкладками */
+	background: white;
+	border: 1px solid gray;
+}
+
+QTabWidget::tab-bar {
+	left: 2px; /* сдвигаем вправо на 2px */
+	bottom: -1px;
+}
+
+/* Применяем стиль ко вкладке используя субэлемент управления tab. Обратите внимание на то, что
+ оно читается как QTabBar, а _не_ QTabWidget */
+QTabBar::tab {
+	background-color: transparent;
+	border: 1px solid gray;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	min-width: 20px;
+	max-width: 130;
+	padding: 4px 12px 4px 12px;
+	margin-right: 1px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #ffffff, stop: 0.4 #fafafa,
+								stop: 0.5 #f4f4f4, stop: 1.0 #ffffff);
+	color: #000000;
+}
+
+QTabBar::tab:selected {
+	border-bottom: none;
+	padding-bottom: 5px;
+}
+
+QTabBar QToolButton {
+	border: 1px solid gray;
+	border-radius: 2px;
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #ffffff, stop: 0.4 #fafafa,
+								stop: 0.5 #f4f4f4, stop: 1.0 #ffffff);
+}
+
+#tabWidget_::pane {
+	border-right: none;
+	border-bottom: none;
+}
+
+#feedsTitleLabel_ {
+	margin-left: 3px;
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #ffffff, stop: 0.4 #fafafa,
+								stop: 0.5 #f4f4f4, stop: 1.0 #ffffff);
+	border: 1px solid grey;
+	border-bottom: 0px solid #D5D5D5;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	padding: 4px;
+	vertical-align:middle;
+	color: #000000;
+	min-height: 17px;
+}
+
+QToolBar {
+	border-style: none;
+}
+
+#pushButtonNull {
+	background: #E8E8E8;
+	border-style: none;
+}
+
+#buttonColumnView {
+	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #f0f0f0, stop: 1.0 #D5D5D5);
+	border-top: none;
+	border-bottom: 1px solid #D5D5D5;
+	padding: 5px 0px 1px 0px;
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #ffffff, stop: 0.4 #ffffff,
+								stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
+}
+
+#buttonColumnView:hover, #buttonColumnView:pressed {
+	border-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #88CBEB, stop: 0.4 #88CBEB,
+								stop: 0.5 #69BBE3, stop: 1.0 #69BBE3);
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E3F7FF, stop: 0.4 #E3F7FF,
+								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
+}
+
+QHeaderView {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+							stop: 0 #ffffff, stop: 0.4 #ffffff,
+							stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
+	color: #000000;
+}
+
+QHeaderView::section {
+	min-height: 20px;
+	border-right: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #f0f0f0, stop: 1.0 #D5D5D5);
+	border-bottom: 1px solid #D5D5D5;
+	border-top: none;
+	border-left: none;
+	background-color: transparent;
+	padding-left: 3px;
+}
+
+QHeaderView::section:hover {
+	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #88CBEB, stop: 0.4 #88CBEB,
+								stop: 0.5 #69BBE3, stop: 1.0 #69BBE3);
+	border-top: none;
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E3F7FF, stop: 0.4 #E3F7FF,
+								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
+}
+
+QHeaderView::down-arrow {
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
+	image: url(:/images/images/sortIndicatorD.png);
+}
+
+QHeaderView::up-arrow {
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
+	image: url(:/images/images/sortIndicatorA.png);
+}
+
+#webViewProgress_ {
+	border: 1px solid #A5A5A5;
+	border-left: none;
+	border-right: none;
+	text-align: center;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #f4f4f4,
+								stop:0.4 #ECECEC
+								stop:0.5 #DEDEDE,
+								stop:1 #f4f4f4);
+}
+
+#webViewProgress_::chunk {
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #e0e0e0,
+								stop:0.4 #d9d9d9
+								stop:0.5 #cbcbcb,
+								stop:1 #e0e0e0);
+	width: 10px;
+}
+
+#contentLabel_ {
+	background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+										stop:0 #CCCCCC,
+										stop:0.5 #888888,
+										stop:0.9 #B4B4B4);
+	color: #FFFFFF;
+}
+
+#categoriesTree {
+	padding: 1px;
+}
+
+#categoriesTree::item, #fontTree::item, 
+#languageFileList_::item, #filtersTree::item,
+#shortcutTree::item, #labelsTree_::item {
+	min-height: 20px;
+}
+
+#foldersTree_::item, #feedsTreeFR::item, #feedsTreeNotify_::item {
+	min-height: 18px;
+}
+
+QStatusBar #progressBar_{
+	margin-right: 5px;
+}
+
+QMainWindow::separator {
+	border: none;
+}
+
+#infoWidgetFR, #actionsWidgetFR {
+	background: white;
+}
+
+#notificationWidget {
+	background: #ffffff;
+	border: 1px solid #c0c0c0;
+	border-radius: 8px;
+}
+
+#titleNotification {
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+										stop:0 #f0f0f0,
+										stop:0.4 #e5e5e5,
+										stop:1 #f0f0f0);
+	border-bottom: 1px solid #e0e0e0;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+#bottomNotification {
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+										stop:0 #f0f0f0,
+										stop:0.6 #e5e5e5,
+										stop:1 #f0f0f0);
+	border-top: 1px solid #e0e0e0;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
