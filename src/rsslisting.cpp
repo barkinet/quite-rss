@@ -114,6 +114,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   createTray();
 
   tabBar_ = new QTabBar(this);
+  tabBar_->addTab("");
+  tabBar_->setIconSize(QSize(16, 16));
   tabBar_->setMovable(true);
   tabBar_->setExpanding(false);
   connect(tabBar_, SIGNAL(tabCloseRequested(int)),
@@ -2702,28 +2704,30 @@ void RSSListing::slotFeedClicked(QModelIndex index)
     }
   }
 
-  if ((feedIdCur != feedIdOld_) || (indexTab == -1)) {
-    if ((stackedWidget_->currentIndex() != TAB_WIDGET_PERMANENT) && (indexTab == -1)) {
-      stackedWidget_->setCurrentIndex(TAB_WIDGET_PERMANENT);
+  if (indexTab == -1) {
+    if (tabBar_->currentIndex() != TAB_WIDGET_PERMANENT) {
+      updateCurrentTab_ = false;
+      tabBar_->setCurrentIndex(TAB_WIDGET_PERMANENT);
+      updateCurrentTab_ = true;
       feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur));
-    } else if (indexTab != -1) {
-      stackedWidget_->setCurrentIndex(indexTab);
-    }
 
+      currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
+      newsModel_ = currentNewsTab->newsModel_;
+      newsView_ = currentNewsTab->newsView_;
+    }
     //! При переходе на другую ленту метим старую просмотренной
     setFeedRead(feedIdOld_, FeedReadTypeSwitchingFeed);
 
-    slotFeedSelected(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur), true);
+    slotFeedSelected(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur));
     feedsTreeView_->repaint();
   } else if (indexTab != -1) {
-    stackedWidget_->setCurrentIndex(indexTab);
+    tabBar_->setCurrentIndex(indexTab);
   }
   feedIdOld_ = feedIdCur;
 }
 
 /** @brief Обработка самого выбора ленты **************************************/
-void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
-                                  bool createTab)
+void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 {
   QElapsedTimer timer;
   timer.start();
@@ -2734,26 +2738,24 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   int feedParId = feedsTreeModel_->getParidByIndex(index);
 
   // Открытие или создание вкладки с лентой
-  if ((!stackedWidget_->count() && clicked) || createTab) {
+  if (!stackedWidget_->count() || createTab) {
     NewsTabWidget *widget = new NewsTabWidget(this, TAB_FEED, feedId, feedParId);
-    int indexTab = stackedWidget_->addWidget(widget);
+    int indexTab = addTab(widget);
     createNewsTab(indexTab);
 
-    tabBar_->addTab("");
-    tabBar_->setTabButton(indexTab,
-                          QTabBar::LeftSide,
-                          currentNewsTab->newsTitleLabel_);
     if (indexTab == 0)
       currentNewsTab->closeButton_->setVisible(false);
+    if (!index.isValid())
+      currentNewsTab->setVisible(false);
 
     emit signalSetCurrentTab(indexTab);
   } else {
     currentNewsTab->feedId_ = feedId;
     currentNewsTab->feedParId_ = feedParId;
     currentNewsTab->setSettings(false);
+    currentNewsTab->setVisible(index.isValid());
   }
 
-  currentNewsTab->setVisible(index.isValid());
   statusUnread_->setVisible(index.isValid());
   statusAll_->setVisible(index.isValid());
 
@@ -2774,8 +2776,11 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   //! Устанавливаем текст для открытой вкладки
   QString tabText = feedsTreeModel_->dataField(index, "text").toString();
   currentNewsTab->newsTitleLabel_->setToolTip(tabText);
+  int padding = 15;
+  if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT)
+    padding = 0;
   tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
-        tabText, Qt::ElideRight, currentNewsTab->newsTextTitle_->width() - 15);
+        tabText, Qt::ElideRight, currentNewsTab->newsTextTitle_->width() - padding);
   currentNewsTab->newsTextTitle_->setText(tabText);
 
   feedProperties_->setEnabled(index.isValid());
@@ -2793,7 +2798,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 
   // Поиск новости ленты, отображамой ранее
   int newsRow = -1;
-  if ((openingFeedAction_ == 0) || !clicked) {
+  if (openingFeedAction_ == 0) {
     QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
     int newsIdCur = feedsTreeModel_->dataField(feedIndex, "currentNews").toInt();
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
@@ -2817,26 +2822,22 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
-  if (clicked) {
+  if ((openingFeedAction_ != 2) && openNewsWebViewOn_) {
+    currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
+  } else {
+    currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, newsModel_->fieldIndex("title")));
+    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
+    QSqlQuery q(db_);
+    int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+    QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
+    q.exec(qStr);
 
-    if ((openingFeedAction_ != 2) && openNewsWebViewOn_) {
-      currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
-      qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-    } else {
-      currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, newsModel_->fieldIndex("title")));
-      qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-      QSqlQuery q(db_);
-      int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-      QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
-      q.exec(qStr);
-
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
-      feedsTreeModel_->setData(
-            feedIndex.sibling(feedIndex.row(), feedsTreeModel_->proxyColumnByOriginal("currentNews")),
-            newsId);
-      qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-    }
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+    feedsTreeModel_->setData(
+          feedIndex.sibling(feedIndex.row(), feedsTreeModel_->proxyColumnByOriginal("currentNews")),
+          newsId);
+    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
   }
 }
 
@@ -3013,7 +3014,7 @@ void RSSListing::showOptionDlg()
     if (closeTab && (indexTab > 0) && (tabLabelId > 0)) {
       slotTabCloseRequested(indexTab);
     }
-    if ((stackedWidget_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
+    if ((tabBar_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
       slotUpdateNews();
     }
   }
@@ -3328,7 +3329,7 @@ void RSSListing::markFeedRead()
   db_.commit();
   // Обновляем ленту, на которой стоит фокус
   if (openFeed) {
-    if ((stackedWidget_->currentIndex() == TAB_WIDGET_PERMANENT) &&
+    if ((tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) &&
         !isFolder) {
       QModelIndex indexNextUnread =
           feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
@@ -3480,7 +3481,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   if (clicked) {
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
-    if (stackedWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
+    if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
       slotFeedClicked(feedIndex);
     }
   }
@@ -4334,7 +4335,7 @@ void RSSListing::markAllFeedsRead()
 
   feedsModelReload();
 
-  if (stackedWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
+  if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
     QModelIndex index =
         feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
     feedsTreeView_->setCurrentIndex(index);
@@ -4682,7 +4683,7 @@ void RSSListing::slotSwitchFocus()
 void RSSListing::slotOpenFeedNewTab()
 {
   feedsTreeView_->setCurrentIndex(feedsTreeView_->selectIndex_);
-  slotFeedSelected(feedsTreeView_->selectIndex_, true, true);
+  slotFeedSelected(feedsTreeView_->selectIndex_, true);
 }
 
 //! Закрытие вкладки
@@ -4705,9 +4706,9 @@ void RSSListing::slotTabCloseRequested(int index)
                           widget->newsTabWidgetSplitter_->saveState());
     }
 
-    QWidget *newsTitleLabel = widget->newsTitleLabel_;
     stackedWidget_->removeWidget(widget);
     tabBar_->removeTab(index);
+    QWidget *newsTitleLabel = widget->newsTitleLabel_;
     delete widget;
     delete newsTitleLabel;
   }
@@ -4724,9 +4725,9 @@ void RSSListing::slotTabCurrentChanged(int index)
   if (widget->type_ != TAB_FEED)
     feedsTreeView_->setCurrentIndex(QModelIndex());
 
-  if (!updateCurrentTab_) return;
-
   stackedWidget_->setCurrentIndex(index);
+
+  if (!updateCurrentTab_) return;
 
   if (widget->type_ == TAB_FEED) {
     if (widget->feedId_ == 0)
@@ -4802,11 +4803,7 @@ void RSSListing::setBrowserPosition(QAction *action)
 QWebPage *RSSListing::createWebTab()
 {
   NewsTabWidget *widget = new NewsTabWidget(this, TAB_WEB);
-  int indexTab = stackedWidget_->addWidget(widget);
-  tabBar_->addTab("");
-  tabBar_->setTabButton(indexTab,
-                        QTabBar::LeftSide,
-                        widget->newsTitleLabel_);
+  int indexTab = addTab(widget);
 
   widget->newsTextTitle_->setText(tr("Loading..."));
 
@@ -4844,14 +4841,10 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
 
   if (q.next()) {
     NewsTabWidget *widget = new NewsTabWidget(this, TAB_FEED, feedId, feedParId);
-    int indexTab = stackedWidget_->addWidget(widget);
+    addTab(widget);
     widget->setSettings();
     widget->retranslateStrings();
     widget->setBrowserPosition();
-    tabBar_->addTab("");
-    tabBar_->setTabButton(indexTab,
-                          QTabBar::LeftSide,
-                          widget->newsTitleLabel_);
 
     bool isFeed = true;
     if (q.value(3).toString().isEmpty())
@@ -5182,7 +5175,7 @@ void RSSListing::feedsModelReload()
 void RSSListing::setCurrentTab(int index, bool updateCurrentTab)
 {
   updateCurrentTab_ = updateCurrentTab;
-  stackedWidget_->setCurrentIndex(index);
+  tabBar_->setCurrentIndex(index);
   updateCurrentTab_ = true;
 }
 
@@ -5227,7 +5220,6 @@ void RSSListing::slotOpenNew(int feedId, int feedParId, int newsId)
 
   openingFeedAction_ = 0;
   openNewsWebViewOn_ = true;
-  if (feedIdOld_ == feedId) feedIdOld_ = -2;
 
   QSqlQuery q(db_);
   QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
@@ -5440,15 +5432,9 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
   if ((indexTab == -1) || (type == TAB_CAT_LABEL)) {
     if (indexTab == -1) {
       NewsTabWidget *widget = new NewsTabWidget(this, type);
-      indexTab = stackedWidget_->addWidget(widget);
-      createNewsTab(indexTab);
-      tabBar_->addTab("");
-      tabBar_->setTabButton(indexTab,
-                            QTabBar::LeftSide,
-                            widget->newsTitleLabel_);
-    } else {
-      createNewsTab(indexTab);
+      indexTab = addTab(widget);
     }
+    createNewsTab(indexTab);
 
     //! Устанавливаем иконку и текст для открытой вкладки
     currentNewsTab->newsIconTitle_->setPixmap(item->icon(0).pixmap(16,16));
@@ -5620,7 +5606,7 @@ void RSSListing::getLabelNews()
  ******************************************************************************/
 void RSSListing::slotCloseTab()
 {
-  slotTabCloseRequested(stackedWidget_->currentIndex());
+  slotTabCloseRequested(tabBar_->currentIndex());
 }
 
 /**
@@ -5628,7 +5614,7 @@ void RSSListing::slotCloseTab()
  ******************************************************************************/
 void RSSListing::slotNextTab()
 {
-  stackedWidget_->setCurrentIndex(stackedWidget_->currentIndex()+1);
+  tabBar_->setCurrentIndex(tabBar_->currentIndex()+1);
 }
 
 /**
@@ -5636,5 +5622,17 @@ void RSSListing::slotNextTab()
  ******************************************************************************/
 void RSSListing::slotPrevTab()
 {
-  stackedWidget_->setCurrentIndex(stackedWidget_->currentIndex()-1);
+  tabBar_->setCurrentIndex(tabBar_->currentIndex()-1);
+}
+
+/** @brief Добавление новой вкладки
+ *----------------------------------------------------------------------------*/
+int RSSListing::addTab(NewsTabWidget *widget)
+{
+  if (stackedWidget_->count()) tabBar_->addTab("");
+  int indexTab = stackedWidget_->addWidget(widget);
+  tabBar_->setTabButton(indexTab,
+                        QTabBar::LeftSide,
+                        widget->newsTitleLabel_);
+  return indexTab;
 }
