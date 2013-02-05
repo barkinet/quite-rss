@@ -1387,7 +1387,7 @@ void NewsTabWidget::slotFindText(const QString &text)
       filterStr = rsslisting_->newsFilterStr;
     }
     filterStr.append(
-          QString(" AND (title LIKE '\%%1\%' OR author_name LIKE '\%%1\%' OR category LIKE '\%%1\%')").
+          QString(" AND (title LIKE '%%1%' OR author_name LIKE '%%1%' OR category LIKE '%%1%')").
           arg(text));
     newsModel_->setFilter(filterStr);
 
