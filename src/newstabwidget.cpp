@@ -141,7 +141,7 @@ void NewsTabWidget::createNewsList()
   newsView_->setModel(newsModel_);
   newsView_->setHeader(newsHeader_);
 
-  newsHeader_->init(rsslisting_);
+  newsHeader_->init();
 
   newsToolBar_ = new QToolBar(this);
   newsToolBar_->setObjectName("newsToolBar");
@@ -431,8 +431,6 @@ void NewsTabWidget::setSettings(bool newTab)
     q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
            arg(feedId_));
     if (q.next()) autoLoadImages_ = q.value(0).toInt();
-
-    newsView_->setAlternatingRowColors(rsslisting_->alternatingRowColorsNews_);
   }
 
   webView_->settings()->setAttribute(
@@ -442,6 +440,11 @@ void NewsTabWidget::setSettings(bool newTab)
   rsslisting_->setAutoLoadImages(false);
 
   if (type_ != TAB_WEB) {
+    newsView_->setAlternatingRowColors(rsslisting_->alternatingRowColorsNews_);
+
+    QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_, feedParId_);
+    newsHeader_->setColumns(rsslisting_, indexFeed);
+
     rsslisting_->slotUpdateStatus(feedId_, false);
 
     rsslisting_->newsFilter_->setEnabled(type_ == TAB_FEED);
@@ -570,7 +573,7 @@ void NewsTabWidget::slotNewsViewDoubleClicked(QModelIndex index)
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+  QUrl url = QUrl::fromEncoded(linkString.simplified().toUtf8());
   slotLinkClicked(url);
 }
 
@@ -594,7 +597,7 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
     webView_->buttonClick_ = MIDDLE_BUTTON_MOD;
   }
 
-  QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+  QUrl url = QUrl::fromEncoded(linkString.simplified().toUtf8());
   slotLinkClicked(url);
 }
 
@@ -1110,7 +1113,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
   linkString = linkString.simplified();
-  QUrl newsUrl = QUrl::fromEncoded(linkString.toLocal8Bit());
+  QUrl newsUrl = QUrl::fromEncoded(linkString.toUtf8());
 
   bool showDescriptionNews_ = rsslisting_->showDescriptionNews_;
 
@@ -1361,7 +1364,7 @@ void NewsTabWidget::openInExternalBrowserNews()
             index.row()).field("link_href").value().toString();
       if (linkString.isEmpty())
         linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-      QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+      QUrl url = QUrl::fromEncoded(linkString.simplified().toUtf8());
       openUrl(url);
     }
   } else {

@@ -22,6 +22,7 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QTextDocumentFragment>
+#include <QRegExp>
 
 ParseObject::ParseObject(const QString &dataDirPath, QObject *parent)
   : QObject(parent)
@@ -135,8 +136,26 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   xml.setNamespaceProcessing(false);
   bool isHeader = true;  //!< флаг заголовка ленты - элементы до первой новости
 
-  xml.readNext();
-  if (xml.documentVersion().isEmpty() || xml.documentEncoding().isEmpty()) {
+  QRegExp rx("encoding=\"([^\"]+)",
+             Qt::CaseInsensitive, QRegExp::RegExp2);
+  int pos = rx.indexIn(xmlData.trimmed());
+  if (pos > -1) {
+    QString codecName = rx.cap(1);
+    qDebug() << "Codec name:" << codecName;
+    QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
+    if (codec) {
+      qDebug() << "Codec found";
+      xml.clear();
+      QString str = codec->toUnicode(xmlData.trimmed());
+      xml.addData(str);
+    } else {
+      if (codecName.contains("us-ascii", Qt::CaseInsensitive)) {
+        xml.clear();
+        QString str(xmlData.trimmed());
+        xml.addData(str.remove(rx.cap(0)+"\""));
+      }
+    }
+  } else {
     bool codecOk = false;
     QStringList codecNameList;
     codecNameList << "UTF-8" << "Windows-1251" << "KOI8-R" << "KOI8-U"
@@ -154,16 +173,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     if (!codecOk) {
       xml.clear();
       xml.addData(QString::fromLocal8Bit(xmlData.trimmed()));
-    }
-  } else {
-    if (!xml.documentEncoding().isEmpty()) {
-      QTextCodec *codec = QTextCodec::codecForName(
-            xml.documentEncoding().string()->toUtf8());
-      if (codec) {
-        xml.clear();
-        QString str = codec->toUnicode(xmlData.trimmed());
-        xml.addData(str);
-      }
     }
   }
 
@@ -315,7 +324,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
                     arg(qStr).arg(qStr1));
           q.bindValue(":link_href", linkString);
         } else {
-          q.prepare(QString("SELECT * FROM news WHERE feedId=:id %1").arg(qStr));
+          qStr.remove(" AND ");
+          q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND (%1%2)").arg(qStr).arg(qStr1));
         }
         q.bindValue(":id", parseFeedId);
         if (!rssPubDateString.isEmpty()) {    // поиск по pubDate
