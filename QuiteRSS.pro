@@ -1,8 +1,27 @@
-VERSION_REV = $$system(hg parents --template '{rev}')
-count(VERSION_REV, 1) {
-  DEFINE_HASH = $$sprintf("%1define", $$LITERAL_HASH)
-  message($$DEFINE_HASH $$VERSION_REV)
-  system(echo "$$DEFINE_HASH HG_REVISION $$VERSION_REV" > src\\VersionRev.h)
+# VCS revision info
+REVFILE = src/VersionRev.h
+QMAKE_DISTCLEAN += $$REVFILE
+exists(.hg) {
+  VERSION_REV = $$system(hg parents --template '{rev}')
+  !count(VERSION_REV, 1) {
+    VERSION_REV = 0
+  }
+  message(VCS revision: $$VERSION_REV)
+
+  os2|win32 {
+    system(echo $${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+  } else {
+    system(echo \\$${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+  }
+} else:!exists($$REVFILE) {
+  VERSION_REV = 0
+  message(VCS revision: $$VERSION_REV)
+
+  os2|win32 {
+    system(echo $${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+  } else {
+    system(echo \\$${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+  }
 }
 
 QT += core gui network xml webkit sql
@@ -113,30 +132,35 @@ OBJECTS_DIR = $${BUILD_DIR}/obj/
 MOC_DIR = $${BUILD_DIR}/moc/
 RCC_DIR = $${BUILD_DIR}/rcc/
 
-include(3rdparty/sqlite.pri)
 include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
 include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
 include(lang/lang.pri)
 
+os2|win32 {
+  TARGET = QuiteRSS
+
+  include(3rdparty/sqlite.pri)
+}
+
+win32 {
+  RC_FILE = QuiteRSSApp.rc
+}
+
 win32-g++ {
-TARGET = QuiteRSS
-LIBS += libkernel32 \
-        libpsapi
-RC_FILE = QuiteRSSApp.rc
+  LIBS += libkernel32 \
+          libpsapi
 }
 
 win32-msvc* {
-TARGET = QuiteRSS
-LIBS += -lpsapi
-LIBS += -lShell32
-RC_FILE = QuiteRSSApp.rc
-QMAKE_CXXFLAGS += -D__PRETTY_FUNCTION__=__FUNCTION__
-QMAKE_CFLAGS += -D__PRETTY_FUNCTION__=__FUNCTION__
+  LIBS += -lpsapi
+  LIBS += -lShell32
+
+  QMAKE_CXXFLAGS += -D__PRETTY_FUNCTION__=__FUNCTION__
+  QMAKE_CFLAGS += -D__PRETTY_FUNCTION__=__FUNCTION__
 }
 
 os2 {
-TARGET = QuiteRSS
-RC_FILE = quiterss_os2.rc
+  RC_FILE = quiterss_os2.rc
 }
 
 DISTFILES += \
@@ -150,6 +174,7 @@ DISTFILES += \
 unix {
   TARGET = quiterss
   CONFIG += link_pkgconfig
+  LIBS += -lsqlite3
 
   isEmpty(PREFIX) {
     PREFIX =   /usr

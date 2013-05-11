@@ -22,6 +22,9 @@
 
 #include "newsmodel.h"
 
+class RSSListing;
+class NewsTabWidget;
+
 class NewsHeader : public QHeaderView
 {
   Q_OBJECT
@@ -29,8 +32,12 @@ class NewsHeader : public QHeaderView
 public:
   NewsHeader(NewsModel *model, QWidget *parent);
 
-  void init(QWidget *rsslisting);
+  void init();
   void retranslateStrings();
+  void setColumns(RSSListing *rssl, const QModelIndex &indexFeed = QModelIndex());
+  void saveStateColumns(RSSListing *rssl, NewsTabWidget *newsTabWidget);
+
+  QMenu *viewMenu_;
 
 protected:
   bool eventFilter(QObject *, QEvent *);
@@ -40,18 +47,24 @@ protected:
 
 private slots:
   void slotButtonColumnView();
-  void columnVisible(QAction*);
+  void slotColumnVisible(QAction*);
   void slotSectionMoved(int, int, int);
 
 private:
   void createMenu();
 
-  QTreeView *view_;
+  /**
+   * @brief Adjust width for all columns
+   * @param newWidth Widget's width for adjustment
+   */
+  void adjustAllColumnsWidths(int newWidth);
+  QString columnsList();
+
   NewsModel *model_;
-  QMenu *viewMenu_;
   QActionGroup *columnVisibleActGroup_;
   QPushButton *buttonColumnView_;
   bool show_;
+  bool move_;
   int idxCol_;
   int posX_;
 

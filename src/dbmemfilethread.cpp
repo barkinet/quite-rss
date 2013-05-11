@@ -18,15 +18,20 @@
 #include "dbmemfilethread.h"
 
 #include <QDebug>
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
 #if QT_VERSION >= 0x040800
 #include <sqlite_qt48x/sqlite3.h>
 #else
 #include <sqlite_qt47x/sqlite3.h>
 #endif
+#else
+#include <sqlite3.h>
+#endif
 
 DBMemFileThread::DBMemFileThread(const QString &filename, QObject *parent)
   : QThread(parent)
   , filename_(filename)
+  , save_(false)
 {
   qDebug() << "DBMemFileThread::constructor";
   memdb_ = QSqlDatabase::database();
@@ -59,7 +64,7 @@ DBMemFileThread::~DBMemFileThread()
 //  qDebug() << "sqliteDBMemFile(): save =" << save_;
   if (save_) qDebug() << "sqliteDBMemFile(): from memory to file";
   else qDebug() << "sqliteDBMemFile(): from file to memory" ;
-  int rc;                   /* Function return code */
+  int rc = -1;                   /* Function return code */
   QVariant v = memdb_.driver()->handle();
   if (v.isValid() && qstrcmp(v.typeName(),"sqlite3*") == 0) {
     // v.data() returns a pointer to the handle
@@ -112,9 +117,11 @@ DBMemFileThread::~DBMemFileThread()
         do {
           rc = sqlite3_backup_step(pBackup, 10000);
 
+#ifndef QT_NO_DEBUG_OUTPUT
           int remaining = sqlite3_backup_remaining(pBackup);
           int pagecount = sqlite3_backup_pagecount(pBackup);
           qDebug() << rc << "backup " << pagecount << "remain" << remaining;
+#endif
 
           if( rc==SQLITE_OK || rc==SQLITE_BUSY || rc==SQLITE_LOCKED ){
             sqlite3_sleep(100);

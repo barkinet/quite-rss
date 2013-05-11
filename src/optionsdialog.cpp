@@ -1287,7 +1287,7 @@ void OptionsDialog::createShortcutWidget()
   shortcutTree_->setObjectName("shortcutTree");
   shortcutTree_->setSortingEnabled(false);
   shortcutTree_->setSelectionBehavior(QAbstractItemView::SelectRows);
-  shortcutTree_->setEditTriggers(false);
+  shortcutTree_->setEditTriggers(QAbstractItemView::NoEditTriggers);
   shortcutTree_->setRootIsDecorated(false);
 
   shortcutModel_ = new QStandardItemModel();
@@ -2038,6 +2038,7 @@ void OptionsDialog::loadNotifier()
 
   itemNotChecked_ = true;
 
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   QSqlQuery q;
   QQueue<int> parentIds;
   parentIds.enqueue(0);
@@ -2072,7 +2073,6 @@ void OptionsDialog::loadNotifier()
       if (treeWidgetItem->checkState(0) == Qt::Unchecked)
         feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
 
-      RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
       QPixmap iconItem;
       if (xmlUrl.isEmpty()) {
         iconItem.load(":/images/folder");
@@ -2090,7 +2090,8 @@ void OptionsDialog::loadNotifier()
                                                        Qt::MatchFixedString | Qt::MatchRecursive,
                                                        1);
       treeItems.at(0)->addChild(treeWidgetItem);
-      parentIds.enqueue(feedId.toInt());
+      if (xmlUrl.isEmpty())
+        parentIds.enqueue(feedId.toInt());
     }
   }
   feedsTreeNotify_->expandAll();
@@ -2123,7 +2124,7 @@ void OptionsDialog::showNotification()
   if (notificationWidget_) delete notificationWidget_;
   QList<int> idFeedList;
   QList<int> cntNewNewsList;
-  notificationWidget_ = new NotificationWidget(idFeedList, cntNewNewsList, this);
+  notificationWidget_ = new NotificationWidget(idFeedList, cntNewNewsList, this, this);
 
   connect(notificationWidget_, SIGNAL(signalDelete()),
           this, SLOT(deleteNotification()));
