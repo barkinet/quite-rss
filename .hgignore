@@ -1,0 +1,11 @@
+syntax: glob
+*.user
+*.bak
+*.orig
+.directory
+debug
+release
+Makefile*
+object_script.QuiteRSS.*
+doxygen
+src/VersionRev.h
