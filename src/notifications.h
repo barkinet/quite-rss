@@ -29,10 +29,9 @@ class NewsItem : public QWidget
 {
   Q_OBJECT
 public:
-  NewsItem(int idFeed, int parIdFeed, int idNews, int width, QWidget * parent = 0)
+  NewsItem(int idFeed, int idNews, int width, QWidget * parent = 0)
     : QWidget(parent)
     , feedId_(idFeed)
-    , feedParId_(parIdFeed)
     , newsId_(idNews)
     , read_(false)
   {
@@ -49,7 +48,6 @@ public:
     readButton_->setIcon(QIcon(":/images/bulletUnread"));
     readButton_->setToolTip(tr("Mark Read/Unread"));
     readButton_->setAutoRaise(true);
-    readButton_->hide();
 
     QToolButton *openExternalBrowserButton = new QToolButton(this);
     openExternalBrowserButton->setIcon(QIcon(":/images/openBrowser"));
@@ -58,9 +56,9 @@ public:
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
     buttonsLayout->setMargin(0);
     buttonsLayout->setSpacing(5);
+    buttonsLayout->addWidget(readButton_);
     buttonsLayout->addWidget(iconNews_);
     buttonsLayout->addWidget(titleNews_, 1);
-    buttonsLayout->addWidget(readButton_);
     buttonsLayout->addWidget(openExternalBrowserButton);
 
     setLayout(buttonsLayout);
@@ -78,14 +76,14 @@ public:
 
 signals:
   void signalOpenExternalBrowser(const QUrl &url);
-  void signalMarkRead(int);
-  void signalTitleClicked(int, int, int);
+  void signalMarkRead(int feedId, int newsId, int read);
+  void signalTitleClicked(int feedId, int newsId);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event)
   {
     if(event->type() == QEvent::MouseButtonPress) {
-      emit signalTitleClicked(feedId_, feedParId_, newsId_);
+      emit signalTitleClicked(feedId_, newsId_);
       return true;
     } else {
       return QObject::eventFilter(obj, event);
@@ -95,6 +93,13 @@ protected:
 private slots:
   void openExternalBrowser()
   {
+    read_ = 1;
+    readButton_->setIcon(QIcon(":/images/bulletRead"));
+    QFont font = titleNews_->font();
+    font.setBold(false);
+    titleNews_->setFont(font);
+    emit signalMarkRead(feedId_, newsId_, read_);
+
     QString linkString;
     QSqlQuery q;
     q.exec(QString("SELECT link_href, link_alternate FROM news WHERE id=='%1'").arg(newsId_));
@@ -109,17 +114,22 @@ private slots:
 
   void markRead()
   {
+    QFont font = titleNews_->font();
     read_ = !read_;
-    if (read_)
+    if (read_) {
       readButton_->setIcon(QIcon(":/images/bulletRead"));
-    else
+      font.setBold(false);
+    }
+    else {
       readButton_->setIcon(QIcon(":/images/bulletUnread"));
-    emit signalMarkRead(newsId_);
+      font.setBold(true);
+    }
+    titleNews_->setFont(font);
+    emit signalMarkRead(feedId_, newsId_, read_);
   }
 
 private:
   int feedId_;
-  int feedParId_;
   int newsId_;
   bool read_;
   QToolButton *readButton_;
@@ -137,8 +147,9 @@ public:
 signals:
   void signalShow();
   void signalDelete();
-  void signalOpenNews(int feedId, int feedParId, int newsId);
+  void signalOpenNews(int feedId, int newsId);
   void signalOpenExternalBrowser(const QUrl &url);
+  void signalMarkRead(int feedId, int newsId, int read);
 
 protected:
   virtual void showEvent(QShowEvent*);

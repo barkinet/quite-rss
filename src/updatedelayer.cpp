@@ -29,6 +29,7 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
 {
   delayTimer_ = new QTimer(this);
   delayTimer_->setSingleShot(true);
+  delayTimer_->setInterval(delayValue_);
   connect(delayTimer_, SIGNAL(timeout()), this, SLOT(slotDelayTimerTimeout()));
 
   updateModelTimer_ = new QTimer(this);
@@ -39,48 +40,42 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
 /** @brief Process queueing feed
  *
  *  Feed is added to queue. Start timer if is not started yet.
- * @param feedUrl Feed URL
+ * @param feedId Feed Id
  * @param feedChanged Flag that indicate changed feed
  * @param newCount (need description)
  *---------------------------------------------------------------------------*/
-void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged, int newCount)
+void UpdateDelayer::delayUpdate(const int &feedId, const bool &feedChanged,
+                                const int &newCount, const QString &status)
 {
   if (!feedChanged) {
-    emit signalUpdateNeeded(feedUrl, feedChanged, newCount);
+    emit signalUpdateNeeded(feedId, feedChanged, newCount, status);
     return;
   }
 
-  int feedIdIndex = feedUrlList_.indexOf(feedUrl);
+  int feedIdIndex = feedIdList_.indexOf(feedId);
   // If feed is in list already, ...
   if (-1 < feedIdIndex) {
     // If feed has changed, force enabling flag
     if (feedChanged) {
       feedChangedList_[feedIdIndex] = feedChanged;  // i.e. true
       newCountList_[feedIdIndex] = newCount;
+      statusList_[feedIdIndex] = status;
     }
   }
   // ..., else queueing feed
   else {
-    feedUrlList_.append(feedUrl);
+    feedIdList_.append(feedId);
     feedChangedList_.append(feedChanged);
     newCountList_.append(newCount);
+    statusList_.append(status);
   }
 
   // Start timer, if first feed added into queueing
   // Protect from starting while timeout is being processed
-  if ((feedUrlList_.size() == 1) && nextUpdateFeed_) {
+  if (nextUpdateFeed_) {
     nextUpdateFeed_ = false;
     delayTimer_->start();
-
-    if (!updateModelTimer_->isActive()) {
-      updateModelTimer_->start(MIN_UPDATE_INTERVAL);
-    } else {
-      if (updateModelTimer_->interval() == MIN_UPDATE_INTERVAL) {
-        updateModelTimer_->start(UPDATE_INTERVAL - MIN_UPDATE_INTERVAL);
-      }
-    }
   }
-
 }
 
 /** @brief Process delay timer timeout
@@ -89,26 +84,27 @@ void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::slotDelayTimerTimeout()
 {
-  QString feedUrl = feedUrlList_.takeFirst();
+  int feedId = feedIdList_.takeFirst();
   bool feedChanged = feedChangedList_.takeFirst();
   int newCount = newCountList_.takeFirst();
-  emit signalUpdateNeeded(feedUrl, feedChanged, newCount);
+  QString status = statusList_.takeFirst();
+  emit signalUpdateNeeded(feedId, feedChanged, newCount, status);
 }
 
 /** @brief Start timer if feed presents in queue
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::slotNextUpdateFeed()
 {
-  qApp->processEvents();  // refresh window while being dragged
-  if (feedUrlList_.size()) {
-    delayTimer_->start(delayValue_);
+//  qApp->processEvents();
+  if (feedIdList_.size()) {
+    delayTimer_->start();
 
     if (!updateModelTimer_->isActive())
       updateModelTimer_->start(UPDATE_INTERVAL);
   } else {
     nextUpdateFeed_ = true;
 
-   if (!updateModelTimer_->isActive())
+    if (!updateModelTimer_->isActive())
       updateModelTimer_->start(MIN_UPDATE_INTERVAL);
   }
 }

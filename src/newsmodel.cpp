@@ -16,6 +16,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "newsmodel.h"
+#include "rsslisting.h"
 
 NewsModel::NewsModel(QObject *parent, QTreeView *view)
   : QSqlTableModel(parent)
@@ -157,9 +158,13 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       QSqlQuery q;
       q.exec("SELECT id, name FROM labels ORDER BY num");
       while (q.next()) {
-        QString strLabelId = q.value(0).toString();
-        if (strIdLabels.contains(QString(",%1,").arg(strLabelId))) {
-          nameLabelList << q.value(1).toString();
+        int idLabel = q.value(0).toInt();
+        if (strIdLabels.contains(QString(",%1,").arg(QString::number(idLabel)))) {
+          if ((idLabel <= 6) && (RSSListing::nameLabels().at(idLabel-1) == q.value(1).toString())) {
+            nameLabelList << RSSListing::trNameLabels().at(idLabel-1);
+          } else {
+            nameLabelList << q.value(1).toString();
+          }
         }
       }
       return nameLabelList.join(", ");

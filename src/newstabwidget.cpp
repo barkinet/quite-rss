@@ -466,7 +466,7 @@ void NewsTabWidget::setSettings(bool newTab)
   if (type_ < TAB_WEB) {
     newsView_->setAlternatingRowColors(rsslisting_->alternatingRowColorsNews_);
 
-    QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_, feedParId_);
+    QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_);
     newsHeader_->setColumns(rsslisting_, indexFeed);
 
     rsslisting_->slotUpdateStatus(feedId_, false);
@@ -568,7 +568,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_, feedParId_);
+      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
       feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"), newsId);
     } else if (type_ == TAB_CAT_LABEL) {
       QSqlQuery q;
@@ -1295,8 +1295,30 @@ void NewsTabWidget::updateWebView(QModelIndex index)
         authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
     }
 
-    if (!authorString.isEmpty())
+    QString commentsStr;
+    QString commentsUrl = QUrl::fromPercentEncoding(newsModel_->record(index.row()).field("comments").value().toByteArray());
+    if (!commentsUrl.isEmpty()) {
+      commentsStr = QString("<a href=\"%1\"> %2</a>").arg(commentsUrl).arg(tr("Comments"));
+    }
+
+    QString category = newsModel_->record(index.row()).field("category").value().toString();
+
+    if (!authorString.isEmpty()) {
       authorString = QString(tr("Author: %1")).arg(authorString);
+      if (!commentsStr.isEmpty())
+        authorString.append(QString(" | %1").arg(commentsStr));
+      if (!category.isEmpty())
+        authorString.append(QString(" | %1").arg(category));
+    } else {
+      if (!commentsStr.isEmpty())
+        authorString.append(commentsStr);
+      if (!category.isEmpty()) {
+        if (!commentsStr.isEmpty())
+          authorString.append(QString(" | %1").arg(category));
+        else
+          authorString.append(category);
+      }
+    }
 
     QString content = newsModel_->record(index.row()).field("content").value().toString();
     QString description = newsModel_->record(index.row()).field("description").value().toString();
@@ -1321,22 +1343,17 @@ void NewsTabWidget::updateWebView(QModelIndex index)
         else type = tr("media");
 
         enclosureStr = QString("<a href=\"%1\" class=\"enclosure\"> %2 %3 </a><p>").
-            arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
+            arg(QUrl::fromPercentEncoding(newsModel_->record(index.row()).field("enclosure_url").value().toByteArray())).
             arg(tr("Link to")).arg(type);
       }
     }
 
-    QString commentsStr;
-    QString commentsUrl = newsModel_->record(index.row()).field("comments").value().toString();
-    if (!commentsUrl.isEmpty()) {
-        commentsStr = QString("<p><a href=\"%1\" class=\"enclosure\"> %2</a>").
-            arg(commentsUrl).arg(tr("Comments"));
+    content = enclosureStr + content;
+
+    if (!linkString.isEmpty()) {
+        titleString = QString("<a href='%1' class='unread'>%2</a>").
+            arg(QUrl::fromPercentEncoding(linkString.toUtf8())).arg(titleString);
     }
-
-    content = enclosureStr + content + commentsStr;
-
-    if (!linkString.isEmpty())
-        titleString = QString("<a href='%1' class='unread'>%2</a>").arg(linkString).arg(titleString);
 
     QString feedId = newsModel_->index(index.row(),newsModel_->fieldIndex("feedId")).
         data(Qt::EditRole).toString();
@@ -1751,41 +1768,43 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
 {
   QMenu menu;
   QMenu *pageMenu = webView_->page()->createStandardContextMenu();
-  menu.addActions(pageMenu->actions());
+  if (pageMenu) {
+    menu.addActions(pageMenu->actions());
 
-  const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
-  if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {
-    linkUrl_ = hitTest.linkUrl();
-    if (rsslisting_->externalBrowserOn_ <= 0) {
-      menu.addSeparator();
-      menu.addAction(urlExternalBrowserAct_);
-    }
-  } else if (pageMenu->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
-    if (webView_->title() == "news_descriptions") {
-      webView_->pageAction(QWebPage::Reload)->setVisible(false);
-    } else {
-      webView_->pageAction(QWebPage::Reload)->setVisible(true);
-      menu.addSeparator();
-    }
-    menu.addAction(rsslisting_->autoLoadImagesToggle_);
-    menu.addSeparator();
-    menu.addAction(rsslisting_->printAct_);
-    menu.addAction(rsslisting_->printPreviewAct_);
-    menu.addSeparator();
-    menu.addAction(rsslisting_->savePageAsAct_);
-  } else if (hitTest.isContentEditable()) {
-    for (int i = 0; i < menu.actions().count(); i++) {
-      if ((i <= 1) && (menu.actions().at(i)->text() == "Direction")) {
-        menu.actions().at(i)->setVisible(false);
-        break;
+    const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
+    if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {
+      linkUrl_ = hitTest.linkUrl();
+      if (rsslisting_->externalBrowserOn_ <= 0) {
+        menu.addSeparator();
+        menu.addAction(urlExternalBrowserAct_);
       }
+    } else if (pageMenu->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
+      if (webView_->title() == "news_descriptions") {
+        webView_->pageAction(QWebPage::Reload)->setVisible(false);
+      } else {
+        webView_->pageAction(QWebPage::Reload)->setVisible(true);
+        menu.addSeparator();
+      }
+      menu.addAction(rsslisting_->autoLoadImagesToggle_);
+      menu.addSeparator();
+      menu.addAction(rsslisting_->printAct_);
+      menu.addAction(rsslisting_->printPreviewAct_);
+      menu.addSeparator();
+      menu.addAction(rsslisting_->savePageAsAct_);
+    } else if (hitTest.isContentEditable()) {
+      for (int i = 0; i < menu.actions().count(); i++) {
+        if ((i <= 1) && (menu.actions().at(i)->text() == "Direction")) {
+          menu.actions().at(i)->setVisible(false);
+          break;
+        }
+      }
+      menu.insertSeparator(menu.actions().at(0));
+      menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Redo));
+      menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Undo));
     }
-    menu.insertSeparator(menu.actions().at(0));
-    menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Redo));
-    menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Undo));
-  }
 
-  menu.exec(webView_->mapToGlobal(p));
+    menu.exec(webView_->mapToGlobal(p));
+  }
 }
 
 /** @brief Open link in external browser

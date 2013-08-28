@@ -470,8 +470,12 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
   createMenu();
 
   moveSection(visualIndex(model_->fieldIndex("id")), 0);
-  if ((state != saveState()) && isVisible())
+
+  int tWidth = 0;
+  for (int i = 0; i < count(); i++) tWidth += sectionSize(i);
+  if (((state != saveState()) || (tWidth != size().width())) && isVisible())
     adjustAllColumnsWidths(size().width()+1);
+
   move_ = true;
 }
 
@@ -493,8 +497,7 @@ void NewsHeader::saveStateColumns(RSSListing *rssl, NewsTabWidget *newsTabWidget
   if (newsTabWidget->type_ == TAB_CAT_DEL) return;
 
   int feedId = newsTabWidget->feedId_;
-  int feedParId = newsTabWidget->feedParId_;
-  QModelIndex indexOld = rssl->feedsTreeModel_->getIndexById(feedId, feedParId);
+  QModelIndex indexOld = rssl->feedsTreeModel_->getIndexById(feedId);
 
   rssl->settings_->beginGroup("NewsHeader");
   rssl->settings_->setValue("state", saveState());
