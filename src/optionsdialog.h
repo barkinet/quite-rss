@@ -69,6 +69,10 @@ public:
   QNetworkProxy proxy();
   void setProxy(const QNetworkProxy proxy);
 
+  QSpinBox *timeoutRequest_;
+  QSpinBox *numberRequest_;
+  QSpinBox *numberRepeats_;
+
   // browser
   QRadioButton *embeddedBrowserOn_;
   QRadioButton *externalBrowserOn_;
@@ -172,6 +176,14 @@ public:
   // fonts
   QTreeWidget *fontsTree_;
   QTreeWidget *colorsTree_;
+  QFontComboBox *browserStandardFont_;
+  QFontComboBox *browserFixedFont_;
+  QFontComboBox *browserSerifFont_;
+  QFontComboBox *browserSansSerifFont_;
+  QFontComboBox *browserCursiveFont_;
+  QFontComboBox *browserFantasyFont_;
+  QSpinBox *browserDefaultFontSize_;
+  QSpinBox *browserFixedFontSize_;
   QSpinBox *browserMinFontSize_;
   QSpinBox *browserMinLogFontSize_;
 

@@ -45,14 +45,18 @@ public:
   int newCount_;
 
 public slots:
-  void getUrlDone(const int &result, const QString &feedUrlStr,
-                  const QByteArray &data, const QDateTime &dtReply);
-  void slotUpdateFeed(const QString &feedUrl, const bool &, int newCount);
+  void getUrlDone(const int &result, const int &feedId, const QString &feedUrlStr,
+                  const QString &error, const QByteArray &data,
+                  const QDateTime &dtReply, const QString &codecName);
+  void slotUpdateFeed(const int &feedId, const bool &,
+                      const int &newCount, const QString &);
+  void setStatusFeed(const int &feedId, const QString &status);
 
 signals:
-  void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,
-                     const QDateTime &dtReply);
-  void signalRequestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo);
+  void xmlReadyParse(const QByteArray &data, const int &feedId,
+                     const QDateTime &dtReply, const QString &codecName);
+  void signalRequestUrl(int feedId, const QString &urlString,
+                        const QDateTime &date, const QString &userInfo);
 
 protected:
   virtual bool validateCurrentPage();

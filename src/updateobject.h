@@ -31,21 +31,27 @@ class UpdateObject : public QObject
 {
   Q_OBJECT
 public:
-  explicit UpdateObject(int requestTimeout, int replyCount, QObject *parent = 0);
+  explicit UpdateObject(int timeoutRequest, int numberRequest, int numberRepeats, QObject *parent = 0);
   NetworkManager *networkManager_;
 
 public slots:
-  void requestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo = "");
-  void slotHead(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date, const int &count);
-  void slotGet(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date, const int &count);
+  void requestUrl(const int &id, const QString &urlString, const QDateTime &date,
+                  const QString &userInfo = "");
+  void slotHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
+                const QDateTime &date, const int &count);
+  void slotGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
+               const QDateTime &date, const int &count);
 
 signals:
-  void getUrlDone(const int &result, const QString &feedUrl = "",
-                  const QByteArray &data = NULL, const QDateTime &dtReply = QDateTime());
-  void signalHead(const QUrl &getUrl, const QString &feedUrl,
+  void getUrlDone(const int &result, const int &feedId, const QString &feedUrl = "",
+                  const QString &error = "", const QByteArray &data = NULL,
+                  const QDateTime &dtReply = QDateTime(),
+                  const QString &codecName = "");
+  void signalHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
                   const QDateTime &date, const int &count = 0);
-  void signalGet(const QUrl &getUrl, const QString &feedUrl,
+  void signalGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
                  const QDateTime &date, const int &count = 0);
+  void setStatusFeed(const int &feedId, const QString &status);
 
 private slots:
   void getQueuedUrl();
@@ -53,15 +59,18 @@ private slots:
   void slotRequestTimeout();
 
 private:
-  int requestTimeout_;
-  int replyCount_;
+  int timeoutRequest_;
+  int numberRequest_;
+  int numberRepeats_;
   QTimer *getUrlTimer_;
 
+  QQueue<int> idsQueue_;
   QQueue<QString> feedsQueue_;
   QQueue<QDateTime> dateQueue_;
   QQueue<QString> userInfo_;
 
   QList<QUrl> currentUrls_;
+  QList<int> currentIds_;
   QList<QString> currentFeeds_;
   QList<QDateTime> currentDates_;
   QList<int> currentCount_;

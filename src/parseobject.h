@@ -58,7 +58,6 @@ struct NewsItemStruct {
 
 struct FeedCountStruct{
   int feedId;
-  int parentId;
   int unreadCount;
   int newCount;
   int undeleteCount;
@@ -80,38 +79,38 @@ public:
   explicit ParseObject(QObject *parent);
 
 public slots:
-  void parseXml(const QByteArray &data, const QString &feedUrl,
-                const QDateTime &dtReply);
+  void parseXml(const QByteArray &data, const int &feedId,
+                const QDateTime &dtReply, const QString &codecName);
 
 signals:
-  void signalReadyParse(const QByteArray &xml, const QString &feedUrl,
-                        const QDateTime &dtReply);
-  void feedUpdated(const QString &feedUrl, const bool &changed, int newCount);
+  void signalReadyParse(const QByteArray &xml, const int &feedId,
+                        const QDateTime &dtReply, const QString &codecName);
+  void feedUpdated(const int &feedId, const bool &changed,
+                   int newCount, const QString &status);
   void feedCountsUpdate(FeedCountStruct counts);
 
 private slots:
   void getQueuedXml();
-  void slotParse(const QByteArray &xmlData, const QString &feedUrl,
-                 const QDateTime &dtReply);
-  void addAtomNewsIntoBase(NewsItemStruct &newsItem);
-  void addRssNewsIntoBase(NewsItemStruct &newsItem);
+  void slotParse(const QByteArray &xmlData, const int &feedId,
+                 const QDateTime &dtReply, const QString &codecName);
 
 private:
   void parseAtom(const QString &feedUrl, const QDomDocument &doc);
   void parseRss(const QString &feedUrl, const QDomDocument &doc);
+  void addAtomNewsIntoBase(NewsItemStruct &newsItem);
+  void addRssNewsIntoBase(NewsItemStruct &newsItem);
   QString toPlainText(const QString &text);
   QString parseDate(const QString &dateString, const QString &urlString);
   int recountFeedCounts(int feedId, const QString &feedUrl,
                         const QString &updated, const QString &lastBuildDate);
 
-  RSSListing* rssl_;
+  RSSListing *rssl_;
   QTimer *parseTimer_;
-  QString currentFeedUrl_;
-  QByteArray currentXml_;
-  QDateTime currentDtReady_;
-  QQueue<QString> feedsQueue_;
+  int currentFeedId_;
+  QQueue<int> idsQueue_;
   QQueue<QByteArray> xmlsQueue_;
   QQueue<QDateTime> dtReadyQueue_;
+  QQueue<QString> codecNameQueue_;
 
   int parseFeedId_;
   bool duplicateNewsMode_;

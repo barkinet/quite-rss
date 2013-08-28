@@ -28,7 +28,9 @@
 #include <windows.h>
 #endif
 
-ParseObject::ParseObject(QObject *parent) : QObject(0)
+ParseObject::ParseObject(QObject *parent)
+  : QObject(0)
+  , currentFeedId_(0)
 {
   setObjectName("parseObject_");
 
@@ -40,48 +42,52 @@ ParseObject::ParseObject(QObject *parent) : QObject(0)
 
   parseTimer_ = new QTimer();
   parseTimer_->setSingleShot(true);
+  parseTimer_->setInterval(10);
   connect(parseTimer_, SIGNAL(timeout()), this, SLOT(getQueuedXml()));
 
-  connect(this, SIGNAL(signalReadyParse(QByteArray,QString,QDateTime)),
-          SLOT(slotParse(QByteArray,QString,QDateTime)));
+  connect(this, SIGNAL(signalReadyParse(QByteArray,int,QDateTime,QString)),
+          SLOT(slotParse(QByteArray,int,QDateTime,QString)));
 }
 
 /** @brief Queueing xml-data
  *----------------------------------------------------------------------------*/
-void ParseObject::parseXml(const QByteArray &data, const QString &feedUrl,
-                           const QDateTime &dtReply)
+void ParseObject::parseXml(const QByteArray &data, const int &feedId,
+                           const QDateTime &dtReply, const QString &codecName)
 {
-  feedsQueue_.enqueue(feedUrl);
+  idsQueue_.enqueue(feedId);
   xmlsQueue_.enqueue(data);
   dtReadyQueue_.enqueue(dtReply);
-  qDebug() << "xmlsQueue_ <<" << feedUrl << "count=" << xmlsQueue_.count();
-  parseTimer_->start();
+  codecNameQueue_.enqueue(codecName);
+  qDebug() << "xmlsQueue_ <<" << feedId << "count=" << xmlsQueue_.count();
+
+  if (!parseTimer_->isActive())
+    parseTimer_->start();
 }
 
 /** @brief Process xml-data queue
  *----------------------------------------------------------------------------*/
 void ParseObject::getQueuedXml()
 {
-  if (!currentFeedUrl_.isEmpty()) return;
+  if (currentFeedId_) return;
 
-  if (feedsQueue_.count()) {
-    parseTimer_->start(0);
+  if (idsQueue_.count()) {
+    currentFeedId_ = idsQueue_.dequeue();
+    QByteArray currentXml_ = xmlsQueue_.dequeue();
+    QDateTime currentDtReady_ = dtReadyQueue_.dequeue();
+    QString currentCodecName_ = codecNameQueue_.dequeue();
+    qDebug() << "xmlsQueue_ >>" << currentFeedId_ << "count=" << xmlsQueue_.count();
 
-    currentFeedUrl_ = feedsQueue_.dequeue();
-    currentXml_ = xmlsQueue_.dequeue();
-    currentDtReady_ = dtReadyQueue_.dequeue();
-    qDebug() << "xmlsQueue_ >>" << currentFeedUrl_ << "count=" << xmlsQueue_.count();
+    emit signalReadyParse(currentXml_, currentFeedId_, currentDtReady_, currentCodecName_);
 
-    emit signalReadyParse(currentXml_, currentFeedUrl_, currentDtReady_);
-
-    currentFeedUrl_.clear();
+    currentFeedId_ = 0;
+    parseTimer_->start();
   }
 }
 
 /** @brief Parse xml-data
  *----------------------------------------------------------------------------*/
-void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
-                            const QDateTime &dtReply)
+void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
+                            const QDateTime &dtReply, const QString &codecName)
 {
   if (!rssl_->lastFeedPath_.isEmpty()) {
     QFile file(rssl_->lastFeedPath_ + QDir::separator() + "lastfeed.dat");
@@ -93,30 +99,30 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   qDebug() << "=================== parseXml:start ============================";
 
   // extract feed id and duplicate news mode from feed table
-  parseFeedId_ = 0;
+  parseFeedId_ = feedId;
+  QString feedUrl;
   duplicateNewsMode_ = false;
   QSqlQuery q;
-  q.prepare("SELECT id, duplicateNewsMode FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-  q.bindValue(":xmlUrl", feedUrl);
-  q.exec();
-  if (q.next()) {
-    parseFeedId_ = q.value(0).toInt();
-    duplicateNewsMode_ = q.value(1).toBool();
+  q.setForwardOnly(true);
+  q.exec(QString("SELECT duplicateNewsMode, xmlUrl FROM feeds WHERE id=='%1'").arg(parseFeedId_));
+  if (q.first()) {
+    duplicateNewsMode_ = q.value(0).toBool();
+    feedUrl = q.value(1).toString();
   }
 
   // id not found (ex. feed deleted while updating)
-  if (0 == parseFeedId_) {
-    qDebug() << QString("Feed '%1' not found").arg(feedUrl);
-    emit feedUpdated(feedUrl, false, 0);
+  if (feedUrl.isEmpty()) {
+    qDebug() << QString("Feed with id = '%1' not found").arg(parseFeedId_);
+    emit feedUpdated(parseFeedId_, false, 0, "0");
     return;
   }
 
-  qDebug() << QString("Feed '%1' found with id = %2").arg(feedUrl).
-              arg(parseFeedId_);
+  qDebug() << QString("Feed '%1' found with id = %2").arg(feedUrl).arg(parseFeedId_);
 
   // actually parsing
   feedChanged_ = false;
 
+  bool codecOk = false;
   QString convertData(xmlData);
   QString feedType;
   QDomDocument doc;
@@ -132,33 +138,46 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     pos = rx.indexIn(xmlData);
   }
   if (pos > -1) {
-    QString codecName = rx.cap(1);
-    qDebug() << "Codec name:" << codecName;
-    QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
+    QString codecNameT = rx.cap(1);
+    qDebug() << "Codec name:" << codecNameT;
+    QTextCodec *codec = QTextCodec::codecForName(codecNameT.toUtf8());
     if (codec) {
-      qDebug() << "Codec found";
+      qDebug() << "Codec found 1";
       convertData = codec->toUnicode(xmlData);
     } else {
-      if (codecName.contains("us-ascii", Qt::CaseInsensitive)) {
+      if (codecNameT.contains("us-ascii", Qt::CaseInsensitive)) {
         QString str(xmlData);
         convertData = str.remove(rx.cap(0)+"\"");
       }
     }
   } else {
-    bool codecOk = false;
-    QStringList codecNameList;
-    codecNameList << "UTF-8" << "Windows-1251" << "KOI8-R" << "KOI8-U"
-                  << "ISO 8859-5" << "IBM 866";
-    foreach (QString codecName, codecNameList) {
+    if (!codecName.isEmpty()) {
+      qDebug() << "Codec name:" << codecName;
       QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
-      if (codec->canEncode(xmlData)) {
+      if (codec) {
+        qDebug() << "Codec found 2";
         convertData = codec->toUnicode(xmlData);
         codecOk = true;
-        break;
       }
     }
     if (!codecOk) {
-      convertData = QString::fromLocal8Bit(xmlData);
+      codecOk = false;
+      QStringList codecNameList;
+      codecNameList << "UTF-8" << "Windows-1251" << "KOI8-R" << "KOI8-U"
+                    << "ISO 8859-5" << "IBM 866";
+      foreach (QString codecNameT, codecNameList) {
+        QTextCodec *codec = QTextCodec::codecForName(codecNameT.toUtf8());
+        if (codec && codec->canEncode(xmlData)) {
+          qDebug() << "Codec name:" << codecNameT;
+          qDebug() << "Codec found 3";
+          convertData = codec->toUnicode(xmlData);
+          codecOk = true;
+          break;
+        }
+      }
+      if (!codecOk) {
+        convertData = QString::fromLocal8Bit(xmlData);
+      }
     }
   }
 
@@ -181,7 +200,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   QString updated = QLocale::c().toString(QDateTime::currentDateTimeUtc(),
                                           "yyyy-MM-ddTHH:mm:ss");
   QString lastBuildDate = dtReply.toString(Qt::ISODate);
-  q.prepare("UPDATE feeds SET updated=?, lastBuildDate=? WHERE id=?");
+  q.prepare("UPDATE feeds SET updated=?, lastBuildDate=?, status=0 WHERE id=?");
   q.addBindValue(updated);
   q.addBindValue(lastBuildDate);
   q.addBindValue(parseFeedId_);
@@ -193,7 +212,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     newCount = recountFeedCounts(parseFeedId_, feedUrl, updated, lastBuildDate);
   }
 
-  emit feedUpdated(feedUrl, feedChanged_, newCount);
+  q.finish();
+
+  emit feedUpdated(parseFeedId_, feedChanged_, newCount, "0");
   qDebug() << "=================== parseXml:finish ===========================";
 }
 
@@ -226,6 +247,7 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     feedItem.link = feedItem.linkBase + feedItem.link;
 
   QSqlQuery q;
+  q.setForwardOnly(true);
   QString qStr ("UPDATE feeds "
                 "SET title=?, description=?, htmlUrl=?, "
                 "author_name=?, author_email=?, "
@@ -248,7 +270,9 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     NewsItemStruct newsItem;
     newsItem.id = newsList.item(i).namedItem("id").toElement().text();
     newsItem.title = toPlainText(newsList.item(i).namedItem("title").toElement().text());
-    newsItem.updated = newsList.item(i).namedItem("updated").toElement().text();
+    newsItem.updated = newsList.item(i).namedItem("published").toElement().text();
+    if (newsItem.updated.isEmpty())
+      newsItem.updated = newsList.item(i).namedItem("updated").toElement().text();
     newsItem.updated = parseDate(newsItem.updated, feedUrl);
     QDomElement authorElem = newsList.item(i).namedItem("author").toElement();
     if (!authorElem.isNull()) {
@@ -262,7 +286,10 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     QDomNodeList categoryElem = newsList.item(i).toElement().elementsByTagName("category");
     for (int j = 0; j < categoryElem.size(); j++) {
       if (!newsItem.category.isEmpty()) newsItem.category.append(", ");
-      newsItem.category.append(toPlainText(categoryElem.at(j).toElement().attribute("term")));
+      QString category = categoryElem.at(j).toElement().attribute("label");
+      if (category.isEmpty())
+        category = categoryElem.at(j).toElement().attribute("term");
+      newsItem.category.append(toPlainText(category));
     }
     QDomElement enclosureElem = newsList.item(i).namedItem("enclosure").toElement();
     newsItem.eUrl = enclosureElem.attribute("url");
@@ -295,6 +322,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
 {
   // search news duplicates in base
   QSqlQuery q;
+  q.setForwardOnly(true);
   QString qStr;
   qDebug() << "atomId:" << newsItem.id;
   qDebug() << "title:" << newsItem.title;
@@ -336,14 +364,14 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
     qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
   else {
     // if duplicates not found, add news into base
-    if (!q.next()) {
+    if (!q.first()) {
       bool read = false;
       if (rssl_->markIdenticalNewsRead_) {
         q.prepare("SELECT * FROM news WHERE feedId!=:id AND title LIKE :title");
         q.bindValue(":id", parseFeedId_);
         q.bindValue(":title", newsItem.title);
         q.exec();
-        if (q.next()) read = true;
+        if (q.first()) read = true;
       }
 
       qStr = QString("INSERT INTO news("
@@ -396,6 +424,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
+  q.finish();
 }
 
 void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
@@ -404,14 +433,17 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
   FeedItemStruct feedItem;
 
   feedItem.title = toPlainText(channel.namedItem("title").toElement().text());
-  feedItem.description = channel.namedItem("subtitle").toElement().text();
+  feedItem.description = channel.namedItem("description").toElement().text();
   feedItem.link = channel.namedItem("link").toElement().text();
   feedItem.updated = channel.namedItem("pubDate").toElement().text();
+  if (feedItem.updated.isEmpty())
+    feedItem.updated = channel.namedItem("pubdate").toElement().text();
   feedItem.updated = parseDate(feedItem.updated, feedUrl);
   feedItem.author = toPlainText(channel.namedItem("author").toElement().text());
   feedItem.language = channel.namedItem("language").toElement().text();
 
   QSqlQuery q;
+  q.setForwardOnly(true);
   QString qStr("UPDATE feeds "
                "SET title=?, description=?, htmlUrl=?, "
                "author_name=?, pubdate=?, language=? "
@@ -432,6 +464,8 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
     newsItem.id = newsList.item(i).namedItem("guid").toElement().text();
     newsItem.title = toPlainText(newsList.item(i).namedItem("title").toElement().text());
     newsItem.updated = newsList.item(i).namedItem("pubDate").toElement().text();
+    if (newsItem.updated.isEmpty())
+      newsItem.updated = newsList.item(i).namedItem("pubdate").toElement().text();
     newsItem.updated = parseDate(newsItem.updated, feedUrl);
     newsItem.author = toPlainText(newsList.item(i).namedItem("author").toElement().text());
     if (newsItem.author.isEmpty())
@@ -458,6 +492,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
 {
   // search news duplicates in base
   QSqlQuery q;
+  q.setForwardOnly(true);
   QString qStr;
   QString qStr1;
   qDebug() << "guid:     " << newsItem.id;
@@ -497,14 +532,14 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
     qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
   else {
     // if duplicates not found, add news into base
-    if (!q.next()) {
+    if (!q.first()) {
       bool read = false;
       if (rssl_->markIdenticalNewsRead_) {
         q.prepare("SELECT * FROM news WHERE feedId!=:id AND title LIKE :title");
         q.bindValue(":id", parseFeedId_);
         q.bindValue(":title", newsItem.title);
         q.exec();
-        if (q.next()) read = true;
+        if (q.first()) read = true;
       }
 
       qStr = QString("INSERT INTO news("
@@ -550,6 +585,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
+  q.finish();
 }
 
 QString ParseObject::toPlainText(const QString &text)
@@ -649,13 +685,14 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
                                    const QString &updated, const QString &lastBuildDate)
 {
   QSqlQuery q;
+  q.setForwardOnly(true);
   QString qStr;
   QString htmlUrl;
   QString title;
 
   int feedParId = 0;
   q.exec(QString("SELECT parentId, htmlUrl, title FROM feeds WHERE id=='%1'").arg(feedId));
-  if (q.next()) {
+  if (q.first()) {
     feedParId = q.value(0).toInt();
     htmlUrl = q.value(1).toString();
     title = q.value(2).toString();
@@ -669,19 +706,19 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
   qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
       arg(feedId);
   q.exec(qStr);
-  if (q.next()) undeleteCount = q.value(0).toInt();
+  if (q.first()) undeleteCount = q.value(0).toInt();
 
   // Count unread news
   qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
       arg(feedId);
   q.exec(qStr);
-  if (q.next()) unreadCount = q.value(0).toInt();
+  if (q.first()) unreadCount = q.value(0).toInt();
 
   // Count new news
   qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1 AND deleted==0").
       arg(feedId);
   q.exec(qStr);
-  if (q.next()) newNewsCount = q.value(0).toInt();
+  if (q.first()) newNewsCount = q.value(0).toInt();
 
   int unreadCountOld = 0;
   int newCountOld = 0;
@@ -689,7 +726,7 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
   qStr = QString("SELECT unread, newCount, undeleteCount FROM feeds WHERE id=='%1'").
       arg(feedId);
   q.exec(qStr);
-  if (q.next()) {
+  if (q.first()) {
     unreadCountOld = q.value(0).toInt();
     newCountOld = q.value(1).toInt();
     undeleteCountOld = q.value(2).toInt();
@@ -708,7 +745,6 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
 
   FeedCountStruct counts;
   counts.feedId = feedId;
-  counts.parentId = feedParId;
   counts.unreadCount = unreadCount;
   counts.newCount = newNewsCount;
   counts.undeleteCount = undeleteCount;
@@ -730,7 +766,7 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
                    "max(updated) FROM feeds WHERE parentId=='%1'").
         arg(l_feedParId);
     q.exec(qStr);
-    if (q.next()) {
+    if (q.first()) {
       unreadCount   = q.value(0).toInt();
       newCount      = q.value(1).toInt();
       undeleteCount = q.value(2).toInt();
@@ -746,9 +782,8 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
     counts.feedId = l_feedParId;
 
     q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(l_feedParId));
-    if (q.next()) l_feedParId = q.value(0).toInt();
+    if (q.first()) l_feedParId = q.value(0).toInt();
 
-    counts.parentId = l_feedParId;
     counts.unreadCount = unreadCount;
     counts.newCount = newCount;
     counts.undeleteCount = undeleteCount;

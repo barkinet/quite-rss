@@ -23,6 +23,7 @@
 #include <QtSql>
 
 #include "VersionNo.h"
+#include "rsslisting.h"
 
 QString kDbName    = "feeds.db";  ///< DB filename
 QString kDbVersion = "0.12.1";    ///< Current DB version
@@ -372,13 +373,10 @@ void initLabelsTable(QSqlDatabase *db)
 {
   QSqlQuery q(*db);
   q.exec(kCreateLabelsTable);
-  QStringList strNameLabels;
-  strNameLabels << "Important" << "Work" << "Personal"
-                << "To Do" << "Later" << "Amusingly";
   for (int i = 0; i < 6; i++) {
     q.prepare("INSERT INTO labels(name, image) "
               "VALUES (:name, :image)");
-    q.bindValue(":name", strNameLabels.at(i));
+    q.bindValue(":name", RSSListing::nameLabels().at(i));
 
     QFile file(QString(":/images/label_%1").arg(i+1));
     file.open(QFile::ReadOnly);
@@ -475,7 +473,7 @@ QString initDB(const QString &dbFileName, QSettings *settings)
     q.prepare("INSERT INTO info(name, value) VALUES ('version', :version)");
     q.bindValue(":version", kDbVersion);
     q.exec();
-    q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.3', 'true')");
+    q.exec("INSERT INTO info(name, value) VALUES ('rowToParentCorrected_0.12.3', 'true')");
     q.finish();
     db.commit();
     db.close();
@@ -491,9 +489,16 @@ QString initDB(const QString &dbFileName, QSettings *settings)
       dbVersionString = q.value(0).toString();
 
     QString appVersionString;
-    q.exec("SELECT value FROM info WHERE name='appVersion'");
-    if (q.next())
-      appVersionString = q.value(0).toString();
+    q.exec("SELECT id, value FROM info WHERE name='appVersion'");
+    while (q.next()) {
+      if (!appVersionString.isEmpty()) {
+        QSqlQuery q2(db);
+        q2.exec(QString("DELETE FROM info WHERE id='%1'").arg(q.value(0).toInt()));
+      }
+      else {
+        appVersionString = q.value(1).toString();
+      }
+    }
 
     // Create backups for DB and Settings
     if (appVersionString != STRPRODUCTVER) {
@@ -752,7 +757,7 @@ QString initDB(const QString &dbFileName, QSettings *settings)
 
           createFileBackup(dbFileName, dbVersionString);
 
-          q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.3', 'true')");
+          q.exec("INSERT INTO info(name, value) VALUES ('rowToParentCorrected_0.12.3', 'true')");
 
           // Start search from prospective parent number 0 (from root)
           bool sortFeeds = settings->value("Settings/sortFeeds", false).toBool();
@@ -791,10 +796,15 @@ QString initDB(const QString &dbFileName, QSettings *settings)
     }
 
     // Update appVersion anyway
-    q.prepare("INSERT OR REPLACE INTO info(name, value) "
-              "VALUES('appVersion', :appVersion)");
-    q.bindValue(":appVersion", STRPRODUCTVER);
-    q.exec();
+    if (appVersionString.isEmpty()) {
+      q.prepare("INSERT INTO info(name, value) VALUES('appVersion', :appVersion)");
+      q.bindValue(":appVersion", STRPRODUCTVER);
+      q.exec();
+    } else {
+      q.prepare("UPDATE info SET value=:appVersion WHERE name='appVersion'");
+      q.bindValue(":appVersion", STRPRODUCTVER);
+      q.exec();
+    }
 
     q.finish();
 

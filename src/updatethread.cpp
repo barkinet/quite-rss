@@ -20,11 +20,12 @@
 
 #include <QDebug>
 
-UpdateThread::UpdateThread(QObject *parent, int requestTimeout, int replyCount)
+UpdateThread::UpdateThread(QObject *parent, int timeoutRequest, int numberRequest, int numberRepeats)
   : QThread(parent)
   , updateObject_(NULL)
-  , requestTimeout_(requestTimeout)
-  , replyCount_(replyCount)
+  , timeoutRequest_(timeoutRequest)
+  , numberRequest_(numberRequest)
+  , numberRepeats_(numberRepeats)
 {
   qDebug() << "UpdateThread::constructor";
 
@@ -39,7 +40,7 @@ UpdateThread::~UpdateThread()
 
 /*virtual*/ void UpdateThread::run()
 {
-  updateObject_ = new UpdateObject(requestTimeout_, replyCount_);
+  updateObject_ = new UpdateObject(timeoutRequest_, numberRequest_, numberRepeats_);
 
   QObject *parent_ = parent();
   while(parent_->parent()) {
@@ -48,10 +49,13 @@ UpdateThread::~UpdateThread()
   RSSListing *rssl = qobject_cast<RSSListing*>(parent_);
   updateObject_->networkManager_->setCookieJar(rssl->cookieJar_);
 
-  connect(parent(), SIGNAL(signalRequestUrl(QString,QDateTime,QString)),
-          updateObject_, SLOT(requestUrl(QString,QDateTime,QString)));
-  connect(updateObject_, SIGNAL(getUrlDone(int,QString,QByteArray,QDateTime)),
-          parent(), SLOT(getUrlDone(int,QString,QByteArray,QDateTime)));
+  connect(parent(), SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
+          updateObject_, SLOT(requestUrl(int,QString,QDateTime,QString)));
+  connect(updateObject_, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
+          parent(), SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
+          Qt::QueuedConnection);
+  connect(updateObject_, SIGNAL(setStatusFeed(int,QString)),
+          parent(), SLOT(setStatusFeed(int,QString)));
   connect(updateObject_->networkManager_,
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           parent(), SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),

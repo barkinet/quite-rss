@@ -88,6 +88,19 @@ public:
   void setToolBarStyle(const QString &styleStr);
   void setToolBarIconSize(const QString &iconSizeStr);
 
+  static QStringList nameLabels() {
+    QStringList nameLabels;
+    nameLabels << "Important" << "Work" << "Personal"
+               << "To Do" << "Later" << "Amusingly";
+    return nameLabels;
+  }
+  static QStringList trNameLabels() {
+    QStringList trNameLabels;
+    trNameLabels << tr("Important") << tr("Work") << tr("Personal")
+                 << tr("To Do") << tr("Later") << tr("Amusingly");
+    return trNameLabels;
+  }
+
   QSettings *settings_;
   QString appDataDirPath_;
   QString dataDirPath_;
@@ -121,6 +134,8 @@ public:
   QAction *deleteAllNewsAct_;
   QAction *newsKeyUpAct_;
   QAction *newsKeyDownAct_;
+  QAction *newsKeyPageUpAct_;
+  QAction *newsKeyPageDownAct_;
   QAction *prevUnreadNewsAct_;
   QAction *nextUnreadNewsAct_;
   QAction *autoLoadImagesToggle_;
@@ -166,8 +181,6 @@ public:
   int newsTextFontSize_;
   QString notificationFontFamily_;
   int notificationFontSize_;
-  int browserMinFontSize_;
-  int browserMinLogFontSize_;
   QString newsListTextColor_;
   QString newsListBackgroundColor_;
   QString focusedNewsTextColor_;
@@ -251,10 +264,13 @@ public slots:
   void slotClose();
   void slotCloseApp();
   void myEmptyWorkingSet();
-  void getUrlDone(const int &result, const QString &feedUrlStr,
-                  const QByteArray &data, const QDateTime &dtReply);
-  void slotUpdateFeed(const QString &feedUrl, const bool &changed, int newCount);
-  void slotUpdateFeedDelayed(const QString &feedUrl, const bool &changed, int newCount);
+  void getUrlDone(const int &result, const int &feedId, const QString &feedUrlStr,
+                  const QString &error, const QByteArray &data,
+                  const QDateTime &dtReply, const QString &codecName);
+  void slotUpdateFeed(const int &feedId, const bool &changed,
+                      const int &newCount, const QString &status);
+  void slotUpdateFeedDelayed(const int &feedId, const bool &changed,
+                             const int &newCount, const QString &status);
   void slotFeedCountsUpdate(FeedCountStruct counts);
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);
@@ -264,13 +280,15 @@ public slots:
   void setAutoLoadImages(bool set = true);
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
   void feedsModelReload(bool checkFilter = false);
+  void setStatusFeed(const int &feedId, const QString &status);
 
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
-  void signalRequestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo);
-  void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,
-                     const QDateTime &dtReply);
+  void signalRequestUrl(int feedId, const QString &urlString,
+                        const QDateTime &date, const QString &userInfo);
+  void xmlReadyParse(const QByteArray &data, const int &feedId,
+                     const QDateTime &dtReply, const QString &codecName);
   void faviconRequestUrl(const QString &urlString, const QString &feedUrl);
   void signalIconFeedReady(const QString &feedUrl, const QByteArray &faviconData);
   void signalSetCurrentTab(int index, bool updateTab = false);
@@ -278,6 +296,8 @@ signals:
   void signalRefreshInfoTray();
   void signalNextUpdate();
   void signalRecountCategoryCounts();
+  void signalPlaySoundNewNews();
+  void loadProgress(int);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -286,7 +306,6 @@ protected:
 
 private slots:
   void slotTimerLinkOpening();
-  void slotProgressBarUpdate();
   void slotVisibledFeedsWidget();
   void updateIconToolBarNull(bool feedsWidgetVisible);
   void setFeedRead(int type, int feedId, FeedReedType feedReadType,
@@ -294,6 +313,7 @@ private slots:
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
   void slotRecountCategoryCounts();
+  void slotPlaySoundNewNews();
 
   void slotShowAboutDlg();
 
@@ -301,15 +321,17 @@ private slots:
   void slotFeedsFilter();
   void slotNewsFilter();
   void slotUpdateFeedsTimer();
-  bool addFeedInQueue(const QString &feedUrl);
+  bool addFeedInQueue(int feedId, const QString &feedUrl,
+                      const QDateTime &date, int auth);
   void slotShowUpdateAppDlg();
   void showContextMenuToolBar(const QPoint &pos);
   void showFeedPropertiesDlg();
   void slotFeedMenuShow();
   void markAllFeedsRead();
   void markAllFeedsOld();
-  void slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray);
-  void slotIconFeedUpdate(int feedId, int feedParId, const QByteArray &faviconData);
+  void slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray,
+                             const QString &format);
+  void slotIconFeedUpdate(int feedId, const QByteArray &faviconData);
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg(bool newFilter = false);
   void showFilterRulesDlg();
@@ -334,6 +356,8 @@ private slots:
 
   void slotNewsUpPressed();
   void slotNewsDownPressed();
+  void slotNewsPageUpPressed();
+  void slotNewsPageDownPressed();
   void markNewsRead();
   void markAllNewsRead();
   void markNewsStar();
@@ -350,8 +374,9 @@ private slots:
 
   void showNotification();
   void deleteNotification();
-  void slotOpenNew(int feedId, int feedParId, int newsId);
+  void slotOpenNew(int feedId, int newsId);
   void slotOpenNewBrowser(const QUrl &url);
+  void slotMarkReadNewsInNotification(int feedId, int newsId, int read);
 
   void slotFindFeeds(QString);
   void slotSelectFind();
@@ -445,7 +470,6 @@ private:
   void loadSettingsFeeds();
   void appInstallTranslator();
   void retranslateStrings();
-  void playSoundNewNews();
   void recountFeedCounts(int feedId, bool update = true);
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
@@ -468,6 +492,7 @@ private:
   bool updateCheckEnabled_;
 
   bool closeApp_;
+  bool minimizeToTray_;
 
   QAction *addAct_;
   QAction *addFeedAct_;
@@ -604,7 +629,7 @@ private:
   bool updateFeedsEnable_;
   int  updateFeedsInterval_;
   int  updateFeedsIntervalType_;
-  QList<QString> feedUrlList_;
+  QList<int> feedIdList_;
   QMap<int,int> updateFeedsIntervalSec_;
   QMap<int,int> updateFeedsTimeCount_;
 
@@ -688,6 +713,8 @@ private:
   QString diskCacheDirPathDefault_;
 
   OptionsDialog *optionsDialog_;
+
+  QTimer timerUpdateNews_;
 
 };
 
