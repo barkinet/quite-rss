@@ -144,6 +144,7 @@ public:
   QAction *restoreLastNewsAct_;
   QAction *newsLabelAction_;
   QAction *newsLabelMenuAction_;
+  QAction *showLabelsMenuAct_;
   QAction *findTextAct_;
   QAction *openHomeFeedAct_;
   QAction *shareMenuAct_;
@@ -220,6 +221,7 @@ public:
   int maxPagesInCache_;
   QString downloadLocation_;
   bool askDownloadLocation_;
+  int defaultZoomPages_;
 
   int browserPosition_;
 
@@ -375,6 +377,7 @@ private slots:
   void slotOpenNewsNewTab();
   void slotOpenNewsBackgroundTab();
   void slotCopyLinkNews();
+  void slotShowLabelsMenu();
   void setCurrentTab(int index, bool updateCurrentTab = false);
   void findText();
 
