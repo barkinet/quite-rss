@@ -2898,7 +2898,7 @@ void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
   }
 
   if (!changed) {
-    emit signalNextUpdate();
+    emit signalNextUpdate(finish);
     return;
   }
 
@@ -2938,7 +2938,7 @@ void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
 
   recountCategoryCounts();
 
-  emit signalNextUpdate();
+  emit signalNextUpdate(finish);
 }
 
 /** @brief Process updating news list
@@ -3925,8 +3925,8 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     QModelIndex index = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
     int newCount = feedsTreeModel_->dataField(index, "newCount").toInt();
     if (!(clicked && !newCount)) {
-      while (index.parent().isValid()) {
-        idList << feedsTreeModel_->getParidByIndex(index);
+      while (index.isValid()) {
+        idList << feedsTreeModel_->getIdByIndex(index);
         index = index.parent();
       }
     }
@@ -3934,8 +3934,8 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     QModelIndex index = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
     int unRead = feedsTreeModel_->dataField(index, "unread").toInt();
     if (!(clicked && !unRead)) {
-      while (index.parent().isValid()) {
-        idList << feedsTreeModel_->getParidByIndex(index);
+      while (index.isValid()) {
+        idList << feedsTreeModel_->getIdByIndex(index);
         index = index.parent();
       }
     }
