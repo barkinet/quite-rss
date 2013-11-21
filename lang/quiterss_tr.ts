@@ -3,147 +3,131 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="35"/>
+        <location filename="../src/aboutdialog.cpp" line="42"/>
         <source>About</source>
         <translation>Hakkında</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="54"/>
-        <location filename="../src/aboutdialog.cpp" line="120"/>
+        <location filename="../src/aboutdialog.cpp" line="61"/>
+        <location filename="../src/aboutdialog.cpp" line="127"/>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Sürüm</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="46"/>
+        <location filename="../src/aboutdialog.cpp" line="53"/>
         <source>Revision</source>
-        <translation type="unfinished"/>
+        <translation>Gözden Geçir</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="58"/>
+        <location filename="../src/aboutdialog.cpp" line="65"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation type="unfinished"/>
+        <translation>QuiteRSS , açık uçlu çapraz işletim sistemli RSS/Atom haber okuyucusudur.</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="59"/>
+        <location filename="../src/aboutdialog.cpp" line="66"/>
         <source>Includes:</source>
-        <translation type="unfinished"/>
+        <translation>İçerik:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="121"/>
+        <location filename="../src/aboutdialog.cpp" line="128"/>
         <source>Authors</source>
-        <translation type="unfinished"/>
+        <translation>Yazarlar</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="122"/>
+        <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>History</source>
-        <translation type="unfinished"/>
+        <translation>Geçmiş</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="123"/>
+        <location filename="../src/aboutdialog.cpp" line="130"/>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Lisans</translation>
     </message>
 </context>
 <context>
     <name>AddFeedWizard</name>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="31"/>
+        <location filename="../src/addfeedwizard.cpp" line="32"/>
         <source>Add Feed</source>
         <translation>Kaynak Ekle</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="91"/>
-        <location filename="../src/addfeedwizard.cpp" line="165"/>
+        <location filename="../src/addfeedwizard.cpp" line="88"/>
+        <location filename="../src/addfeedwizard.cpp" line="162"/>
         <source>Create New Feed</source>
         <translation>Yeni Kaynak Ekle</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="100"/>
+        <location filename="../src/addfeedwizard.cpp" line="97"/>
         <source>Use title of the feed as displayed name</source>
         <translation>Kaynak ismini başlık olarak kullan</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="104"/>
+        <location filename="../src/addfeedwizard.cpp" line="101"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Sunucu yetkilendirilmesi:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="113"/>
+        <location filename="../src/addfeedwizard.cpp" line="110"/>
         <source>Username:</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı adı:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="115"/>
+        <location filename="../src/addfeedwizard.cpp" line="112"/>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Şifre:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="144"/>
+        <location filename="../src/addfeedwizard.cpp" line="141"/>
         <source>Feed URL or website address:</source>
         <translation>Kaynak URL veya Website adresi :</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="177"/>
+        <location filename="../src/addfeedwizard.cpp" line="174"/>
         <source>Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Kaynaklar</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="181"/>
+        <location filename="../src/addfeedwizard.cpp" line="178"/>
         <source>All Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Tüm Kaynaklar</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="221"/>
+        <location filename="../src/addfeedwizard.cpp" line="218"/>
         <source>New Folder...</source>
-        <translation type="unfinished"/>
+        <translation>Yeni Klasör...</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="236"/>
+        <location filename="../src/addfeedwizard.cpp" line="233"/>
         <source>Displayed name:</source>
         <translation>Görüntülenen adı :</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="238"/>
+        <location filename="../src/addfeedwizard.cpp" line="235"/>
         <source>Location:</source>
-        <translation type="unfinished"/>
+        <translation>Yerleşim:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="314"/>
-        <location filename="../src/addfeedwizard.cpp" line="522"/>
+        <location filename="../src/addfeedwizard.cpp" line="311"/>
         <source>URL error!</source>
         <translation>URL hatası !</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="327"/>
-        <location filename="../src/addfeedwizard.cpp" line="476"/>
+        <location filename="../src/addfeedwizard.cpp" line="325"/>
+        <location filename="../src/addfeedwizard.cpp" line="487"/>
         <source>Duplicate feed!</source>
         <translation>Eklenmiş kaynak!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="478"/>
-        <location filename="../src/addfeedwizard.cpp" line="505"/>
+        <location filename="../src/addfeedwizard.cpp" line="489"/>
+        <location filename="../src/addfeedwizard.cpp" line="511"/>
         <source>Can&apos;t find feed URL!</source>
         <translation>URL kaynağı bulunamadı !</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="524"/>
-        <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/addfeedwizard.cpp" line="526"/>
-        <source>Request timeout!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/addfeedwizard.cpp" line="528"/>
-        <source>Redirect error!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/addfeedwizard.cpp" line="530"/>
         <source>Request failed!</source>
-        <translation type="unfinished"/>
+        <translation>İzin alma başarısız!</translation>
     </message>
 </context>
 <context>
@@ -151,27 +135,27 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="24"/>
         <source>Add Folder</source>
-        <translation type="unfinished"/>
+        <translation>Klasör Ekle</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="37"/>
         <source>Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Kaynaklar</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="41"/>
         <source>All Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Tüm Kaynaklar</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="79"/>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>İsim:</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="81"/>
         <source>Location:</source>
-        <translation type="unfinished"/>
+        <translation>Yerleşim:</translation>
     </message>
 </context>
 <context>
@@ -179,32 +163,32 @@
     <message>
         <location filename="../src/authenticationdialog.cpp" line="27"/>
         <source>Save password</source>
-        <translation type="unfinished"/>
+        <translation>Şifreyi kaydet</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="45"/>
         <source>Authorization required</source>
-        <translation type="unfinished"/>
+        <translation>Yetki istendi</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="53"/>
         <source>Server:</source>
-        <translation type="unfinished"/>
+        <translation>Sunucu:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="55"/>
         <source>Message:</source>
-        <translation type="unfinished"/>
+        <translation>Mesaj:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="57"/>
         <source>Username:</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı adı:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="59"/>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Şifre:</translation>
     </message>
 </context>
 <context>
@@ -212,101 +196,102 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="57"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>Okunmamış</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Favori olarak eklenmiş</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>Silinmiş</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="72"/>
         <source>Labels</source>
-        <translation type="unfinished"/>
+        <translation>Etiketler</translation>
     </message>
     <message>
-        <location filename="../src/categoriestreewidget.cpp" line="132"/>
+        <location filename="../src/categoriestreewidget.cpp" line="133"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Yeni sekmede aç</translation>
     </message>
     <message>
-        <location filename="../src/categoriestreewidget.cpp" line="135"/>
+        <location filename="../src/categoriestreewidget.cpp" line="136"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&apos;Silinmişler&apos; i temizle</translation>
     </message>
 </context>
 <context>
     <name>CleanUpWizard</name>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="189"/>
+        <location filename="../src/cleanupwizard.cpp" line="193"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Temzilik yap</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="223"/>
         <source>Choose Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Kaynakları seç</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="235"/>
         <source>All Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Tüm Kaynaklar</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="298"/>
         <source>Clean Up Options</source>
-        <translation type="unfinished"/>
+        <translation>Seçenekleri temizle</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="300"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Korunacak haberlerin azami gün sayısı: </translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="307"/>
         <source>Maximum number of news to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Saklanacak maksimum haber sayısı:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="314"/>
         <source>Delete read news</source>
-        <translation type="unfinished"/>
+        <translation>Okunan haberi sil</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="315"/>
         <source>Never delete unread news</source>
-        <translation type="unfinished"/>
+        <translation>Okunmamış haberleri asla silme</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="316"/>
         <source>Never delete starred news</source>
-        <translation type="unfinished"/>
+        <translation>Favorilere eklenmiş haberi asla silme</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="317"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Etiketlenmiş haberleri asla silme</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&apos;Silinmişler&apos;i temizle</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="331"/>
         <source>Purge DB</source>
-        <translation type="unfinished"/>
+        <translation>Veritabanını temizle</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation type="unfinished"/>
+        <translation>&apos;Silinmişler&apos; olarak işaretlenmiş kayıtları veritabanından sil.Eski haberler tekrar görünebilir
+</translation>
     </message>
 </context>
 <context>
@@ -314,17 +299,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="129"/>
         <source>Object blocked by ClickToFlash</source>
-        <translation type="unfinished"/>
+        <translation>Nesne ClickToFlash taradından engellendi</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="131"/>
         <source>Hide object</source>
-        <translation type="unfinished"/>
+        <translation>Nesneyi gizle</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="132"/>
         <source>Add &apos;%1&apos; to whitelist</source>
-        <translation type="unfinished"/>
+        <translation>&apos;%1&apos; i aklanmışlar listesine ekle </translation>
     </message>
 </context>
 <context>
@@ -332,101 +317,101 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="30"/>
         <source>Customize Main Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Ana Şeriti Biçimlendir</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="32"/>
         <source>Customize Feeds Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Kaynaklar Şeritini Biçimlendir</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="34"/>
         <source>Customize News Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Haberler Şeritini Biçimlendir</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="74"/>
         <location filename="../src/customizetoolbardialog.cpp" line="351"/>
         <location filename="../src/customizetoolbardialog.cpp" line="454"/>
         <source>Load images</source>
-        <translation type="unfinished"/>
+        <translation>Resimleri yükle</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="82"/>
         <location filename="../src/customizetoolbardialog.cpp" line="361"/>
         <location filename="../src/customizetoolbardialog.cpp" line="434"/>
         <source>Separator</source>
-        <translation type="unfinished"/>
+        <translation>Ayırıcı</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="92"/>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Simge</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="92"/>
         <source>Text</source>
-        <translation type="unfinished"/>
+        <translation>Yazı</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="92"/>
         <source>Text Beside Icon</source>
-        <translation type="unfinished"/>
+        <translation>Simgenin Yanındaki Yazı</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="92"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished"/>
+        <translation>Simgenin Altındaki Yazı</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="107"/>
         <source>Big</source>
-        <translation type="unfinished"/>
+        <translation>Büyük</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="107"/>
         <source>Normal</source>
-        <translation type="unfinished"/>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="107"/>
         <source>Small</source>
-        <translation type="unfinished"/>
+        <translation>Küçük</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="120"/>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>Tarz:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="123"/>
         <source>Icon Size:</source>
-        <translation type="unfinished"/>
+        <translation>Simge Boyutu:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="139"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Ekle</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="146"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Sil</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="150"/>
         <source>Move up</source>
-        <translation type="unfinished"/>
+        <translation>Yukarı taşı</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="153"/>
         <source>Move down</source>
-        <translation type="unfinished"/>
+        <translation>Aşağı taşı</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="157"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan</translation>
     </message>
 </context>
 <context>
@@ -434,126 +419,128 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="102"/>
         <source>Remaining time unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Geriye kalan zamana ulaşımadı</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="165"/>
         <location filename="../src/downloads/downloaditem.cpp" line="192"/>
         <source>Error: Cannot write to file!</source>
-        <translation type="unfinished"/>
+        <translation>Hata : Dosyaya yazma gerçekleşmedi</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="232"/>
         <source>Error: </source>
-        <translation type="unfinished"/>
+        <translation>Hata:</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="241"/>
         <source>Done - %1</source>
-        <translation type="unfinished"/>
+        <translation>Tamamlandı - %1</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="260"/>
         <source>few seconds</source>
-        <translation type="unfinished"/>
+        <translation>Bir kaç saniye</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="262"/>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>saniye</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="264"/>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>dakika</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="266"/>
         <source>hours</source>
-        <translation type="unfinished"/>
+        <translation>saat</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="273"/>
         <location filename="../src/downloads/downloaditem.cpp" line="317"/>
         <source>Unknown size</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen boyut</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="290"/>
         <source>Unknown speed</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen hız</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="318"/>
         <source>%2 - unknown size (%3)</source>
-        <translation type="unfinished"/>
+        <translation>%2 - bilinmeyen boyut (%3)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="320"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
-        <translation type="unfinished"/>
+        <translation>Kalan %1 - %3 &apos;de %2 (%4)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="339"/>
         <source>Cancelled - %1</source>
-        <translation type="unfinished"/>
+        <translation>İptal Edildi - %1</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="349"/>
         <source>Delete file</source>
-        <translation type="unfinished"/>
+        <translation>Dosyayı Sil</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="349"/>
         <source>Do you want to also delete dowloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>İndirilen dosyaları ayrıca silmek ister misin?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="365"/>
         <source>Open File</source>
-        <translation type="unfinished"/>
+        <translation>Dosya aç</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="367"/>
         <source>Open Folder</source>
-        <translation type="unfinished"/>
+        <translation>Klasörü Aç</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="369"/>
         <source>Copy Download Link</source>
-        <translation type="unfinished"/>
+        <translation>İndirme Adresini Kopyala</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="371"/>
         <source>Cancel Downloading</source>
-        <translation type="unfinished"/>
+        <translation>İndirme iptal ediliyor</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="372"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Sil</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="374"/>
         <source>Cancelled</source>
-        <translation type="unfinished"/>
+        <translation>İptal Edildi</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="374"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="399"/>
         <source>Not found</source>
-        <translation type="unfinished"/>
+        <translation>Bulunamadı</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="399"/>
         <source>Sorry, the file 
  %1 
  was not found!</source>
-        <translation type="unfinished"/>
+        <translation>Üzgünüz, ⏎
+%1 ⏎
+adlı dosya bulunamadı!</translation>
     </message>
 </context>
 <context>
@@ -561,32 +548,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="35"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Temizle</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
         <source>File %1 (*.%2)</source>
-        <translation type="unfinished"/>
+        <translation>Dosya %1 (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
         <source>All Files (*.*)</source>
-        <translation type="unfinished"/>
+        <translation>Tüm Dosyalar (*.*)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="91"/>
         <source>Save As...</source>
-        <translation type="unfinished"/>
+        <translation>Farklı Kaydet...</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
         <source>Executable: </source>
-        <translation type="unfinished"/>
+        <translation>Programlaştırılabilir:</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="162"/>
         <source>Arguments: </source>
-        <translation type="unfinished"/>
+        <translation>Argümanlar:</translation>
     </message>
 </context>
 <context>
@@ -594,7 +581,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="106"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Favorilere eklenen</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="107"/>
@@ -609,12 +596,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Columns</source>
-        <translation type="unfinished"/>
+        <translation>Kolonlar</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="33"/>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Yetkilendirme</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="34"/>
@@ -629,167 +616,177 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>saniye</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>dakika</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
         <source>hours</source>
-        <translation type="unfinished"/>
+        <translation>saat</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="109"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Web sayfasını yüklemek yerine haber açıklamasını göster</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Yükselen</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Alçalan</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="184"/>
         <source>Sort by:</source>
-        <translation type="unfinished"/>
+        <translation>Sıralama kriteri:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="198"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Ekle</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="205"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Sil</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="209"/>
         <source>Move up</source>
-        <translation type="unfinished"/>
+        <translation>Yukarı taşı</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="212"/>
         <source>Move down</source>
-        <translation type="unfinished"/>
+        <translation>Aşağı taşı</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="245"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Sunucu yetkilendirilmesi:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="254"/>
         <source>Username:</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı adı:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="256"/>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Şifre:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="284"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="286"/>
+        <source>Status:</source>
+        <translation>Durum:</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="288"/>
         <source>Created:</source>
         <translation>Oluşturulan:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="286"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="290"/>
         <source>Last update:</source>
         <translation>Son güncelleme:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="288"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="292"/>
         <source>News count:</source>
-        <translation>Haber adedi:</translation>
+        <translation>Haber sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="384"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="355"/>
+        <source>Good</source>
+        <translation>İyi</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>Resim dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="386"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="398"/>
         <source>Select Image</source>
-        <translation type="unfinished"/>
+        <translation>Resim seç</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="393"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="405"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Simge yükleme:Dosya açılamadı</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="277"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="279"/>
         <source>Description:</source>
-        <translation>Tanımlar :</translation>
+        <translation>Tanımlar:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="26"/>
         <source>Properties</source>
-        <translation type="unfinished"/>
+        <translation>Özellikler</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Load Title</source>
-        <translation type="unfinished"/>
+        <translation>Başlık Yükle</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation type="unfinished"/>
+        <translation>Favicon Yükle</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
         <source>Select Icon...</source>
-        <translation type="unfinished"/>
+        <translation>Simge Seç</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="74"/>
         <source>Select Icon</source>
-        <translation type="unfinished"/>
+        <translation>Simge Seç</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Automatically update every</source>
-        <translation type="unfinished"/>
+        <translation>Otomatik güncelleme sıklığı her:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="108"/>
         <source>Display in new tab on startup</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar açılınca yeni sekmede görüntüle</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="110"/>
         <source>Automatically delete duplicate news</source>
-        <translation type="unfinished"/>
+        <translation>Çift haberleri otomatik sil</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="353"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="363"/>
         <source>Long ago ;-)</source>
-        <translation>Uzun zaman önce :)</translation>
+        <translation>Uzun zaman önce ;-)</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="362"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="374"/>
         <source>new</source>
         <translation>yeni</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="364"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="376"/>
         <source>unread</source>
-        <translation>okunmadı</translation>
+        <translation>okunmamış</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="57"/>
@@ -832,7 +829,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="26"/>
         <source>Filter Rules</source>
-        <translation>Süzgeç kuralları</translation>
+        <translation>Süzgeç Kuralları</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="49"/>
@@ -874,27 +871,27 @@ Ancient news could reappear</source>
         <location filename="../src/findtext.cpp" line="89"/>
         <location filename="../src/findtext.cpp" line="104"/>
         <source>Find in News</source>
-        <translation type="unfinished"/>
+        <translation>Haberler içinde bul</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find Title</source>
-        <translation type="unfinished"/>
+        <translation>Başlık Bul</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find Authors</source>
-        <translation type="unfinished"/>
+        <translation>Yazar Bul</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find Category</source>
-        <translation type="unfinished"/>
+        <translation>Kategori Bul</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
         <source>Find in Content</source>
-        <translation type="unfinished"/>
+        <translation>Kişilerde Bul</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="109"/>
@@ -907,38 +904,38 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="464"/>
         <source>Canceled!</source>
-        <translation type="unfinished"/>
+        <translation>İptal Edildi!</translation>
     </message>
 </context>
 <context>
     <name>ItemAction</name>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="145"/>
+        <location filename="../src/filterrulesdialog.h" line="146"/>
         <source>Mark News as Read</source>
         <translation>Haberleri okundu olarak işaretle</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="145"/>
+        <location filename="../src/filterrulesdialog.h" line="146"/>
         <source>Add Star</source>
         <translation>Favorilere ekle</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="146"/>
+        <location filename="../src/filterrulesdialog.h" line="147"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="146"/>
+        <location filename="../src/filterrulesdialog.h" line="147"/>
         <source>Add Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiket Ekle</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="154"/>
+        <location filename="../src/filterrulesdialog.h" line="155"/>
         <source>Add Action</source>
         <translation>Eylem ekle</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="158"/>
+        <location filename="../src/filterrulesdialog.h" line="159"/>
         <source>Delete Action</source>
         <translation>Eylem sil</translation>
     </message>
@@ -971,7 +968,7 @@ Ancient news could reappear</source>
         <translation>Kategori</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="114"/>
+        <location filename="../src/filterrulesdialog.h" line="115"/>
         <source>Status</source>
         <translation>Durum</translation>
     </message>
@@ -983,7 +980,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/filterrulesdialog.h" line="38"/>
         <source>State</source>
-        <translation type="unfinished"/>
+        <translation>Durum</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="43"/>
@@ -1009,6 +1006,7 @@ Ancient news could reappear</source>
         <location filename="../src/filterrulesdialog.h" line="99"/>
         <location filename="../src/filterrulesdialog.h" line="104"/>
         <location filename="../src/filterrulesdialog.h" line="107"/>
+        <location filename="../src/filterrulesdialog.h" line="111"/>
         <source>contains</source>
         <translation>içerir</translation>
     </message>
@@ -1016,34 +1014,35 @@ Ancient news could reappear</source>
         <location filename="../src/filterrulesdialog.h" line="99"/>
         <location filename="../src/filterrulesdialog.h" line="104"/>
         <location filename="../src/filterrulesdialog.h" line="107"/>
+        <location filename="../src/filterrulesdialog.h" line="111"/>
         <source>doesn&apos;t contains</source>
         <translation>içermez</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="100"/>
         <location filename="../src/filterrulesdialog.h" line="108"/>
-        <location filename="../src/filterrulesdialog.h" line="111"/>
-        <location filename="../src/filterrulesdialog.h" line="115"/>
+        <location filename="../src/filterrulesdialog.h" line="112"/>
+        <location filename="../src/filterrulesdialog.h" line="116"/>
         <source>is</source>
         <translation>şu olmalıdır</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="100"/>
         <location filename="../src/filterrulesdialog.h" line="108"/>
-        <location filename="../src/filterrulesdialog.h" line="111"/>
-        <location filename="../src/filterrulesdialog.h" line="115"/>
+        <location filename="../src/filterrulesdialog.h" line="112"/>
+        <location filename="../src/filterrulesdialog.h" line="116"/>
         <source>isn&apos;t</source>
         <translation>şu olmamalıdır</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="101"/>
-        <location filename="../src/filterrulesdialog.h" line="112"/>
+        <location filename="../src/filterrulesdialog.h" line="113"/>
         <source>begins with</source>
         <translation>ile başlamalı</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="101"/>
-        <location filename="../src/filterrulesdialog.h" line="112"/>
+        <location filename="../src/filterrulesdialog.h" line="113"/>
         <source>ends with</source>
         <translation>ile bitmeli</translation>
     </message>
@@ -1051,91 +1050,61 @@ Ancient news could reappear</source>
 <context>
     <name>LabelDialog</name>
     <message>
-        <location filename="../src/labeldialog.cpp" line="24"/>
+        <location filename="../src/labeldialog.cpp" line="25"/>
         <source>New Label</source>
-        <translation type="unfinished"/>
+        <translation>Yeni Etiket</translation>
     </message>
     <message>
-        <location filename="../src/labeldialog.cpp" line="30"/>
-        <source>Important</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/labeldialog.cpp" line="30"/>
-        <source>Work</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/labeldialog.cpp" line="30"/>
-        <source>Personal</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/labeldialog.cpp" line="31"/>
-        <source>To Do</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/labeldialog.cpp" line="31"/>
-        <source>Later</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/labeldialog.cpp" line="31"/>
-        <source>Amusingly</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/labeldialog.cpp" line="37"/>
+        <location filename="../src/labeldialog.cpp" line="35"/>
         <source>Load icon...</source>
-        <translation type="unfinished"/>
+        <translation>Simge yükle...</translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="44"/>
+        <location filename="../src/labeldialog.cpp" line="54"/>
+        <source>Default</source>
+        <translation>Varsayılan</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="46"/>
         <location filename="../src/labeldialog.cpp" line="56"/>
-        <source>Default</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/labeldialog.cpp" line="48"/>
-        <location filename="../src/labeldialog.cpp" line="58"/>
         <source>Select color...</source>
-        <translation type="unfinished"/>
+        <translation>Renk Seç...</translation>
     </message>
     <message>
-        <location filename="../src/labeldialog.cpp" line="66"/>
+        <location filename="../src/labeldialog.cpp" line="64"/>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>İsim:</translation>
     </message>
     <message>
-        <location filename="../src/labeldialog.cpp" line="70"/>
+        <location filename="../src/labeldialog.cpp" line="68"/>
         <source>Icon:</source>
-        <translation type="unfinished"/>
+        <translation>Simge:</translation>
     </message>
     <message>
-        <location filename="../src/labeldialog.cpp" line="73"/>
+        <location filename="../src/labeldialog.cpp" line="71"/>
         <source>Color text:</source>
-        <translation type="unfinished"/>
+        <translation>Yazı rengi:</translation>
     </message>
     <message>
-        <location filename="../src/labeldialog.cpp" line="76"/>
+        <location filename="../src/labeldialog.cpp" line="74"/>
         <source>Color background:</source>
-        <translation type="unfinished"/>
+        <translation>Arkaplan rengi:</translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="144"/>
+        <source>Image files</source>
+        <translation>Resim Dosyaları</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="146"/>
-        <source>Image files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/labeldialog.cpp" line="148"/>
         <source>Select Image</source>
-        <translation type="unfinished"/>
+        <translation>Resim Seç</translation>
     </message>
     <message>
-        <location filename="../src/labeldialog.cpp" line="155"/>
+        <location filename="../src/labeldialog.cpp" line="153"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Simge Yükleme:Dosya Açılamadı!</translation>
     </message>
 </context>
 <context>
@@ -1181,17 +1150,17 @@ Ancient news could reappear</source>
         <translation>Aşağı taşı</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="123"/>
-        <source>Apply Selected Filter</source>
-        <translation>Seçilmiş süzgeci uygula</translation>
+        <location filename="../src/newsfiltersdialog.cpp" line="107"/>
+        <source>Run Filter</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="254"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="257"/>
         <source>Delete Filter</source>
         <translation>Süzgeci sil</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="255"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="258"/>
         <source>Are you sure to delete the filter &apos;%1&apos;?</source>
         <translation>&apos;%1&apos; isimli süzgeç silinecektir onaylıyor musunuz ?</translation>
     </message>
@@ -1201,7 +1170,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="398"/>
         <source>Icon Feed</source>
-        <translation type="unfinished"/>
+        <translation>Kaynak Simgesi</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="399"/>
@@ -1241,23 +1210,23 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="406"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiket</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="407"/>
         <source>Title Feed</source>
-        <translation type="unfinished"/>
+        <translation>Kaynak Başlığı</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="408"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Adres</translation>
     </message>
 </context>
 <context>
     <name>NewsItem</name>
     <message>
-        <location filename="../src/notifications.h" line="50"/>
+        <location filename="../src/notifications.h" line="49"/>
         <source>Mark Read/Unread</source>
         <translation>Okundu/Okunmadı olarak işaretle</translation>
     </message>
@@ -1270,24 +1239,24 @@ Ancient news could reappear</source>
         <translation>(%p%) yükleniyor...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1293"/>
+        <location filename="../src/newstabwidget.cpp" line="1299"/>
         <source>Author: %1</source>
-        <translation type="unfinished"/>
+        <translation>Yazar: %1</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="486"/>
         <source>Home</source>
-        <translation type="unfinished"/>
+        <translation>Ev</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="487"/>
         <source>Open Page in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Dış Tarayıcıda Sayfayı Aç</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="488"/>
         <source>Open Link in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Dış Tarayıcıda Linki Aç</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="490"/>
@@ -1307,7 +1276,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="493"/>
         <source>Save Image...</source>
-        <translation type="unfinished"/>
+        <translation>Resmi kaydet...</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="494"/>
@@ -1342,12 +1311,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="500"/>
         <source>Copy Image</source>
-        <translation type="unfinished"/>
+        <translation>Resmi Kopyala</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="502"/>
         <source>Copy Image Address</source>
-        <translation type="unfinished"/>
+        <translation>Resim Adreslerini Kopyala</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="511"/>
@@ -1355,24 +1324,29 @@ Ancient news could reappear</source>
         <translation>Sekmeyi kapat</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1313"/>
+        <location filename="../src/newstabwidget.cpp" line="1293"/>
+        <source>Comments</source>
+        <translation>Yorumlar</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="1333"/>
         <source>audio</source>
-        <translation type="unfinished"/>
+        <translation>ses</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1314"/>
+        <location filename="../src/newstabwidget.cpp" line="1334"/>
         <source>video</source>
-        <translation type="unfinished"/>
+        <translation>video</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1315"/>
+        <location filename="../src/newstabwidget.cpp" line="1335"/>
         <source>media</source>
-        <translation type="unfinished"/>
+        <translation>medya</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1319"/>
+        <location filename="../src/newstabwidget.cpp" line="1339"/>
         <source>Link to</source>
-        <translation type="unfinished"/>
+        <translation>Bağla</translation>
     </message>
 </context>
 <context>
@@ -1383,9 +1357,9 @@ Ancient news could reappear</source>
         <translation>Gelen Haberler : %1</translation>
     </message>
     <message>
-        <location filename="../src/notifications.cpp" line="242"/>
-        <location filename="../src/notifications.cpp" line="306"/>
-        <location filename="../src/notifications.cpp" line="318"/>
+        <location filename="../src/notifications.cpp" line="240"/>
+        <location filename="../src/notifications.cpp" line="309"/>
+        <location filename="../src/notifications.cpp" line="321"/>
         <source>Page %1 of %2</source>
         <translation>Sayfa %1 of %2</translation>
     </message>
@@ -1414,42 +1388,42 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="76"/>
-        <location filename="../src/optionsdialog.cpp" line="1569"/>
+        <location filename="../src/optionsdialog.cpp" line="1688"/>
         <source>Labels</source>
-        <translation type="unfinished"/>
+        <translation>Etiketler</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="79"/>
-        <location filename="../src/optionsdialog.cpp" line="1571"/>
+        <location filename="../src/optionsdialog.cpp" line="1690"/>
         <source>Notifications</source>
         <translation>Uyarılar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="82"/>
         <source>Passwords</source>
-        <translation type="unfinished"/>
+        <translation>Şifreler</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="85"/>
-        <location filename="../src/optionsdialog.cpp" line="1121"/>
+        <location filename="../src/optionsdialog.cpp" line="1168"/>
         <source>Language</source>
         <translation>Dil</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1483"/>
+        <location filename="../src/optionsdialog.cpp" line="1601"/>
         <source>Fonts</source>
         <translation>Yazı tipleri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="227"/>
-        <location filename="../src/optionsdialog.cpp" line="1882"/>
+        <location filename="../src/optionsdialog.cpp" line="2003"/>
         <source>Warning: key is already assigned to</source>
-        <translation type="unfinished"/>
+        <translation>Uyarı: Anahtar zaten şuraya atınmış</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="88"/>
         <source>Fonts &amp; Colors</source>
-        <translation type="unfinished"/>
+        <translation>Yazı tipi &amp; Renkler</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="252"/>
@@ -1459,27 +1433,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="253"/>
         <source>Open new tab next to active</source>
-        <translation type="unfinished"/>
+        <translation>Yakındaki aktiviteyi yeni sekmede aç</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="254"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation type="unfinished"/>
+        <translation>Sekme açılınca kaynaklar ağacını gizle</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation type="unfinished"/>
+        <translation>Pencerenin köşesindeki kaynak ağacı geçişlerini göster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
         <source>Automatically collapse folders</source>
-        <translation type="unfinished"/>
+        <translation>Klasörleri otomatik daralt</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="259"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Güncellemeleri otomatik kontrol et</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="260"/>
@@ -1487,677 +1461,778 @@ Ancient news could reappear</source>
         <translation>Ram&apos;deki bilgiyi veritabanına kaydet ( programın yeniden başlamasını gerektirir )</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="273"/>
-        <source>Run QuiteRSS at Windows startup</source>
+        <location filename="../src/optionsdialog.cpp" line="267"/>
+        <source>Save DB stored in memory to file every</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="296"/>
+        <location filename="../src/optionsdialog.cpp" line="290"/>
+        <source>Run QuiteRSS at Windows startup</source>
+        <translation>Windows açılışında QuiteRSS&apos;yi çalıştır</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="314"/>
         <source>starting QuiteRSS</source>
         <translation>QuiteRSS başlıyor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="297"/>
+        <location filename="../src/optionsdialog.cpp" line="315"/>
         <source>minimizing QuiteRSS</source>
         <translation>QuiteRSS simge durumuna küçült</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="298"/>
+        <location filename="../src/optionsdialog.cpp" line="316"/>
         <source>closing QuiteRSS</source>
         <translation>QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="305"/>
+        <location filename="../src/optionsdialog.cpp" line="323"/>
         <source>Show static icon</source>
-        <translation>sabit ikon olarak göster</translation>
+        <translation>Sabit simge olarak göster</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="306"/>
+        <location filename="../src/optionsdialog.cpp" line="324"/>
         <source>Change icon for incoming new news</source>
-        <translation>Gelen yeni haberler için ikonu değiştir</translation>
+        <translation>Gelen yeni haberler için simfeyi değiştir</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="307"/>
+        <location filename="../src/optionsdialog.cpp" line="325"/>
         <source>Show count of new news</source>
         <translation>Yeni haberlerin sayısını göster</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="308"/>
+        <location filename="../src/optionsdialog.cpp" line="326"/>
         <source>Show count of unread news</source>
         <translation>Okunmamış haberlerin sayısını göster</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="317"/>
+        <location filename="../src/optionsdialog.cpp" line="335"/>
         <source>Single click instead of double click for show window</source>
         <translation>Ana pencereyi göstermek için çift tıklamak yerine tek tıklama</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="318"/>
+        <location filename="../src/optionsdialog.cpp" line="336"/>
         <source>Clear status new on minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Simge durumunda küçükken tüm durumları sil</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="319"/>
+        <location filename="../src/optionsdialog.cpp" line="337"/>
         <source>Empty working set on minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Boş vaktinde simge durumunda küçült</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="322"/>
+        <location filename="../src/optionsdialog.cpp" line="340"/>
         <source>Move to the system tray when:</source>
-        <translation type="unfinished"/>
+        <translation>Şu vakitte simge durumuna küçült:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="324"/>
+        <location filename="../src/optionsdialog.cpp" line="342"/>
         <source>Tray icon behavior:</source>
-        <translation>Bildirim ikonu davranışları:</translation>
+        <translation>Bildirim simgesi davranışları:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="346"/>
+        <location filename="../src/optionsdialog.cpp" line="366"/>
         <source>System proxy configuration (if available)</source>
         <translation>Sistem proxy ayarları ( eğer mevcutsa)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="348"/>
+        <location filename="../src/optionsdialog.cpp" line="364"/>
         <source>Direct connection to the Internet</source>
         <translation>İnternete direk bağlı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="349"/>
+        <location filename="../src/optionsdialog.cpp" line="367"/>
         <source>Manual proxy configuration:</source>
         <translation>El ile proxy (vekil sunucu) yapılandırması:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="365"/>
+        <location filename="../src/optionsdialog.cpp" line="383"/>
         <source>Proxy server:</source>
         <translation>Proxy ( Vekil ) sunucu:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="367"/>
+        <location filename="../src/optionsdialog.cpp" line="385"/>
         <source>Port:</source>
         <translation>Bağlantı noktası:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="375"/>
+        <location filename="../src/optionsdialog.cpp" line="393"/>
         <source>Username:</source>
         <translation>Kullanıcı adı:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="377"/>
+        <location filename="../src/optionsdialog.cpp" line="395"/>
         <source>Password:</source>
         <translation>Şifre:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="410"/>
+        <location filename="../src/optionsdialog.cpp" line="424"/>
+        <source>Timeout request:</source>
+        <translation>İstekte zaman aşımı:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="428"/>
+        <source>Number repeats:</source>
+        <translation>Tekrar sayısı:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="431"/>
+        <source>Options network requests when updating feeds (requires program restart):</source>
+        <translation>Kaynak güncellendiğindeki internet isteği seçenekleri ( Programı yeniden başlatmak gerekiyor)</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="449"/>
         <source>Use embedded browser</source>
         <translation>Gömülü tarayıcıyı kullan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="416"/>
-        <location filename="../src/optionsdialog.cpp" line="425"/>
-        <location filename="../src/optionsdialog.cpp" line="498"/>
-        <location filename="../src/optionsdialog.cpp" line="615"/>
-        <location filename="../src/optionsdialog.cpp" line="942"/>
+        <location filename="../src/optionsdialog.cpp" line="455"/>
+        <location filename="../src/optionsdialog.cpp" line="468"/>
+        <location filename="../src/optionsdialog.cpp" line="547"/>
+        <location filename="../src/optionsdialog.cpp" line="664"/>
+        <location filename="../src/optionsdialog.cpp" line="991"/>
         <source>Browse...</source>
         <translation>Göz at...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="418"/>
+        <location filename="../src/optionsdialog.cpp" line="457"/>
         <source>Enable JavaScript</source>
         <translation>JavaSciript aktif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="419"/>
+        <location filename="../src/optionsdialog.cpp" line="458"/>
         <source>Enable plug-ins</source>
         <translation>Eklentiler aktif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="421"/>
-        <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="422"/>
-        <source>Open links in external browser in background (experimental)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="460"/>
-        <source>External browser:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="464"/>
+        <source>Open links in embedded browser in background</source>
+        <translation>Arka planda gömülü tarayıcıda linkleri aç</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="465"/>
+        <source>Open links in external browser in background (experimental)</source>
+        <translation>Dış tarayıcıda arkaplanda linkleri aç (Henüz deney halinde)</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="491"/>
+        <source>Default zoom on pages:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="509"/>
+        <source>External browser:</source>
+        <translation>Dış Tarayıcı:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="513"/>
         <source>User style sheet:</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı stil levhası:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="493"/>
+        <location filename="../src/optionsdialog.cpp" line="542"/>
         <source>Maximum pages in cache</source>
-        <translation type="unfinished"/>
+        <translation>Önbelleklerdeki azami sayfa sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="504"/>
+        <location filename="../src/optionsdialog.cpp" line="553"/>
         <source>Store cache in:</source>
-        <translation type="unfinished"/>
+        <translation>Önbellekte saklanacak:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="512"/>
+        <location filename="../src/optionsdialog.cpp" line="561"/>
         <source>Maximum size of disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Disk önbelleğindeki azami boyut</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="514"/>
+        <location filename="../src/optionsdialog.cpp" line="563"/>
         <source>MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="520"/>
+        <location filename="../src/optionsdialog.cpp" line="569"/>
         <source>Use disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Disk önbelleğini kullan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="534"/>
+        <location filename="../src/optionsdialog.cpp" line="583"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>Ayarlanacak yerel verilere izin ver</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="535"/>
+        <location filename="../src/optionsdialog.cpp" line="584"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>Uygulamadan çıkana kadar sadece yerel verileri koru</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="536"/>
+        <location filename="../src/optionsdialog.cpp" line="585"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>Herhangi bir ayar verisinden gelen siteleri engelle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="537"/>
+        <location filename="../src/optionsdialog.cpp" line="586"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Temizle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="552"/>
+        <location filename="../src/optionsdialog.cpp" line="601"/>
         <source>Cookies:</source>
-        <translation type="unfinished"/>
+        <translation>Çerezler:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="560"/>
+        <location filename="../src/optionsdialog.cpp" line="609"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation type="unfinished"/>
+        <translation>Sayfadaki flash uygulamasının otoyüklemesi engellendi.Flash simgesine tıklayarak elle bu uygulamayı başlatabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="565"/>
+        <location filename="../src/optionsdialog.cpp" line="614"/>
         <source>Use Click to Flash</source>
-        <translation type="unfinished"/>
+        <translation>ClicktoFlash&apos;ı kullan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="577"/>
+        <location filename="../src/optionsdialog.cpp" line="626"/>
         <source>Add...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="579"/>
-        <source>Remove...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="619"/>
-        <source>Ask where to save each file before downloading</source>
-        <translation type="unfinished"/>
+        <translation>Ekle...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="628"/>
+        <source>Remove...</source>
+        <translation>Sil...</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="668"/>
+        <source>Ask where to save each file before downloading</source>
+        <translation>İndirmeden önce her dosyanın nereye kaydedileceğini sor</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="677"/>
         <source>Download location:</source>
-        <translation type="unfinished"/>
+        <translation>İndirme yeri:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="637"/>
+        <location filename="../src/optionsdialog.cpp" line="686"/>
         <source>History</source>
-        <translation type="unfinished"/>
+        <translation>Geçmiş</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="638"/>
+        <location filename="../src/optionsdialog.cpp" line="687"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>Mahremiyet</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="639"/>
+        <location filename="../src/optionsdialog.cpp" line="688"/>
         <source>Click to Flash</source>
-        <translation type="unfinished"/>
+        <translation>Flash&apos;a tıkla</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="640"/>
+        <location filename="../src/optionsdialog.cpp" line="689"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>İndirmeler</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="674"/>
+        <location filename="../src/optionsdialog.cpp" line="723"/>
         <source>Position on unread news</source>
-        <translation type="unfinished"/>
+        <translation>Okunmamış haberin yeri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="691"/>
+        <location filename="../src/optionsdialog.cpp" line="740"/>
         <source>Dec</source>
-        <translation type="unfinished"/>
+        <translation>Açıklama</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="692"/>
+        <location filename="../src/optionsdialog.cpp" line="741"/>
         <source>December</source>
         <translation>Aralık</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="715"/>
+        <location filename="../src/optionsdialog.cpp" line="764"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="718"/>
-        <source>time:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="722"/>
-        <source>Alternating row background colors</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="723"/>
-        <source>Simplified representation of date and time</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="726"/>
-        <source>Show All</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="726"/>
-        <source>Show New</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="726"/>
-        <source>Show Unread</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="727"/>
-        <source>Show Starred</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="727"/>
-        <source>Show Not Starred</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="728"/>
-        <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="728"/>
-        <source>Show Last Day</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="729"/>
-        <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="743"/>
-        <source>Main news filter:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="765"/>
-        <source>Mark news as read:</source>
-        <translation type="unfinished"/>
+        <translation>Tarih için format görüntüle</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="767"/>
+        <source>time:</source>
+        <translation>zaman</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="771"/>
+        <source>Alternating row background colors</source>
+        <translation>Satır arkaplanlarına alternatif renkler</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="772"/>
+        <source>Simplified representation of date and time</source>
+        <translation>Tarih ve zamanın basitleştirilmiş temsilisi</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="775"/>
+        <source>Show All</source>
+        <translation>Tümünü Göster</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="775"/>
+        <source>Show New</source>
+        <translation>Yenileri göster</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="775"/>
+        <source>Show Unread</source>
+        <translation>Okunmamışları göster</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="776"/>
+        <source>Show Starred</source>
+        <translation>Favorilere Eklenmişleri Göster</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="776"/>
+        <source>Show Not Starred</source>
+        <translation>Favorilere eklenmemişleri göster</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="777"/>
+        <source>Show Unread or Starred</source>
+        <translation>Favorilere eklenmiş/eklenmemişleri göster</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="777"/>
+        <source>Show Last Day</source>
+        <translation>Dünü Göster</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="778"/>
+        <source>Show Last 7 Days</source>
+        <translation>Son 7 Günün Göster</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="792"/>
+        <source>Main news filter:</source>
+        <translation>Ana Haber süzgeci:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="814"/>
+        <source>Mark news as read:</source>
+        <translation>Haberleri okundu olarak işaretle</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="816"/>
         <source>on selecting. With timeout</source>
-        <translation type="unfinished"/>
+        <translation>seçilen.Zaman aşımı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="768"/>
+        <location filename="../src/optionsdialog.cpp" line="817"/>
         <source>after switching to another news</source>
-        <translation type="unfinished"/>
+        <translation>diğer habere geçtikten sonra</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="781"/>
+        <location filename="../src/optionsdialog.cpp" line="830"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&apos;Sonraki Okunmamış Haberleri&apos; eyleminin davranışını değiştir</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="786"/>
+        <location filename="../src/optionsdialog.cpp" line="835"/>
         <source>Automatically mark identical news as read</source>
-        <translation type="unfinished"/>
+        <translation>Aynı haberleri otomatik olarak okunmuş say</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="825"/>
+        <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="845"/>
-        <source>Never delete labeled news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="847"/>
-        <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="848"/>
-        <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>Kapatılırken temizlik yapmayı aktive et</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="894"/>
-        <source>New...</source>
-        <translation type="unfinished"/>
+        <source>Never delete labeled news</source>
+        <translation>Etiketlenmiş haberleri asla silme</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
+        <source>Clean up &apos;Deleted&apos;</source>
+        <translation>&apos;Silinmişler&apos;i temizle</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="897"/>
+        <source>Enable DB optimization (slower shutdown)</source>
+        <translation>Veritabanı optimizasyonu aktif et (Yavaş kapanır)</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="943"/>
+        <source>New...</source>
+        <translation>Yeni...</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="945"/>
         <source>Edit...</source>
-        <translation type="unfinished"/>
+        <translation>Düzenle...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="899"/>
+        <location filename="../src/optionsdialog.cpp" line="948"/>
         <source>Delete...</source>
-        <translation type="unfinished"/>
+        <translation>Sil...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="903"/>
+        <location filename="../src/optionsdialog.cpp" line="952"/>
         <source>Move up</source>
-        <translation type="unfinished"/>
+        <translation>Yukarı taşı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="906"/>
+        <location filename="../src/optionsdialog.cpp" line="955"/>
         <source>Move down</source>
-        <translation type="unfinished"/>
+        <translation>Aşağı taşı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="956"/>
+        <location filename="../src/optionsdialog.cpp" line="1005"/>
         <source>Display notification for incoming news</source>
         <translation>Gelen haberler için uyarı bildirimi göster</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="962"/>
+        <location filename="../src/optionsdialog.cpp" line="1011"/>
         <source>Top Left</source>
-        <translation type="unfinished"/>
+        <translation>Sol Üst</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="962"/>
+        <location filename="../src/optionsdialog.cpp" line="1011"/>
         <source>Top Right</source>
-        <translation type="unfinished"/>
+        <translation>Sağ Üst</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="963"/>
+        <location filename="../src/optionsdialog.cpp" line="1012"/>
         <source>Bottom Left</source>
-        <translation type="unfinished"/>
+        <translation>Sol Alt</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="963"/>
+        <location filename="../src/optionsdialog.cpp" line="1012"/>
         <source>Bottom Right</source>
-        <translation type="unfinished"/>
+        <translation>Sağ Alt</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="973"/>
+        <location filename="../src/optionsdialog.cpp" line="1022"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Önizleme</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="977"/>
+        <location filename="../src/optionsdialog.cpp" line="1026"/>
         <source>Position</source>
-        <translation type="unfinished"/>
+        <translation>Konum</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="983"/>
+        <location filename="../src/optionsdialog.cpp" line="1032"/>
         <source>Show maximum of</source>
-        <translation type="unfinished"/>
+        <translation>Gösterilecek azami sayı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="985"/>
+        <location filename="../src/optionsdialog.cpp" line="1034"/>
         <source>news on page notification</source>
-        <translation type="unfinished"/>
+        <translation>uyarı ekranındaki haberler</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="988"/>
+        <location filename="../src/optionsdialog.cpp" line="1037"/>
         <source>Width news list</source>
-        <translation type="unfinished"/>
+        <translation>Haber listesi genişliği</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="990"/>
+        <location filename="../src/optionsdialog.cpp" line="1039"/>
         <source>pixels</source>
-        <translation type="unfinished"/>
+        <translation>pikseller</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="993"/>
+        <location filename="../src/optionsdialog.cpp" line="1042"/>
         <source>Close notification after</source>
-        <translation type="unfinished"/>
+        <translation>Uyarı ekranını &apos;dan sonra kapat</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="997"/>
+        <location filename="../src/optionsdialog.cpp" line="1046"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Tam ekran yürütmelerde bildirim alma</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1068"/>
+        <location filename="../src/optionsdialog.cpp" line="1115"/>
         <source>Site</source>
-        <translation type="unfinished"/>
+        <translation>Site</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1068"/>
+        <location filename="../src/optionsdialog.cpp" line="1115"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1068"/>
+        <location filename="../src/optionsdialog.cpp" line="1115"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Şifre</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1085"/>
+        <location filename="../src/optionsdialog.cpp" line="1132"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1087"/>
+        <location filename="../src/optionsdialog.cpp" line="1134"/>
         <source>Delete All</source>
-        <translation type="unfinished"/>
+        <translation>Tümünü Sil</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1089"/>
+        <location filename="../src/optionsdialog.cpp" line="1136"/>
         <source>Show Passwords</source>
-        <translation type="unfinished"/>
+        <translation>Şifreleri Göster</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1361"/>
+        <location filename="../src/optionsdialog.cpp" line="1434"/>
         <source>News title font</source>
-        <translation type="unfinished"/>
+        <translation>Haber başlığı yazı tipi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1364"/>
+        <location filename="../src/optionsdialog.cpp" line="1437"/>
         <source>News text font</source>
-        <translation type="unfinished"/>
+        <translation>Haber yazısı yazı tipi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1367"/>
+        <location filename="../src/optionsdialog.cpp" line="1440"/>
         <source>Notification font</source>
         <translation>Uyarılar için yazı tipi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1419"/>
+        <location filename="../src/optionsdialog.cpp" line="1474"/>
         <source>Feeds list color</source>
-        <translation type="unfinished"/>
+        <translation>Kaynaklar listesi rengi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1422"/>
+        <location filename="../src/optionsdialog.cpp" line="1477"/>
         <source>Feeds list background</source>
-        <translation type="unfinished"/>
+        <translation>Kaynaklar listesi arkaplanı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1425"/>
+        <location filename="../src/optionsdialog.cpp" line="1480"/>
         <source>News list color</source>
-        <translation type="unfinished"/>
+        <translation>Haber listesi rengi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1428"/>
+        <location filename="../src/optionsdialog.cpp" line="1483"/>
         <source>News list background</source>
-        <translation type="unfinished"/>
+        <translation>Haber listesi arkaplanı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1431"/>
+        <location filename="../src/optionsdialog.cpp" line="1486"/>
         <source>Focused news color</source>
-        <translation type="unfinished"/>
+        <translation>Odaklanılmış haber rengi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1434"/>
+        <location filename="../src/optionsdialog.cpp" line="1489"/>
         <source>Focused news background color</source>
-        <translation type="unfinished"/>
+        <translation>Odaklanılmış haber arkaplanları rengi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1437"/>
+        <location filename="../src/optionsdialog.cpp" line="1492"/>
         <source>Link color</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı rengi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1440"/>
+        <location filename="../src/optionsdialog.cpp" line="1495"/>
         <source>Title color</source>
-        <translation type="unfinished"/>
+        <translation>Başlık rengi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1443"/>
+        <location filename="../src/optionsdialog.cpp" line="1498"/>
         <source>Date color</source>
-        <translation type="unfinished"/>
+        <translation>Tarih rengi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1446"/>
+        <location filename="../src/optionsdialog.cpp" line="1501"/>
         <source>Author color</source>
+        <translation>Yazar rengi</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1504"/>
+        <source>News text color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1449"/>
+        <location filename="../src/optionsdialog.cpp" line="1507"/>
         <source>News title background</source>
-        <translation type="unfinished"/>
+        <translation>Haber başlığı arkaplanı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1452"/>
+        <location filename="../src/optionsdialog.cpp" line="1510"/>
         <source>News background</source>
-        <translation type="unfinished"/>
+        <translation>Haber arkaplanı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1455"/>
+        <location filename="../src/optionsdialog.cpp" line="1513"/>
         <source>Feed with new news</source>
-        <translation type="unfinished"/>
+        <translation>Yeni haberlerle besle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1458"/>
+        <location filename="../src/optionsdialog.cpp" line="1516"/>
         <source>Count of news unread in feeds tree</source>
+        <translation>Kaynak ağacındaki okunmamış haber sayısı</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1519"/>
+        <source>Text color of new news </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1484"/>
+        <location filename="../src/optionsdialog.cpp" line="1555"/>
+        <source>Standard</source>
+        <translation>Standart</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1557"/>
+        <source>Fixed</source>
+        <translation>Düzeltilmiş</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1559"/>
+        <source>Serif</source>
+        <translation>Serif</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1561"/>
+        <source>Sans Serif</source>
+        <translation>Sans Serif</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1563"/>
+        <source>Cursive</source>
+        <translation>Cursive</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1565"/>
+        <source>Fantasy</source>
+        <translation>Fantasy</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1580"/>
+        <source>Default font size</source>
+        <translation>Varsayılan yazı boyutu</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1582"/>
+        <source>Fixed font size</source>
+        <translation>Düzeltilmiş yazı boyutu</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1584"/>
+        <source>Minimum font size</source>
+        <translation>Asgari yazı boyutu</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1586"/>
+        <source>Minimum logical font size</source>
+        <translation>Asgari mantıklı yazı boyutu</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1590"/>
+        <source>Font families:</source>
+        <translation>Yazı tipi aileleri:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1592"/>
+        <source>Font sizes:</source>
+        <translation>Yazı boyutu:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1602"/>
+        <source>Fonts Browser</source>
+        <translation>Yazı Tipi Tarayıcısı:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1603"/>
         <source>Colors</source>
-        <translation type="unfinished"/>
+        <translation>Renkler</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1491"/>
+        <location filename="../src/optionsdialog.cpp" line="1610"/>
         <source>Filter</source>
-        <translation type="unfinished"/>
+        <translation>Süzgeç</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1768"/>
+        <location filename="../src/optionsdialog.cpp" line="1889"/>
         <source>Load images</source>
         <translation>Resimleri yükle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1773"/>
+        <location filename="../src/optionsdialog.cpp" line="1894"/>
         <source>Auto load images to news view</source>
         <translation>Haberleri görüntülediğinde resimleri otomatik yükle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1937"/>
-        <location filename="../src/optionsdialog.cpp" line="1962"/>
+        <location filename="../src/optionsdialog.cpp" line="2058"/>
+        <location filename="../src/optionsdialog.cpp" line="2083"/>
         <source>Open File...</source>
         <translation>Dosya aç...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2438"/>
+        <location filename="../src/optionsdialog.cpp" line="2571"/>
         <source>Select Style Sheet File</source>
-        <translation type="unfinished"/>
+        <translation>Levha Dosyasının Tarzını Seç</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2447"/>
-        <location filename="../src/optionsdialog.cpp" line="2476"/>
+        <location filename="../src/optionsdialog.cpp" line="2580"/>
+        <location filename="../src/optionsdialog.cpp" line="2609"/>
         <source>Open Directory...</source>
-        <translation type="unfinished"/>
+        <translation>Rehberi Aç...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2457"/>
+        <location filename="../src/optionsdialog.cpp" line="2590"/>
         <source>Add site to whitelist</source>
-        <translation type="unfinished"/>
+        <translation>Aklanmışlar listesine site ekle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2458"/>
+        <location filename="../src/optionsdialog.cpp" line="2591"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
-        <translation type="unfinished"/>
+        <translation>&apos;http://&apos; öneksiz site ekle (Örn. youtube.com)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="650"/>
+        <location filename="../src/optionsdialog.cpp" line="699"/>
         <source>Automatically update the feeds every</source>
-        <translation>Her kaynağı otomatik olarak güncelle</translation>
+        <translation>Kaynakları otomatik güncelleme sıklığı her :</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="660"/>
+        <location filename="../src/optionsdialog.cpp" line="269"/>
+        <location filename="../src/optionsdialog.cpp" line="709"/>
         <source>minutes</source>
         <translation>dakika</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="660"/>
+        <location filename="../src/optionsdialog.cpp" line="709"/>
         <source>hours</source>
         <translation>saat</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="672"/>
+        <location filename="../src/optionsdialog.cpp" line="721"/>
         <source>Position on last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Son açılmış haberin yeri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="673"/>
+        <location filename="../src/optionsdialog.cpp" line="722"/>
         <source>Position at top of list news</source>
-        <translation type="unfinished"/>
+        <translation>Haber listesinin tepesindeki yeri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="675"/>
+        <location filename="../src/optionsdialog.cpp" line="724"/>
         <source>Open news</source>
         <translation>Haberleri aç</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="676"/>
+        <location filename="../src/optionsdialog.cpp" line="725"/>
         <source>Nothing to do</source>
         <translation>Hiçbir şey yapma</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="751"/>
+        <location filename="../src/optionsdialog.cpp" line="800"/>
         <source>Opening feed:</source>
         <translation>Kaynağı aç:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="660"/>
-        <location filename="../src/optionsdialog.cpp" line="792"/>
-        <location filename="../src/optionsdialog.cpp" line="995"/>
+        <location filename="../src/optionsdialog.cpp" line="709"/>
+        <location filename="../src/optionsdialog.cpp" line="841"/>
+        <location filename="../src/optionsdialog.cpp" line="1044"/>
         <source>seconds</source>
         <translation>saniye</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="61"/>
-        <location filename="../src/optionsdialog.cpp" line="636"/>
-        <location filename="../src/optionsdialog.cpp" line="875"/>
+        <location filename="../src/optionsdialog.cpp" line="685"/>
+        <location filename="../src/optionsdialog.cpp" line="924"/>
         <source>General</source>
         <translation>Genel</translation>
     </message>
@@ -2167,99 +2242,99 @@ Ancient news could reappear</source>
         <translation>Başlarken açılış ekranını göster</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="293"/>
+        <location filename="../src/optionsdialog.cpp" line="311"/>
         <source>Show system tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Simge durumunda küçültülmüş simgeyi göster</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="649"/>
+        <location filename="../src/optionsdialog.cpp" line="698"/>
         <source>Automatically update the feeds on startup</source>
         <translation>Başlarken kaynakları otomatik güncelle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="884"/>
         <source>Maximum number of news to keep:</source>
         <translation>Saklanacak maksimum haber sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="828"/>
+        <location filename="../src/optionsdialog.cpp" line="877"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Korunacak haberin azami gün sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="411"/>
+        <location filename="../src/optionsdialog.cpp" line="450"/>
         <source>Use external browser</source>
-        <translation type="unfinished"/>
+        <translation>Dış Tarayıcıyı Kullan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="412"/>
+        <location filename="../src/optionsdialog.cpp" line="451"/>
         <source>Default external browser</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan dış tarayıcı</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="413"/>
+        <location filename="../src/optionsdialog.cpp" line="452"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"/>
+        <translation>Sıradaki dış tarayıcı:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="458"/>
+        <location filename="../src/optionsdialog.cpp" line="507"/>
         <source>Browser selection:</source>
         <translation>Tarayıcı seçimi:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="462"/>
+        <location filename="../src/optionsdialog.cpp" line="511"/>
         <source>Content:</source>
         <translation>İçerik:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="779"/>
+        <location filename="../src/optionsdialog.cpp" line="828"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Web sayfasını yüklemek yerine haber açıklamasını göster</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="842"/>
+        <location filename="../src/optionsdialog.cpp" line="891"/>
         <source>Delete read news</source>
         <translation>Okunan haberi sil</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="843"/>
+        <location filename="../src/optionsdialog.cpp" line="892"/>
         <source>Never delete unread news</source>
-        <translation type="unfinished"/>
+        <translation>Okunmamış haberleri asla silme</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="844"/>
+        <location filename="../src/optionsdialog.cpp" line="893"/>
         <source>Never delete starred news</source>
-        <translation type="unfinished"/>
+        <translation>Favorilere eklenmiş haberi asla silme</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="876"/>
+        <location filename="../src/optionsdialog.cpp" line="925"/>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Okunan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="877"/>
+        <location filename="../src/optionsdialog.cpp" line="926"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Temizlik yap</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="939"/>
+        <location filename="../src/optionsdialog.cpp" line="988"/>
         <source>Play sound for incoming new news</source>
-        <translation type="unfinished"/>
+        <translation>Yeni haber gelirken ses çal</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1332"/>
+        <location filename="../src/optionsdialog.cpp" line="1403"/>
         <source>Choose language:</source>
         <translation>Dil seçimi:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1121"/>
+        <location filename="../src/optionsdialog.cpp" line="1168"/>
         <source>Version</source>
         <translation>Versiyon</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="64"/>
         <source>System Tray</source>
-        <translation type="unfinished"/>
+        <translation>Simge durumunda küçültme</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="91"/>
@@ -2269,118 +2344,113 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="256"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation type="unfinished"/>
+        <translation>Favorilerden birinin yerine varsayılan rss-simgesini göster</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="774"/>
+        <location filename="../src/optionsdialog.cpp" line="823"/>
         <source>Mark displayed news as read when switching feeds</source>
-        <translation type="unfinished"/>
+        <translation>Başka habere geçince görüntülendi olarak işaretle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="775"/>
+        <location filename="../src/optionsdialog.cpp" line="824"/>
         <source>Mark displayed news as read when closing tab</source>
-        <translation type="unfinished"/>
+        <translation>Ekranı kapatınca görüntülendi olarak işaretle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="776"/>
+        <location filename="../src/optionsdialog.cpp" line="825"/>
         <source>Mark displayed news as read on minimize</source>
-        <translation type="unfinished"/>
+        <translation>Ekranı küçültünce görüntülendi olarak işaretle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="783"/>
+        <location filename="../src/optionsdialog.cpp" line="833"/>
         <source>labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Etiketlenmiş haberler</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="784"/>
+        <location filename="../src/optionsdialog.cpp" line="832"/>
         <source>starred news</source>
+        <translation>Favorilenmiş haberler</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="426"/>
+        <source>Number requests:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="813"/>
+        <location filename="../src/optionsdialog.cpp" line="862"/>
         <source>Prevent accidental deletion of:</source>
-        <translation type="unfinished"/>
+        <translation>Kazara silinmişlerden korunan:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1004"/>
+        <location filename="../src/optionsdialog.cpp" line="1051"/>
         <source>Only show selected feeds:</source>
         <translation>Yanlızca seçili kaynakları göster:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1020"/>
+        <location filename="../src/optionsdialog.cpp" line="1067"/>
         <source>All Feeds</source>
         <translation>Tüm Kaynaklar</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1122"/>
+        <location filename="../src/optionsdialog.cpp" line="1169"/>
         <source>Author</source>
         <translation>Yazar</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1122"/>
+        <location filename="../src/optionsdialog.cpp" line="1169"/>
         <source>Contact</source>
         <translation>İletişim</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1351"/>
+        <location filename="../src/optionsdialog.cpp" line="1424"/>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tip</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1351"/>
+        <location filename="../src/optionsdialog.cpp" line="1424"/>
         <source>Font</source>
         <translation>Yazı tipi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1355"/>
+        <location filename="../src/optionsdialog.cpp" line="1428"/>
         <source>Feeds list font</source>
         <translation>Kaynaklar için yazı tipi listesi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1358"/>
+        <location filename="../src/optionsdialog.cpp" line="1431"/>
         <source>News list font</source>
         <translation>Haberler için yazı tipi listesi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1374"/>
-        <location filename="../src/optionsdialog.cpp" line="1466"/>
+        <location filename="../src/optionsdialog.cpp" line="1447"/>
+        <location filename="../src/optionsdialog.cpp" line="1527"/>
         <source>Change...</source>
         <translation>Değiştir...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1376"/>
-        <location filename="../src/optionsdialog.cpp" line="1468"/>
-        <location filename="../src/optionsdialog.cpp" line="1522"/>
+        <location filename="../src/optionsdialog.cpp" line="1449"/>
+        <location filename="../src/optionsdialog.cpp" line="1529"/>
+        <location filename="../src/optionsdialog.cpp" line="1641"/>
         <source>Reset</source>
         <translation>Varsayılan ayarlara geri dön</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1390"/>
-        <source>Minimum font size of browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1393"/>
-        <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1517"/>
+        <location filename="../src/optionsdialog.cpp" line="1636"/>
         <source>Action</source>
         <translation>Eylem</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1517"/>
+        <location filename="../src/optionsdialog.cpp" line="1636"/>
         <source>Description</source>
         <translation>Tanım</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1517"/>
+        <location filename="../src/optionsdialog.cpp" line="1636"/>
         <source>Shortcut</source>
         <translation>Kısayol</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1525"/>
+        <location filename="../src/optionsdialog.cpp" line="1644"/>
         <source>Shortcut:</source>
         <translation>Kısayol:</translation>
     </message>
@@ -2388,40 +2458,40 @@ Ancient news could reappear</source>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5150"/>
+        <location filename="../src/rsslisting.cpp" line="4754"/>
         <source>&amp;Step up</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yukarı taşı</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5151"/>
+        <location filename="../src/rsslisting.cpp" line="4755"/>
         <source>Step &amp;down</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Aşağı taşı</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5152"/>
+        <location filename="../src/rsslisting.cpp" line="4756"/>
         <source>&amp;Select All</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tümünü seç</translation>
     </message>
 </context>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5128"/>
+        <location filename="../src/rsslisting.cpp" line="4732"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Kapat</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5129"/>
+        <location filename="../src/rsslisting.cpp" line="4733"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5130"/>
+        <location filename="../src/rsslisting.cpp" line="4734"/>
         <source>&amp;Yes</source>
         <translation>&amp;Evet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5131"/>
+        <location filename="../src/rsslisting.cpp" line="4735"/>
         <source>&amp;No</source>
         <translation>&amp;Hayır</translation>
     </message>
@@ -2431,132 +2501,132 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="877"/>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Bağlanılmadı</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="948"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"/>
+        <translation>Hostta %1 bulunamadı</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Host&apos;a bağlanma iptal edildi %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı zaman aşımına uğradı %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Hosta bağlanıldı %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"/>
+        <translation>Veri bağlantısı için bağlantı iptal edildi</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen hata</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Hosta bağlantı iptal edildi : %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Giriş iptal edildi: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Dizinleme listesi iptal edildi: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Dizin değişimi iptal edildi: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Dosya indirimi iptal edildi: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Dosya yükleme iptal edildi: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Dosya silinmesi iptal edildi: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Dizin oluşumu iptal edildi: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Dizin silimi iptal edildi: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2481"/>
         <source>Connection closed</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı kapatıldı</translation>
     </message>
 </context>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5133"/>
+        <location filename="../src/rsslisting.cpp" line="4737"/>
         <source>&amp;Undo</source>
         <translation>&amp;Geri al</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5134"/>
+        <location filename="../src/rsslisting.cpp" line="4738"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tekrar yap</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5135"/>
+        <location filename="../src/rsslisting.cpp" line="4739"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kes</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5136"/>
+        <location filename="../src/rsslisting.cpp" line="4740"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5137"/>
+        <location filename="../src/rsslisting.cpp" line="4741"/>
         <source>&amp;Paste</source>
         <translation>&amp;Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5138"/>
+        <location filename="../src/rsslisting.cpp" line="4742"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5139"/>
+        <location filename="../src/rsslisting.cpp" line="4743"/>
         <source>Select All</source>
         <translation>Tümünü seç</translation>
     </message>
@@ -2564,9 +2634,9 @@ Ancient news could reappear</source>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5154"/>
+        <location filename="../src/rsslisting.cpp" line="4758"/>
         <source>Select IM</source>
-        <translation type="unfinished"/>
+        <translation>IM seç</translation>
     </message>
 </context>
 <context>
@@ -2574,1088 +2644,1144 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
         <source>Cannot start external program</source>
-        <translation type="unfinished"/>
+        <translation>Dışsal program başlatılamıyor</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="165"/>
         <source>Cannot start external program! %1</source>
-        <translation type="unfinished"/>
+        <translation>Dışsal program başlatılamıyor! %1</translation>
     </message>
 </context>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5141"/>
+        <location filename="../src/rsslisting.cpp" line="4745"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Geri al</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5142"/>
+        <location filename="../src/rsslisting.cpp" line="4746"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tekrar yap</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5143"/>
+        <location filename="../src/rsslisting.cpp" line="4747"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kes</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5144"/>
+        <location filename="../src/rsslisting.cpp" line="4748"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5145"/>
+        <location filename="../src/rsslisting.cpp" line="4749"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5146"/>
+        <location filename="../src/rsslisting.cpp" line="4750"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5147"/>
+        <location filename="../src/rsslisting.cpp" line="4751"/>
         <source>Select All</source>
         <translation>Tümünü seç</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5148"/>
+        <location filename="../src/rsslisting.cpp" line="4752"/>
         <source>Copy &amp;Link Location</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Linki kopyala</translation>
     </message>
 </context>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5156"/>
+        <location filename="../src/rsslisting.cpp" line="4760"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5157"/>
+        <location filename="../src/rsslisting.cpp" line="4761"/>
         <source>&lt; &amp;Back</source>
-        <translation type="unfinished"/>
+        <translation>&lt; &amp;Geri git</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5158"/>
+        <location filename="../src/rsslisting.cpp" line="4762"/>
         <source>&amp;Finish</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bitir</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5159"/>
+        <location filename="../src/rsslisting.cpp" line="4763"/>
         <source>&amp;Next &gt;</source>
-        <translation type="unfinished"/>
+        <translation>&amp;İleri git &gt;</translation>
     </message>
 </context>
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2440"/>
-        <source>Are you sure to delete the feed &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2518"/>
-        <source>Import canceled</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2526"/>
-        <source>Import: can&apos;t open a file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4891"/>
-        <source>&amp;Feed...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4894"/>
-        <source>F&amp;older...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4899"/>
-        <source>&amp;Delete...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4908"/>
-        <source>E&amp;xit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4942"/>
-        <source>Filter Feeds</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4948"/>
-        <source>Filter News</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4952"/>
-        <source>Show Starred</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4953"/>
-        <source>Show Not Starred</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4954"/>
-        <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4968"/>
-        <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4986"/>
-        <source>Mark Read</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4988"/>
-        <location filename="../src/rsslisting.cpp" line="4989"/>
-        <source>Properties</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5000"/>
-        <location filename="../src/rsslisting.cpp" line="5075"/>
-        <source>Main Toolbar</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5001"/>
-        <source>Customize Toolbar</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5002"/>
-        <source>Main Toolbar...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5003"/>
-        <source>Customize Toolbar...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5004"/>
-        <source>Feeds Toolbar...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5005"/>
-        <source>News Toolbar...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5008"/>
-        <source>Hide Toolbar</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5019"/>
-        <source>Browser Position</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5025"/>
-        <source>Show Window</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5027"/>
-        <source>Previous Feed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5028"/>
-        <source>Next Feed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5029"/>
-        <source>Previous News</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5030"/>
-        <source>Next News</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5042"/>
-        <source>Show/Hide Tree Feeds</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5044"/>
-        <source>Minimize to Tray</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5046"/>
-        <source>Minimize Application to Tray</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5048"/>
-        <source>Columns</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5053"/>
-        <source>Show Indentation</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5058"/>
-        <source>Zoom</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5059"/>
-        <source>Zoom In</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5060"/>
-        <source>Zoom in in browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5061"/>
-        <source>Zoom Out</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5062"/>
-        <source>Zoom out in browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5063"/>
-        <source>100%</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5064"/>
-        <source>Reset zoom in browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5066"/>
-        <source>Print...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5067"/>
-        <source>Print Web page</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5068"/>
-        <source>Print Preview...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5069"/>
-        <source>Preview Web page</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5071"/>
-        <source>Save As...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5072"/>
-        <source>Save Page As...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5076"/>
-        <source>Feeds Toolbar</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5077"/>
-        <source>News Toolbar</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5078"/>
-        <source>Browser Toolbar</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5081"/>
-        <location filename="../src/rsslisting.cpp" line="5082"/>
-        <source>Full Screen</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5084"/>
-        <location filename="../src/rsslisting.cpp" line="5085"/>
-        <source>Stay On Top</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5087"/>
-        <source>Categories</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5099"/>
-        <source>Switch to next tab</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5100"/>
-        <source>Switch to previous tab</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5107"/>
-        <source>Decrease news list/increase browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5108"/>
-        <source>Increase news list/decrease browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5892"/>
-        <source>Check for updates</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5893"/>
-        <source>A new version of QuiteRSS...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="6769"/>
-        <location filename="../src/rsslisting.cpp" line="6783"/>
-        <source>Web Page</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2670"/>
-        <source>Export canceled</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5104"/>
-        <source>Deleted</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5103"/>
-        <source>Starred</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5093"/>
-        <location filename="../src/rsslisting.cpp" line="5094"/>
-        <source>Label</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2092"/>
-        <location filename="../src/rsslisting.cpp" line="5091"/>
-        <location filename="../src/rsslisting.cpp" line="7124"/>
-        <location filename="../src/rsslisting.cpp" line="7147"/>
-        <source>Hide Categories</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2096"/>
-        <location filename="../src/rsslisting.cpp" line="5089"/>
-        <location filename="../src/rsslisting.cpp" line="7131"/>
-        <source>Show Categories</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2676"/>
-        <source>Export: can&apos;t open a file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4926"/>
-        <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4939"/>
-        <source>Options...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4943"/>
-        <location filename="../src/rsslisting.cpp" line="4949"/>
-        <source>Show All</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4944"/>
-        <location filename="../src/rsslisting.cpp" line="4950"/>
-        <source>Show New</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4945"/>
-        <location filename="../src/rsslisting.cpp" line="4951"/>
-        <source>Show Unread</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4958"/>
-        <source>About...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4973"/>
-        <source>Star</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4975"/>
-        <source>Delete</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4991"/>
-        <source>&amp;File</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4992"/>
-        <source>&amp;Edit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4993"/>
-        <source>&amp;View</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4994"/>
-        <source>Fee&amp;ds</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4995"/>
-        <source>&amp;News</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4997"/>
-        <source>&amp;Tools</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4998"/>
-        <source>&amp;Help</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5011"/>
-        <source>System</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5020"/>
-        <source>Top</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5021"/>
-        <source>Bottom</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5022"/>
-        <source>Right</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5023"/>
-        <source>Left</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5055"/>
-        <location filename="../src/rsslisting.cpp" line="5056"/>
-        <source>Search Feed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="6243"/>
-        <source>Loading...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2439"/>
-        <source>Delete Feed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2513"/>
-        <location filename="../src/rsslisting.cpp" line="2665"/>
+        <source>Are you sure to delete the feed &apos;%1&apos;?</source>
+        <translation> &apos;%1&apos; başlıklı kaynak silinecektir.Emin misiniz?</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2592"/>
+        <source>Import canceled</source>
+        <translation>İçeri aktarım iptal edildi</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2600"/>
+        <source>Import: can&apos;t open a file</source>
+        <translation>İçeri Aktarım:Dosya açılamadı</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4489"/>
+        <source>&amp;Feed...</source>
+        <translation>&amp;Kaynak...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4492"/>
+        <source>F&amp;older...</source>
+        <translation>&amp;Klasör</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4497"/>
+        <source>&amp;Delete...</source>
+        <translation>&amp;Sil</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4506"/>
+        <source>E&amp;xit</source>
+        <translation>Çıkış</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4540"/>
+        <source>Filter Feeds</source>
+        <translation>Kaynağı Süz</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4547"/>
+        <source>Filter News</source>
+        <translation>Haberleri Süz</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4551"/>
+        <source>Show Starred</source>
+        <translation>Favorilere Eklenmişleri Göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4552"/>
+        <source>Show Not Starred</source>
+        <translation>Favorilere eklenmemişleri göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4553"/>
+        <source>Show Unread or Starred</source>
+        <translation>Favorilere eklenmiş/eklenmemişleri göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4567"/>
+        <source>Open News in External Browser</source>
+        <translation>Dış Tarayıcıda Haberleri Aç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4585"/>
+        <source>Mark Read</source>
+        <translation>Okundu/Okunmadı olarak işaretle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4587"/>
+        <location filename="../src/rsslisting.cpp" line="4588"/>
+        <source>Properties</source>
+        <translation>Özellikler</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4599"/>
+        <location filename="../src/rsslisting.cpp" line="4676"/>
+        <source>Main Toolbar</source>
+        <translation>Ana Şerit</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4600"/>
+        <source>Customize Toolbar</source>
+        <translation>Şeriti Düzenle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4601"/>
+        <source>Main Toolbar...</source>
+        <translation>Ana Şerit...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4602"/>
+        <source>Customize Toolbar...</source>
+        <translation>Şeriti Biçimlendir...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4603"/>
+        <source>Feeds Toolbar...</source>
+        <translation>Kaynak Şeriti...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4604"/>
+        <source>News Toolbar...</source>
+        <translation>Haber Şeriti...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4607"/>
+        <source>Hide Toolbar</source>
+        <translation>Şeriti Gizle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4618"/>
+        <source>Browser Position</source>
+        <translation>Tarayıcı konumu</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4624"/>
+        <source>Show Window</source>
+        <translation>Pencereyi göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4626"/>
+        <source>Previous Feed</source>
+        <translation>Önceki kaynak</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4627"/>
+        <source>Next Feed</source>
+        <translation>Sonraki kaynak</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4628"/>
+        <source>Previous News</source>
+        <translation>Önceki kaynak</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4629"/>
+        <source>Next News</source>
+        <translation>Sonraki kaynak</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4630"/>
+        <source>News Page Up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4631"/>
+        <source>News Page Down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4643"/>
+        <source>Show/Hide Tree Feeds</source>
+        <translation>Kaynak ağacını göster/gizle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4645"/>
+        <source>Minimize to Tray</source>
+        <translation>Tepsiye küçült</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4647"/>
+        <source>Minimize Application to Tray</source>
+        <translation>Uygulamayı tepsiye küçült</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4649"/>
+        <source>Columns</source>
+        <translation>Kolonlar</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4654"/>
+        <source>Show Indentation</source>
+        <translation>Paragrafbaşını Göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4659"/>
+        <source>Zoom</source>
+        <translation>Büyüteç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4660"/>
+        <source>Zoom In</source>
+        <translation>Yakınlaş</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4661"/>
+        <source>Zoom in in browser</source>
+        <translation>Tarayıcıda yakınlaş</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4662"/>
+        <source>Zoom Out</source>
+        <translation>Uzaklaş</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4663"/>
+        <source>Zoom out in browser</source>
+        <translation>Tarayıcıda uzaklaş</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4664"/>
+        <source>100%</source>
+        <translation>%100</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4665"/>
+        <source>Reset zoom in browser</source>
+        <translation>Tarayıcıda büyüteci sıfırla</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4667"/>
+        <source>Print...</source>
+        <translation>Yazdır...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4668"/>
+        <source>Print Web page</source>
+        <translation>Web sayfasını yazdır</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4669"/>
+        <source>Print Preview...</source>
+        <translation>Önizlemeyi Yazdır...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4670"/>
+        <source>Preview Web page</source>
+        <translation>Web sayfasını Önizle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4672"/>
+        <source>Save As...</source>
+        <translation>Farklı Kaydet...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4673"/>
+        <source>Save Page As...</source>
+        <translation>Sayfayı Farklı Kaydet...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4677"/>
+        <source>Feeds Toolbar</source>
+        <translation>Kaynak Şeriti</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4678"/>
+        <source>News Toolbar</source>
+        <translation>Haber Şeriti</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4679"/>
+        <source>Browser Toolbar</source>
+        <translation>Tarayıcı Şeriti</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4682"/>
+        <location filename="../src/rsslisting.cpp" line="4683"/>
+        <source>Full Screen</source>
+        <translation>Tam Ekran</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4685"/>
+        <location filename="../src/rsslisting.cpp" line="4686"/>
+        <source>Stay On Top</source>
+        <translation>Her zaman üstte</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4688"/>
+        <source>Categories</source>
+        <translation>Kategoriler</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4701"/>
+        <source>Switch to next tab</source>
+        <translation>Diğer sekmeye geç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4702"/>
+        <source>Switch to previous tab</source>
+        <translation>Önceki sekmeye geç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4709"/>
+        <source>Decrease news list/increase browser</source>
+        <translation>Haber listesini azalt/tarayıcıyı artır</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4710"/>
+        <source>Increase news list/decrease browser</source>
+        <translation>Haber listesini artır/Tarayıcıyı azalt</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="5448"/>
+        <source>Check for updates</source>
+        <translation>Güncellemeleri kontrol et</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="5449"/>
+        <source>A new version of QuiteRSS...</source>
+        <translation>QuiteRSS&apos;nin yeni sürümü</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="6409"/>
+        <location filename="../src/rsslisting.cpp" line="6423"/>
+        <source>Web Page</source>
+        <translation>Web Sayfası</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2621"/>
+        <source>Export canceled</source>
+        <translation>Dışarı aktarım iptal edildi</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4706"/>
+        <source>Deleted</source>
+        <translation>Silinmiş</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4705"/>
+        <source>Starred</source>
+        <translation>Favorilere eklenmiş</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4694"/>
+        <location filename="../src/rsslisting.cpp" line="4695"/>
+        <source>Label</source>
+        <translation>Etiket</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2164"/>
+        <location filename="../src/rsslisting.cpp" line="4692"/>
+        <location filename="../src/rsslisting.cpp" line="6760"/>
+        <location filename="../src/rsslisting.cpp" line="6783"/>
+        <source>Hide Categories</source>
+        <translation>Kategorileri Gizle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2168"/>
+        <location filename="../src/rsslisting.cpp" line="4690"/>
+        <location filename="../src/rsslisting.cpp" line="6767"/>
+        <source>Show Categories</source>
+        <translation>Kategorileri Göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2627"/>
+        <source>Export: can&apos;t open a file</source>
+        <translation>Dışarı aktarım:Dosya açılamadı</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4524"/>
+        <source>Mark Read/Unread</source>
+        <translation>Okundu/Okunmadı olarak işaretle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4537"/>
+        <source>Options...</source>
+        <translation>Seçenekler</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4541"/>
+        <location filename="../src/rsslisting.cpp" line="4548"/>
+        <source>Show All</source>
+        <translation>Tümünü göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4542"/>
+        <location filename="../src/rsslisting.cpp" line="4549"/>
+        <source>Show New</source>
+        <translation>Yenileri göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4543"/>
+        <location filename="../src/rsslisting.cpp" line="4550"/>
+        <source>Show Unread</source>
+        <translation>Okunmamışları göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4557"/>
+        <source>About...</source>
+        <translation>Hakkında</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4572"/>
+        <source>Star</source>
+        <translation>Favori</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4574"/>
+        <source>Delete</source>
+        <translation>Sil</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4590"/>
+        <source>&amp;File</source>
+        <translation>&amp;Dosya</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4591"/>
+        <source>&amp;Edit</source>
+        <translation>&amp;Düzenle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4592"/>
+        <source>&amp;View</source>
+        <translation>&amp;Görüntüle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4593"/>
+        <source>Fee&amp;ds</source>
+        <translation>&amp;Kaynaklar</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4594"/>
+        <source>&amp;News</source>
+        <translation>&amp;Haberler</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4596"/>
+        <source>&amp;Tools</source>
+        <translation>&amp;Araçlar</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4597"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Yardım</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4610"/>
+        <source>System</source>
+        <translation>Sistem</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4619"/>
+        <source>Top</source>
+        <translation>Üst</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4620"/>
+        <source>Bottom</source>
+        <translation>Alt</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4621"/>
+        <source>Right</source>
+        <translation>Sağ</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4622"/>
+        <source>Left</source>
+        <translation>Sol</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4656"/>
+        <location filename="../src/rsslisting.cpp" line="4657"/>
+        <source>Search Feed</source>
+        <translation>Kaynak ara</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="5785"/>
+        <source>Loading...</source>
+        <translation>Yükleniyor</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2512"/>
+        <source>Delete Feed</source>
+        <translation>Kaynağı sil</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2586"/>
+        <location filename="../src/rsslisting.cpp" line="2615"/>
         <source>Select OPML-File</source>
+        <translation>OPML-tipi dosya seç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4303"/>
+        <location filename="../src/rsslisting.cpp" line="4509"/>
+        <source>Load Images</source>
+        <translation>Resimleri yükle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4307"/>
+        <location filename="../src/rsslisting.cpp" line="4512"/>
+        <source>No Load Images</source>
+        <translation>Yüklenecek resim yok</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4308"/>
+        <location filename="../src/rsslisting.cpp" line="4513"/>
+        <source>No Load Images to News View</source>
+        <translation>Haber görüntülemesinde resim bulunamadı</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4481"/>
+        <location filename="../src/rsslisting.cpp" line="5282"/>
+        <source>New News: %1</source>
+        <translation>Yeni Haber: %1</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4483"/>
+        <location filename="../src/rsslisting.cpp" line="5284"/>
+        <source>Unread News: %1</source>
+        <translation>Okunmamış Haber: %1</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4487"/>
+        <location filename="../src/rsslisting.cpp" line="4490"/>
+        <source>Add New Feed</source>
+        <translation>Yeni Haber Kaynağı Ekle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4495"/>
+        <location filename="../src/rsslisting.cpp" line="4568"/>
+        <source>Open in New Tab</source>
+        <translation>Yeni sekmede aç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4498"/>
+        <source>Delete Selected Feed</source>
+        <translation>Seçilen Kaynağı Sil</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4500"/>
+        <source>&amp;Import Feeds...</source>
+        <translation>İçeri Kaynak Aktar</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4501"/>
+        <source>Import Feeds from OPML File</source>
+        <translation>OMPL tipi dosyadan kaynakları içeri aktar</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4503"/>
+        <source>&amp;Export Feeds...</source>
+        <translation>&amp;Kaynakları dışarı aktar</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4504"/>
+        <source>Export Feeds to OPML File</source>
+        <translation>Kaynakları OPML tipi dosyaya aktar</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4304"/>
+        <location filename="../src/rsslisting.cpp" line="4510"/>
+        <source>Auto Load Images to News View</source>
+        <translation>Haberleri görüntülediğinde resimleri otomatik yükle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4704"/>
+        <source>Unread</source>
+        <translation>Okunmamış</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4707"/>
+        <source>Labels</source>
+        <translation>Etiketler</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2508"/>
+        <source>Delete Folder</source>
+        <translation>Klasörü Sil</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="108"/>
+        <source>Error</source>
+        <translation>Hata</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="108"/>
+        <source>SQLite driver not loaded!</source>
+        <translation>SQLite sürücüsü yüklenmedi</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2509"/>
+        <source>Are you sure to delete the folder &apos;%1&apos;?</source>
+        <translation>&apos;%1&apos; isimli klasör silinecektir.Emin misiniz?</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2588"/>
+        <source>OPML-Files (*.%1 *.%2)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2515"/>
-        <source>OPML-Files (*.opml *.xml)</source>
+        <location filename="../src/rsslisting.cpp" line="2617"/>
+        <source>OPML-Files (*.%1)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2667"/>
-        <source>OPML-Files (*.opml)</source>
+        <location filename="../src/rsslisting.cpp" line="2877"/>
+        <location filename="../src/rsslisting.cpp" line="3881"/>
+        <location filename="../src/rsslisting.cpp" line="4473"/>
+        <location filename="../src/rsslisting.cpp" line="5742"/>
+        <location filename="../src/rsslisting.cpp" line="6731"/>
+        <source>Unread: %1</source>
+        <translation>Okunmamış: %1</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2878"/>
+        <location filename="../src/rsslisting.cpp" line="3882"/>
+        <location filename="../src/rsslisting.cpp" line="4476"/>
+        <location filename="../src/rsslisting.cpp" line="5743"/>
+        <location filename="../src/rsslisting.cpp" line="6732"/>
+        <source>All: %1</source>
+        <translation>Tümü: %1</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4486"/>
+        <source>&amp;Add</source>
+        <translation>&amp;Ekle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4493"/>
+        <source>Add New Folder</source>
+        <translation>Yeni Klasör Ekle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4516"/>
+        <source>Update Feed</source>
+        <translation>Kaynak güncelle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4517"/>
+        <source>Update Current Feed</source>
+        <translation>Mevcut kaynağı güncelle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4519"/>
+        <source>Update All</source>
+        <translation>Tümünü güncelle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4520"/>
+        <source>Update All Feeds</source>
+        <translation>Tüm kaynakları güncelle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4522"/>
+        <source>Mark All Feeds Read</source>
+        <translation>Haberleri okundu olarak işaretle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4525"/>
+        <source>Mark Current News Read/Unread</source>
+        <translation>Mevcut haberi okundu/okunmadı olarak işaretle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4527"/>
+        <location filename="../src/rsslisting.cpp" line="4528"/>
+        <source>Mark All News Read</source>
+        <translation>Tüm haberleri okundu olarak işaretle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4530"/>
+        <location filename="../src/rsslisting.cpp" line="7339"/>
+        <location filename="../src/rsslisting.cpp" line="7345"/>
+        <location filename="../src/rsslisting.cpp" line="7355"/>
+        <source>Downloads</source>
+        <translation>İndirmeler</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4532"/>
+        <source>Clean Up...</source>
+        <translation>Temizlik yap...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4534"/>
+        <source>News Filters...</source>
+        <translation>Haber süzgeçleri</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4535"/>
+        <source>Filter News...</source>
+        <translation>Haberi süz..</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4538"/>
+        <source>Open Options Dialog</source>
+        <translation>Seçenekler diyaloğunu aç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4544"/>
+        <source>Show Starred Feeds</source>
+        <translation>Favorilere eklenmiş kaynakları göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4545"/>
+        <source>Show Not Working Feeds</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4554"/>
+        <source>Show Last Day</source>
+        <translation>Dünü Göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4555"/>
+        <source>Show Last 7 Days</source>
+        <translation>Son 7 Günü Göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4558"/>
+        <source>Show &apos;About&apos; Dialog</source>
+        <translation>&apos;Hakkında&apos; diyaloğunu göster</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4560"/>
+        <source>Check for Updates...</source>
+        <translation>Güncellemeleri kontrol et</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4561"/>
+        <source>Report a Problem...</source>
+        <translation>Sorun bildir</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4563"/>
+        <source>Open News</source>
+        <translation>Haberleri Aç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4564"/>
+        <source>Open Description News</source>
+        <translation>Haber Açıklamasını Aç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4565"/>
+        <source>Open in Browser</source>
+        <translation>Tarayıcıda aç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4566"/>
+        <source>Open in External Browser</source>
+        <translation>Dış Tarayıcıda Aç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4569"/>
+        <source>Open News in New Tab</source>
+        <translation>Yeni sekmede aç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4570"/>
+        <source>Open in Background Tab</source>
+        <translation>Arkaplandaki sekmede aç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4571"/>
+        <source>Open News in Background Tab</source>
+        <translation>Arkaplandaki sekmede haberleri aç</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4573"/>
+        <source>Mark News Star</source>
+        <translation>Haberleri favorilerilere ekle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4575"/>
+        <source>Delete Selected News</source>
+        <translation>Seçilen Haberleri Sil</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4576"/>
+        <source>Delete All News</source>
+        <translation>Tüm Haberleri Sil</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4577"/>
+        <source>Delete All News from List</source>
+        <translation>Listeden Tüm Haberleri Sil</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4578"/>
+        <source>Restore</source>
+        <translation>Geri Dönüştür</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4579"/>
+        <source>Restore News</source>
+        <translation>Haberleri Geri Dönüştür</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4580"/>
+        <source>Copy Link</source>
+        <translation>Linki kopyala</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4581"/>
+        <source>Copy Link News</source>
+        <translation>Haber linklerini kopyala</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4583"/>
+        <source>Restore last deleted news</source>
+        <translation>Son silinen haberi geri dönüştür</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4586"/>
+        <source>Mark Feed Read</source>
+        <translation>Kaynağı Okundu Olarak İşaretle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4595"/>
+        <source>&amp;Browser</source>
+        <translation>Tarayıcı</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4606"/>
+        <source>Lock Toolbar</source>
+        <translation>Şeriti kitle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4609"/>
+        <source>Application Style</source>
+        <translation>Uygulamanın Tarzı</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4611"/>
-        <location filename="../src/rsslisting.cpp" line="4911"/>
-        <source>Load Images</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4615"/>
-        <location filename="../src/rsslisting.cpp" line="4914"/>
-        <source>No Load Images</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4616"/>
-        <location filename="../src/rsslisting.cpp" line="4915"/>
-        <source>No Load Images to News View</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4883"/>
-        <location filename="../src/rsslisting.cpp" line="5676"/>
-        <source>New News: %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4885"/>
-        <location filename="../src/rsslisting.cpp" line="5678"/>
-        <source>Unread News: %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4889"/>
-        <location filename="../src/rsslisting.cpp" line="4892"/>
-        <source>Add New Feed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4897"/>
-        <location filename="../src/rsslisting.cpp" line="4969"/>
-        <source>Open in New Tab</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4900"/>
-        <source>Delete Selected Feed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4902"/>
-        <source>&amp;Import Feeds...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4903"/>
-        <source>Import Feeds from OPML File</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4905"/>
-        <source>&amp;Export Feeds...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4906"/>
-        <source>Export Feeds to OPML File</source>
-        <translation type="unfinished"/>
+        <source>System2</source>
+        <translation>Sistem2</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4612"/>
-        <location filename="../src/rsslisting.cpp" line="4912"/>
-        <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5102"/>
-        <source>Unread</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5105"/>
-        <source>Labels</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2435"/>
-        <source>Delete Folder</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2436"/>
-        <source>Are you sure to delete the folder &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3212"/>
-        <location filename="../src/rsslisting.cpp" line="3338"/>
-        <location filename="../src/rsslisting.cpp" line="4267"/>
-        <location filename="../src/rsslisting.cpp" line="4875"/>
-        <location filename="../src/rsslisting.cpp" line="6200"/>
-        <location filename="../src/rsslisting.cpp" line="7095"/>
-        <source>Unread: %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3213"/>
-        <location filename="../src/rsslisting.cpp" line="3339"/>
-        <location filename="../src/rsslisting.cpp" line="4268"/>
-        <location filename="../src/rsslisting.cpp" line="4878"/>
-        <location filename="../src/rsslisting.cpp" line="6201"/>
-        <location filename="../src/rsslisting.cpp" line="7096"/>
-        <source>All: %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4888"/>
-        <source>&amp;Add</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4895"/>
-        <source>Add New Folder</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4918"/>
-        <source>Update Feed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4919"/>
-        <source>Update Current Feed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4921"/>
-        <source>Update All</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4922"/>
-        <source>Update All Feeds</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4924"/>
-        <source>Mark All Feeds Read</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4927"/>
-        <source>Mark Current News Read/Unread</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4929"/>
-        <location filename="../src/rsslisting.cpp" line="4930"/>
-        <source>Mark All News Read</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4932"/>
-        <location filename="../src/rsslisting.cpp" line="7738"/>
-        <location filename="../src/rsslisting.cpp" line="7744"/>
-        <location filename="../src/rsslisting.cpp" line="7754"/>
-        <source>Downloads</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4934"/>
-        <source>Clean Up...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4936"/>
-        <source>News Filters...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4937"/>
-        <source>Filter News...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4940"/>
-        <source>Open Options Dialog</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4946"/>
-        <source>Show Starred Feeds</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4955"/>
-        <source>Show Last Day</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4956"/>
-        <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4959"/>
-        <source>Show &apos;About&apos; Dialog</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4961"/>
-        <source>Check for Updates...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4962"/>
-        <source>Report a Problem...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4964"/>
-        <source>Open News</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4965"/>
-        <source>Open Description News</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4966"/>
-        <source>Open in Browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4967"/>
-        <source>Open in External Browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4970"/>
-        <source>Open News in New Tab</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4971"/>
-        <source>Open in Background Tab</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4972"/>
-        <source>Open News in Background Tab</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4974"/>
-        <source>Mark News Star</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4976"/>
-        <source>Delete Selected News</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4977"/>
-        <source>Delete All News</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4978"/>
-        <source>Delete All News from List</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4979"/>
-        <source>Restore</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4980"/>
-        <source>Restore News</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4981"/>
-        <source>Copy Link</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4982"/>
-        <source>Copy Link News</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4984"/>
-        <source>Restore last deleted news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4987"/>
-        <source>Mark Feed Read</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4996"/>
-        <source>&amp;Browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5007"/>
-        <source>Lock Toolbar</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5010"/>
-        <source>Application Style</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5012"/>
-        <source>System2</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="5013"/>
         <source>Green</source>
-        <translation type="unfinished"/>
+        <translation>Yeşil</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5014"/>
+        <location filename="../src/rsslisting.cpp" line="4613"/>
         <source>Orange</source>
-        <translation type="unfinished"/>
+        <translation>Turuncu</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5015"/>
+        <location filename="../src/rsslisting.cpp" line="4614"/>
         <source>Purple</source>
-        <translation type="unfinished"/>
+        <translation>Mor</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5016"/>
+        <location filename="../src/rsslisting.cpp" line="4615"/>
         <source>Pink</source>
-        <translation type="unfinished"/>
+        <translation>Pembe</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5017"/>
+        <location filename="../src/rsslisting.cpp" line="4616"/>
         <source>Gray</source>
-        <translation type="unfinished"/>
+        <translation>Gri</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5032"/>
+        <location filename="../src/rsslisting.cpp" line="4633"/>
         <source>Next Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Sonraki Okunmamış Haberler</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5033"/>
+        <location filename="../src/rsslisting.cpp" line="4634"/>
         <source>Previous Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Önceki Okunmamış Haberler</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5035"/>
+        <location filename="../src/rsslisting.cpp" line="4636"/>
         <source>Switch Focus to Next Panel</source>
-        <translation type="unfinished"/>
+        <translation>Sonraki Panele Odak Geçiş</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5037"/>
+        <location filename="../src/rsslisting.cpp" line="4638"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Sonraki Panele Odak Geçiş (Kaynaklar Ağacı,Haberler Listesi,Tarayıcı)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5038"/>
+        <location filename="../src/rsslisting.cpp" line="4639"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation type="unfinished"/>
+        <translation>Önceki Panele Odak Geçiş</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5040"/>
+        <location filename="../src/rsslisting.cpp" line="4641"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation type="unfinished"/>
+        <translation>Önceki Panele Odak Geçiş (Kaynaklar Ağacı,Haberler Listesi,Tarayıcı)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5049"/>
+        <location filename="../src/rsslisting.cpp" line="4650"/>
         <source>Count News Unread</source>
-        <translation type="unfinished"/>
+        <translation>Okunmamış Haberi Say</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5050"/>
+        <location filename="../src/rsslisting.cpp" line="4651"/>
         <source>Count News All</source>
-        <translation type="unfinished"/>
+        <translation>Tüm Haberleri Say</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5051"/>
+        <location filename="../src/rsslisting.cpp" line="4652"/>
         <source>Last Updated</source>
-        <translation type="unfinished"/>
+        <translation>Son Güncellendi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5074"/>
+        <location filename="../src/rsslisting.cpp" line="4675"/>
         <source>Show/Hide</source>
-        <translation type="unfinished"/>
+        <translation>Göster/Gizle</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5079"/>
+        <location filename="../src/rsslisting.cpp" line="4680"/>
         <source>Panel Categories</source>
+        <translation>Panel Kategorileri</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4696"/>
+        <source>Show labels menu</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5096"/>
+        <location filename="../src/rsslisting.cpp" line="4698"/>
         <source>Close Tab</source>
-        <translation type="unfinished"/>
+        <translation>Sekmeyi kapat</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5097"/>
+        <location filename="../src/rsslisting.cpp" line="4699"/>
         <source>Close Other Tabs</source>
-        <translation type="unfinished"/>
+        <translation>Diğer sekmeleri kapat</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5098"/>
+        <location filename="../src/rsslisting.cpp" line="4700"/>
         <source>Close All Tabs</source>
-        <translation type="unfinished"/>
+        <translation>Tüm sekmeleri kapat</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5110"/>
+        <location filename="../src/rsslisting.cpp" line="4712"/>
         <source>Find</source>
-        <translation type="unfinished"/>
+        <translation>Bul</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5112"/>
+        <location filename="../src/rsslisting.cpp" line="4714"/>
         <source>Open Homepage Feed</source>
-        <translation type="unfinished"/>
+        <translation>Anasayfa Kaynaklarını Aç</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5113"/>
+        <location filename="../src/rsslisting.cpp" line="4715"/>
         <source>Sorted by Name</source>
-        <translation type="unfinished"/>
+        <translation>İsme göre sırala</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5114"/>
+        <location filename="../src/rsslisting.cpp" line="4716"/>
         <source>Collapse All Folders</source>
-        <translation type="unfinished"/>
+        <translation>Tüm klasörleri kapat</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5115"/>
+        <location filename="../src/rsslisting.cpp" line="4717"/>
         <source>Expand All Folders</source>
-        <translation type="unfinished"/>
+        <translation>Tüm klasörleri aç</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5116"/>
+        <location filename="../src/rsslisting.cpp" line="4718"/>
         <source>Next Folder</source>
-        <translation type="unfinished"/>
+        <translation>Sonraki klasör</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5117"/>
+        <location filename="../src/rsslisting.cpp" line="4719"/>
         <source>Previous Folder</source>
-        <translation type="unfinished"/>
+        <translation>Önceki klasör</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5118"/>
+        <location filename="../src/rsslisting.cpp" line="4720"/>
         <source>Expand Folder</source>
+        <translation>Klasörü genişlet</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4722"/>
+        <source>Setting Page: Labels</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5120"/>
+        <location filename="../src/rsslisting.cpp" line="4724"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Paylaş</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5122"/>
+        <location filename="../src/rsslisting.cpp" line="4726"/>
         <source>Sort By</source>
-        <translation type="unfinished"/>
+        <translation>Sıralama kriteri</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5123"/>
+        <location filename="../src/rsslisting.cpp" line="4727"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Yükselen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5124"/>
+        <location filename="../src/rsslisting.cpp" line="4728"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Alçalan</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5126"/>
+        <location filename="../src/rsslisting.cpp" line="4730"/>
         <source>Clear</source>
+        <translation>Temizle</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="6912"/>
+        <source>HTML-Files (*.%1)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5165"/>
+        <location filename="../src/rsslisting.cpp" line="6912"/>
+        <source>Text files (*.%2)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.h" line="97"/>
         <source>Important</source>
-        <translation type="unfinished"/>
+        <translation>Önemli</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5165"/>
+        <location filename="../src/rsslisting.h" line="97"/>
         <source>Work</source>
-        <translation type="unfinished"/>
+        <translation>İş</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5165"/>
+        <location filename="../src/rsslisting.h" line="97"/>
         <source>Personal</source>
-        <translation type="unfinished"/>
+        <translation>Kişisel</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5166"/>
+        <location filename="../src/rsslisting.h" line="98"/>
         <source>To Do</source>
-        <translation type="unfinished"/>
+        <translation>Yapılacak</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5166"/>
+        <location filename="../src/rsslisting.h" line="98"/>
         <source>Later</source>
-        <translation type="unfinished"/>
+        <translation>Sonra</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5166"/>
+        <location filename="../src/rsslisting.h" line="98"/>
         <source>Amusingly</source>
-        <translation type="unfinished"/>
+        <translation>Keyif verici</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="7274"/>
+        <location filename="../src/rsslisting.cpp" line="6910"/>
         <source>Save As</source>
-        <translation type="unfinished"/>
+        <translation>Farklı Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="7276"/>
-        <source>HTML-Files (*.html)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="7277"/>
-        <source>Text files (*.txt)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="7282"/>
+        <location filename="../src/rsslisting.cpp" line="6918"/>
         <source>Save As: can&apos;t open a file</source>
+        <translation>Farklı Kaydet:Dosya açılamadı</translation>
+    </message>
+</context>
+<context>
+    <name>RequestFeed</name>
+    <message>
+        <location filename="../src/requestfeed.cpp" line="200"/>
+        <source>Server requires authentication!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/requestfeed.cpp" line="202"/>
+        <source>Server replied: Not Found!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/requestfeed.cpp" line="237"/>
+        <source>Redirect error!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/requestfeed.cpp" line="298"/>
+        <source>Request timeout!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3664,57 +3790,57 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="37"/>
         <source>Check for Updates</source>
-        <translation type="unfinished"/>
+        <translation>Güncellemeleri kontrol et</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="42"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>Güncelleme Kontrol Ediliyor...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="47"/>
         <source>Loading history...</source>
-        <translation type="unfinished"/>
+        <translation>Geçmiş Yükleniyor...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="50"/>
         <source>Don&apos;t remind about this version</source>
-        <translation type="unfinished"/>
+        <translation>Bu sürümü yeniden hatırlatma</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="58"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yükle</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="116"/>
         <source>You already have the latest version</source>
-        <translation type="unfinished"/>
+        <translation>Zaten son sürüme sahipsiniz</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="121"/>
         <source>A new version of QuiteRSS is available!</source>
-        <translation type="unfinished"/>
+        <translation>QuiteRSS&apos;nin yeni sürümü mevcut!</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="124"/>
         <source>Click here to go to the download page</source>
-        <translation type="unfinished"/>
+        <translation>İndirme sayfasına gitmek için buraya tıklayınız</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="129"/>
         <source>Your version is:</source>
-        <translation type="unfinished"/>
+        <translation>Sürümünüz:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="131"/>
         <source>Current version is:</source>
-        <translation type="unfinished"/>
+        <translation>Mevcut sürümünüz:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="137"/>
         <source>Error checking updates</source>
-        <translation type="unfinished"/>
+        <translation>Güncellemeleri kontrol ederken hata oluştu</translation>
     </message>
 </context>
 </TS>

@@ -20,16 +20,117 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QPainter>
+
+FeedsProxyModel::FeedsProxyModel(QObject *parent)
+  : QSortFilterProxyModel(parent)
+  , filterAct_("filterFeedsAll_")
+{
+
+}
+
+FeedsProxyModel::~FeedsProxyModel()
+{
+
+}
+
+void FeedsProxyModel::reset()
+{
+#ifdef HAVE_QT5
+  QSortFilterProxyModel::beginResetModel();
+  QSortFilterProxyModel::endResetModel();
+#else
+  QSortFilterProxyModel::reset();
+#endif
+}
+
+void FeedsProxyModel::setFilter(const QString &filterAct, const QList<int> &idList,
+                                const QString &findAct, const QString &findText)
+{
+  if ((filterAct_ != filterAct) || (filterAct != "filterFeedsAll_") ||
+      (findAct_ != findAct) || (findText_ != findText) || (idList_ != idList)) {
+    filterAct_ = filterAct;
+    findAct_ = findAct;
+    findText_ = findText;
+    idList_ = idList;
+
+    invalidateFilter();
+  }
+}
+
+bool FeedsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+{
+  bool accept = false;
+  QModelIndex index;
+
+  if (filterAct_ == "filterFeedsAll_") {
+    accept = true;
+  } else if (filterAct_ == "filterFeedsNew_") {
+    index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("newCount"), sourceParent);
+    if (sourceModel()->data(index, Qt::EditRole).toInt() > 0)
+      accept = true;
+  } else if (filterAct_ == "filterFeedsUnread_") {
+    index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("unread"), sourceParent);
+    if (sourceModel()->data(index, Qt::EditRole).toInt() > 0)
+      accept = true;
+  }
+
+  if (idList_.count()) {
+    index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("id"), sourceParent);
+    if (idList_.contains(sourceModel()->data(index, Qt::EditRole).toInt()))
+      accept = true;
+  }
+
+  if (accept && !findText_.isEmpty()) {
+    index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("xmlUrl"), sourceParent);
+    if (!sourceModel()->data(index, Qt::EditRole).toString().isEmpty()) {
+      if (findAct_ == "findLinkAct") {
+        accept = sourceModel()->data(index, Qt::EditRole).toString().contains(findText_, Qt::CaseInsensitive);
+      } else {
+        index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("text"), sourceParent);
+        accept = sourceModel()->data(index, Qt::EditRole).toString().contains(findText_, Qt::CaseInsensitive);
+      }
+    }
+  }
+
+  return accept;
+}
+
+QModelIndex FeedsProxyModel::mapFromSource(const QModelIndex & sourceIndex) const
+{
+  return QSortFilterProxyModel::mapFromSource(sourceIndex);
+}
+
+QModelIndex FeedsProxyModel::mapFromSource(int id) const
+{
+  return QSortFilterProxyModel::mapFromSource(((QyurSqlTreeModel*)sourceModel())->getIndexById(id));
+}
+
+QModelIndex FeedsProxyModel::index(int row, int column, const QModelIndex & parent) const
+{
+  return QSortFilterProxyModel::index(row, column, parent);
+}
+
+QModelIndex FeedsProxyModel::index(int row, const QString& fieldName, const QModelIndex & parent) const
+{
+  int column = ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal(fieldName);
+  return QSortFilterProxyModel::index(row, column, parent);
+}
 
 // ----------------------------------------------------------------------------
 FeedsTreeModel::FeedsTreeModel(const QString& tableName,
                                const QStringList& captions,
                                const QStringList& fieldNames,
                                int rootParentId,
-                               QyurSqlTreeView *parent)
+                               QObject *parent)
   : QyurSqlTreeModel(tableName, captions, fieldNames, rootParentId, parent)
-  , view_(parent)
+  , view_(0)
 {
+}
+
+void FeedsTreeModel::setView(QyurSqlTreeView *view)
+{
+  view_ = view;
 }
 
 // ----------------------------------------------------------------------------
@@ -93,21 +194,42 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
       if (isFolder(index)) {
         return QPixmap(":/images/folder");
       } else {
-        QString strDate = indexSibling(index, "updated").data(Qt::EditRole).toString();
-        if (strDate.isEmpty())
-          return QPixmap(":/images/feedError");
-
-        if (defaultIconFeeds_)
-          return QPixmap(":/images/feed");
-
-        QByteArray byteArray = indexSibling(index, "image").data(Qt::EditRole).toByteArray();
-        if (!byteArray.isNull()) {
-          QPixmap icon;
-          if (icon.loadFromData(QByteArray::fromBase64(byteArray))) {
-            return icon;
+        if (!defaultIconFeeds_) {
+          QByteArray byteArray = indexSibling(index, "image").data(Qt::EditRole).toByteArray();
+          if (!byteArray.isNull()) {
+            QImage resultImage;
+            if (resultImage.loadFromData(QByteArray::fromBase64(byteArray))) {
+              QString strStatus = indexSibling(index, "status").data(Qt::EditRole).toString();
+              if (strStatus.section(" ", 0, 0).toInt() != 0) {
+                QImage image;
+                if (strStatus.section(" ", 0, 0).toInt() < 0)
+                  image.load(":/images/bulletError");
+                else if (strStatus.section(" ", 0, 0).toInt() == 1)
+                  image.load(":/images/bulletUpdate");
+                QPainter resultPainter(&resultImage);
+                resultPainter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+                resultPainter.drawImage(0, 0, image);
+                resultPainter.end();
+              }
+              return resultImage;
+            }
           }
         }
-        return QPixmap(":/images/feed");
+        QImage resultImage(":/images/feed");
+        QString strStatus = indexSibling(index, "status").data(Qt::EditRole).toString();
+        if (strStatus.section(" ", 0, 0).toInt() != 0) {
+          QImage image;
+          if (strStatus.section(" ", 0, 0).toInt() < 0)
+            image.load(":/images/bulletError");
+          else if (strStatus.section(" ", 0, 0).toInt() == 1)
+            image.load(":/images/bulletUpdate");
+
+          QPainter resultPainter(&resultImage);
+          resultPainter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+          resultPainter.drawImage(0, 0, image);
+          resultPainter.end();
+        }
+        return resultImage;
       }
     }
   } else if (role == Qt::TextAlignmentRole) {

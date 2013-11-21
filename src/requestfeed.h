@@ -15,8 +15,8 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#ifndef UPDATEOBJECT_H
-#define UPDATEOBJECT_H
+#ifndef REQUESTFEED_H
+#define REQUESTFEED_H
 
 #include <QDateTime>
 #include <QObject>
@@ -27,25 +27,30 @@
 
 #include "networkmanager.h"
 
-class UpdateObject : public QObject
+class RequestFeed : public QObject
 {
   Q_OBJECT
 public:
-  explicit UpdateObject(int requestTimeout, int replyCount, QObject *parent = 0);
+  explicit RequestFeed(int timeoutRequest, int numberRequests,
+                       int numberRepeats, QObject *parent = 0);
   NetworkManager *networkManager_;
 
 public slots:
-  void requestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo = "");
-  void slotHead(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date, const int &count);
-  void slotGet(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date, const int &count);
+  void requestUrl(int id, QString urlString, QDateTime date, QString userInfo = "");
+  void slotHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
+                const QDateTime &date, const int &count);
+  void slotGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
+               const QDateTime &date, const int &count);
 
 signals:
-  void getUrlDone(const int &result, const QString &feedUrl = "",
-                  const QByteArray &data = NULL, const QDateTime &dtReply = QDateTime());
-  void signalHead(const QUrl &getUrl, const QString &feedUrl,
+  void getUrlDone(int result, int feedId, QString feedUrl = "",
+                  QString error = "", QByteArray data = NULL,
+                  QDateTime dtReply = QDateTime(), QString codecName = "");
+  void signalHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
                   const QDateTime &date, const int &count = 0);
-  void signalGet(const QUrl &getUrl, const QString &feedUrl,
+  void signalGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
                  const QDateTime &date, const int &count = 0);
+  void setStatusFeed(int feedId, QString status);
 
 private slots:
   void getQueuedUrl();
@@ -53,15 +58,18 @@ private slots:
   void slotRequestTimeout();
 
 private:
-  int requestTimeout_;
-  int replyCount_;
+  int timeoutRequest_;
+  int numberRequests_;
+  int numberRepeats_;
   QTimer *getUrlTimer_;
 
+  QQueue<int> idsQueue_;
   QQueue<QString> feedsQueue_;
   QQueue<QDateTime> dateQueue_;
   QQueue<QString> userInfo_;
 
   QList<QUrl> currentUrls_;
+  QList<int> currentIds_;
   QList<QString> currentFeeds_;
   QList<QDateTime> currentDates_;
   QList<int> currentCount_;
@@ -73,4 +81,4 @@ private:
 
 };
 
-#endif // UPDATEOBJECT_H
+#endif // REQUESTFEED_H

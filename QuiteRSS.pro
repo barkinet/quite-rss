@@ -51,7 +51,7 @@ isEqual(QT_MAJOR_VERSION, 5) {
   QT += widgets webkitwidgets network xml printsupport sql multimedia
   DEFINES += HAVE_QT5
 } else {
-  QT += core gui network xml webkit sql
+  QT += core gui network xml webkit sql phonon
 }
 
 unix:!mac:DEFINES += HAVE_X11
@@ -60,9 +60,7 @@ TEMPLATE = app
 
 HEADERS += \
     src/VersionNo.h \
-    src/updatethread.h \
     src/rsslisting.h \
-    src/parsethread.h \
     src/parseobject.h \
     src/optionsdialog.h \
     src/newsview.h \
@@ -72,7 +70,6 @@ HEADERS += \
     src/aboutdialog.h \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
-    src/updateobject.h \
     src/dbmemfilethread.h \
     src/newsfiltersdialog.h \
     src/filterrulesdialog.h \
@@ -92,11 +89,9 @@ HEADERS += \
     src/addfolderdialog.h \
     src/labeldialog.h \
     src/dialog.h \
-    src/updatedelayer.h \
     src/authenticationdialog.h \
     src/networkmanager.h \
     src/cookiejar.h \
-    src/faviconthread.h \
     src/faviconobject.h \
     src/customizetoolbardialog.h \
     src/plugins/webpluginfactory.h \
@@ -105,12 +100,13 @@ HEADERS += \
     src/downloads/downloaditem.h \
     src/tabbar.h \
     src/categoriestreewidget.h \
-    src/cleanupwizard.h
+    src/cleanupwizard.h \
+    src/updatefeeds.h \
+    src/requestfeed.h \
+    src/logfile.h
 
 SOURCES += \
-    src/updatethread.cpp \
     src/rsslisting.cpp \
-    src/parsethread.cpp \
     src/parseobject.cpp \
     src/optionsdialog.cpp \
     src/newsview.cpp \
@@ -121,7 +117,6 @@ SOURCES += \
     src/aboutdialog.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
-    src/updateobject.cpp \
     src/dbmemfilethread.cpp \
     src/newsfiltersdialog.cpp \
     src/filterrulesdialog.cpp \
@@ -140,11 +135,9 @@ SOURCES += \
     src/addfolderdialog.cpp \
     src/labeldialog.cpp \
     src/dialog.cpp \
-    src/updatedelayer.cpp \
     src/authenticationdialog.cpp \
     src/networkmanager.cpp \
     src/cookiejar.cpp \
-    src/faviconthread.cpp \
     src/faviconobject.cpp \
     src/customizetoolbardialog.cpp \
     src/plugins/webpluginfactory.cpp \
@@ -153,7 +146,10 @@ SOURCES += \
     src/downloads/downloaditem.cpp \
     src/tabbar.cpp \
     src/categoriestreewidget.cpp \
-    src/cleanupwizard.cpp
+    src/cleanupwizard.cpp \
+    src/updatefeeds.cpp \
+    src/requestfeed.cpp \
+    src/logfile.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \

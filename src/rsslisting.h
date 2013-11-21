@@ -20,8 +20,12 @@
 
 #ifdef HAVE_QT5
 #include <QtWidgets>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 #else
 #include <QtGui>
+#include <phonon/audiooutput.h>
+#include <phonon/mediaobject.h>
 #endif
 #include <QtSql>
 #include <QtWebKit>
@@ -30,13 +34,11 @@
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
 #include <QPrinter>
-#include <QSound>
 
 #include "categoriestreewidget.h"
 #include "cookiejar.h"
 #include "dbmemfilethread.h"
 #include "downloadmanager.h"
-#include "faviconthread.h"
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
 #include "findfeed.h"
@@ -46,12 +48,10 @@
 #include "newstabwidget.h"
 #include "newsview.h"
 #include "notifications.h"
-#include "parsethread.h"
 #include "tabbar.h"
 #include "optionsdialog.h"
 #include "updateappdialog.h"
-#include "updatedelayer.h"
-#include "updatethread.h"
+#include "updatefeeds.h"
 #include "webview.h"
 
 #define NEW_TAB_FOREGROUND 1
@@ -78,15 +78,18 @@ public:
   bool showSplashScreen_;
   bool showTrayIcon_;
   bool startingTray_;
+  bool minimizeToTray_;
   QSystemTrayIcon *traySystem;
   void restoreFeedsOnStartUp();
-  void expandNodes();
-  QList<int> getIdFeedsInList(int idFolder);
   QString getIdFeedsString(int idFolder, int idException = -1);
   void recountCategoryCounts();
 
   void setToolBarStyle(const QString &styleStr);
   void setToolBarIconSize(const QString &iconSizeStr);
+
+  void sqlQueryExec(QString query);
+
+  void runUserFilter(int feedId, int filterId);
 
   static QStringList nameLabels() {
     QStringList nameLabels;
@@ -106,7 +109,10 @@ public:
   QString dataDirPath_;
   QString lastFeedPath_;
   QSqlDatabase db_;
+  QString dbFileName_;
+  bool storeDBMemory_;
   FeedsTreeModel *feedsTreeModel_;
+  FeedsProxyModel *feedsProxyModel_;
   FeedsTreeView *feedsTreeView_;
   CategoriesTreeWidget *categoriesTree_;
 #define TAB_WIDGET_PERMANENT 0
@@ -134,6 +140,8 @@ public:
   QAction *deleteAllNewsAct_;
   QAction *newsKeyUpAct_;
   QAction *newsKeyDownAct_;
+  QAction *newsKeyPageUpAct_;
+  QAction *newsKeyPageDownAct_;
   QAction *prevUnreadNewsAct_;
   QAction *nextUnreadNewsAct_;
   QAction *autoLoadImagesToggle_;
@@ -144,6 +152,7 @@ public:
   QAction *restoreLastNewsAct_;
   QAction *newsLabelAction_;
   QAction *newsLabelMenuAction_;
+  QAction *showLabelsMenuAct_;
   QAction *findTextAct_;
   QAction *openHomeFeedAct_;
   QAction *shareMenuAct_;
@@ -162,6 +171,7 @@ public:
   QAction *closeTabAct_;
   QAction *closeOtherTabsAct_;
   QAction *closeAllTabsAct_;
+  QAction *settingPageLabelsAct_;
 
   QActionGroup *newsFilterGroup_;
   QActionGroup *newsLabelGroup_;
@@ -179,16 +189,17 @@ public:
   int newsTextFontSize_;
   QString notificationFontFamily_;
   int notificationFontSize_;
-  int browserMinFontSize_;
-  int browserMinLogFontSize_;
   QString newsListTextColor_;
   QString newsListBackgroundColor_;
+  QString newNewsTextColor_;
+  QString unreadNewsTextColor_;
   QString focusedNewsTextColor_;
   QString focusedNewsBGColor_;
   QString linkColor_;
   QString titleColor_;
   QString dateColor_;
   QString authorColor_;
+  QString newsTextColor_;
   QString newsTitleBackgroundColor_;
   QString newsBackgroundColor_;
   QString formatDate_;
@@ -220,6 +231,7 @@ public:
   int maxPagesInCache_;
   QString downloadLocation_;
   bool askDownloadLocation_;
+  int defaultZoomPages_;
 
   int browserPosition_;
 
@@ -245,6 +257,7 @@ public:
   int countShowNewsNotify_;
   int widthTitleNewsNotify_;
   int timeShowNewsNotify_;
+  QList<int> idFeedsNotifyList_;
 
 public slots:
   void addFeed();
@@ -256,7 +269,12 @@ public slots:
   void slotFeedSelected(QModelIndex index, bool createTab = false);
   void slotGetFeed();
   void slotGetAllFeeds();
-  void showOptionDlg();
+  void showProgressBar(int addToMaximum);
+  void slotSetValue(int value);
+  void showMessageStatusBar(QString message, int timeout = 0);
+  void slotCountsStatusBar(int unreadCount, int allCount);
+  void slotPlaySound(const QString &soundPath);
+  void showOptionDlg(int index = -1);
   void receiveMessage(const QString&);
   void slotPlaceToTray();
   void slotActivationTray(QSystemTrayIcon::ActivationReason reason);
@@ -264,33 +282,44 @@ public slots:
   void slotClose();
   void slotCloseApp();
   void myEmptyWorkingSet();
-  void getUrlDone(const int &result, const QString &feedUrlStr,
-                  const QByteArray &data, const QDateTime &dtReply);
-  void slotUpdateFeed(const QString &feedUrl, const bool &changed, int newCount);
-  void slotUpdateFeedDelayed(const QString &feedUrl, const bool &changed, int newCount);
+  void slotUpdateFeed(int feedId, bool changed, int newCount, bool finish);
   void slotFeedCountsUpdate(FeedCountStruct counts);
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotCloseTab(int index);
-  QWebPage *createWebTab();
+  QWebPage *createWebTab(QUrl url = QUrl());
   void setAutoLoadImages(bool set = true);
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
   void feedsModelReload(bool checkFilter = false);
+  void setStatusFeed(int feedId, QString status);
 
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
-  void signalRequestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo);
-  void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,
-                     const QDateTime &dtReply);
-  void faviconRequestUrl(const QString &urlString, const QString &feedUrl);
-  void signalIconFeedReady(const QString &feedUrl, const QByteArray &faviconData);
+  void signalGetFeedTimer(int feedId);
+  void signalGetAllFeedsTimer();
+  void signalGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
+  void signalGetFeedsFolder(QString query);
+  void signalGetAllFeeds();
+  void signalImportFeeds(QByteArray xmlData);
+  void signalRequestUrl(int feedId, QString urlString,
+                        QDateTime date, QString userInfo);
+  void faviconRequestUrl(QString urlString, QString feedUrl);
+  void signalIconFeedReady(QString feedUrl, QByteArray faviconData);
   void signalSetCurrentTab(int index, bool updateTab = false);
   void signalShowNotification();
   void signalRefreshInfoTray();
-  void signalNextUpdate();
+  void signalNextUpdate(bool finish);
   void signalRecountCategoryCounts();
+  void signalRecountFeedCounts(int feedId, bool update = true);
+  void setFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
+  void signalSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
+  void signalPlaySoundNewNews();
+  void signalUpdateStatus(int feedId, bool changed);
+  void signalMarkAllFeedsRead();
+
+  void signalSqlQueryExec(QString query);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -299,30 +328,35 @@ protected:
 
 private slots:
   void slotTimerLinkOpening();
-  void slotProgressBarUpdate();
   void slotVisibledFeedsWidget();
   void updateIconToolBarNull(bool feedsWidgetVisible);
   void setFeedRead(int type, int feedId, FeedReedType feedReadType,
                    NewsTabWidget *widgetTab = 0, int idException = -1);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
-  void slotRecountCategoryCounts();
+  void slotRecountCategoryCounts(QList<int> deletedList, QList<int> starredList,
+                                 QList<int> readList, QStringList labelList);
+  void slotFeedsViewportUpdate();
+  void slotPlaySoundNewNews();
+
+#ifdef HAVE_QT5
+  void mediaStatusChanged(const QMediaPlayer::MediaStatus &status);
+#endif
 
   void slotShowAboutDlg();
 
   void showContextMenuFeed(const QPoint & pos);
   void slotFeedsFilter();
   void slotNewsFilter();
-  void slotUpdateFeedsTimer();
-  bool addFeedInQueue(const QString &feedUrl, const QDateTime &date, int auth);
+  void slotGetFeedsTimer();
   void slotShowUpdateAppDlg();
   void showContextMenuToolBar(const QPoint &pos);
   void showFeedPropertiesDlg();
   void slotFeedMenuShow();
-  void markAllFeedsRead();
+  void slotRefreshNewsView();
   void markAllFeedsOld();
-  void slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray);
-  void slotIconFeedUpdate(int feedId, const QByteArray &faviconData);
+  void slotIconFeedPreparing(QString feedUrl, QByteArray byteArray, QString format);
+  void slotIconFeedUpdate(int feedId, QByteArray faviconData);
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg(bool newFilter = false);
   void showFilterRulesDlg();
@@ -347,6 +381,8 @@ private slots:
 
   void slotNewsUpPressed();
   void slotNewsDownPressed();
+  void slotNewsPageUpPressed();
+  void slotNewsPageDownPressed();
   void markNewsRead();
   void markAllNewsRead();
   void markNewsStar();
@@ -358,6 +394,7 @@ private slots:
   void slotOpenNewsNewTab();
   void slotOpenNewsBackgroundTab();
   void slotCopyLinkNews();
+  void slotShowLabelsMenu();
   void setCurrentTab(int index, bool updateCurrentTab = false);
   void findText();
 
@@ -365,6 +402,7 @@ private slots:
   void deleteNotification();
   void slotOpenNew(int feedId, int newsId);
   void slotOpenNewBrowser(const QUrl &url);
+  void slotMarkReadNewsInNotification(int feedId, int newsId, int read);
 
   void slotFindFeeds(QString);
   void slotSelectFind();
@@ -432,14 +470,16 @@ private slots:
   void cleanUp();
   void cleanUpShutdown();
 
+  void saveDBMemFile();
+
+  void showSettingPageLabels();
+
 private:
-  UpdateThread *persistentUpdateThread_;
-  ParseThread *persistentParseThread_;
   QNetworkProxy networkProxy_;
-  UpdateDelayer *updateDelayer_;
+  UpdateFeeds *updateFeeds_;
+  DBMemFileThread *dbMemFileThread_;
 
   void setProxy(const QNetworkProxy proxy);
-  void showProgressBar(int addToMaximum);
   void createFeedsWidget();
   void createNewsTab(int index);
   void createToolBarNull();
@@ -458,17 +498,16 @@ private:
   void loadSettingsFeeds();
   void appInstallTranslator();
   void retranslateStrings();
-  void playSoundNewNews();
   void recountFeedCounts(int feedId, bool update = true);
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
   QString getUserInfo(QUrl url, int auth);
   QUrl userStyleSheet(const QString &filePath) const;
   void initUpdateFeeds();
+  void addOurFeed();
 
   int addTab(NewsTabWidget *widget);
 
-  QString dbFileName_;
   NewsModel *newsModel_;
   TabBar *tabBar_;
   QSplitter *mainSplitter_;
@@ -524,6 +563,7 @@ private:
   QAction *filterFeedsNew_;
   QAction *filterFeedsUnread_;
   QAction *filterFeedsStarred_;
+  QAction *filterFeedsError_;
 
   QAction *filterNewsAll_;
   QAction *filterNewsNew_;
@@ -617,7 +657,7 @@ private:
   bool updateFeedsEnable_;
   int  updateFeedsInterval_;
   int  updateFeedsIntervalType_;
-  QList<QString> feedUrlList_;
+  QList<int> feedIdList_;
   QMap<int,int> updateFeedsIntervalSec_;
   QMap<int,int> updateFeedsTimeCount_;
 
@@ -634,9 +674,13 @@ private:
   int openingFeedAction_;
   bool openNewsWebViewOn_;
 
-  FaviconThread *faviconThread_;
-
-  DBMemFileThread *dbMemFileThread_;
+#ifdef HAVE_QT5
+  QMediaPlayer *mediaPlayer_;
+  QMediaPlaylist *playlist_;
+#else
+  Phonon::MediaObject *mediaPlayer_;
+  Phonon::AudioOutput *audioOutput_;
+#endif
 
   bool soundNewNews_;
   QString soundNotifyPath_;
@@ -675,8 +719,9 @@ private:
 
   int feedIdOld_;
 
-  bool storeDBMemory_;
   bool storeDBMemoryT_;
+  int saveDBMemFileInterval_;
+  QTimer *timerSaveDBMemFile_;
 
   int  openingLinkTimeout_;  //!< During this time we'll trying swithing back to apllication
   QTimer timerLinkOpening_;
@@ -687,8 +732,6 @@ private:
   QWidget *categoriesWidget_;
   QSplitter *feedsSplitter_;
   QByteArray feedsWidgetSplitterState_;
-
-  QElapsedTimer timer_;
 
   qint64 activationStateChangedTime_;
 

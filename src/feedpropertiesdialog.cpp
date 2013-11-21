@@ -44,8 +44,8 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
 
   connect(this, SIGNAL(signalLoadIcon(QString,QString)),
           parent, SIGNAL(faviconRequestUrl(QString,QString)));
-  connect(parent, SIGNAL(signalIconFeedReady(QString, const QByteArray&)),
-          this, SLOT(slotFaviconUpdate(QString, const QByteArray&)));
+  connect(parent, SIGNAL(signalIconFeedReady(QString,QByteArray)),
+          this, SLOT(slotFaviconUpdate(QString,QByteArray)));
 }
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateGeneralTab()
@@ -270,6 +270,8 @@ QWidget *FeedPropertiesDialog::CreateAuthenticationTab()
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateStatusTab()
 {
+  statusFeed_ = new QLabel();
+  statusFeed_->setWordWrap(true);
   createdFeed_ = new QLabel();
   lastUpdateFeed_ = new QLabel();
   newsCount_ = new QLabel();
@@ -281,14 +283,16 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
 
   QGridLayout *layoutGrid = new QGridLayout();
   layoutGrid->setColumnStretch(1,1);
-  layoutGrid->addWidget(new QLabel(tr("Created:")), 0, 0);
-  layoutGrid->addWidget(createdFeed_, 0, 1);
-  layoutGrid->addWidget(new QLabel(tr("Last update:")), 1, 0);
-  layoutGrid->addWidget(lastUpdateFeed_, 1, 1);
-  layoutGrid->addWidget(new QLabel(tr("News count:")), 2, 0);
-  layoutGrid->addWidget(newsCount_, 2, 1);
-  layoutGrid->addWidget(descriptionLabel, 3, 0, 1, 1, Qt::AlignTop);
-  layoutGrid->addWidget(descriptionText_, 3, 1, 1, 1, Qt::AlignTop);
+  layoutGrid->addWidget(new QLabel(tr("Status:")), 0, 0);
+  layoutGrid->addWidget(statusFeed_, 0, 1);
+  layoutGrid->addWidget(new QLabel(tr("Created:")), 1, 0);
+  layoutGrid->addWidget(createdFeed_, 1, 1);
+  layoutGrid->addWidget(new QLabel(tr("Last update:")), 2, 0);
+  layoutGrid->addWidget(lastUpdateFeed_, 2, 1);
+  layoutGrid->addWidget(new QLabel(tr("News count:")), 3, 0);
+  layoutGrid->addWidget(newsCount_, 3, 1);
+  layoutGrid->addWidget(descriptionLabel, 4, 0, 1, 1, Qt::AlignTop);
+  layoutGrid->addWidget(descriptionText_, 4, 1, 1, 1, Qt::AlignTop);
 
   QVBoxLayout *layoutMain = new QVBoxLayout();
   layoutMain->addLayout(layoutGrid);
@@ -346,15 +350,23 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   user_->setText(feedProperties.authentication.user);
   pass_->setText(feedProperties.authentication.pass);
 
+  QString status = feedProperties.status.feedStatus;
+  if (status.isEmpty() || (status == "0"))
+    statusFeed_->setText(tr("Good"));
+  else
+    statusFeed_->setText(status.section(" ", 1));
+
   descriptionText_->setText(feedProperties.status.description);
   if (feedProperties.status.createdTime.isValid())
     createdFeed_->setText(feedProperties.status.createdTime.toString("dd.MM.yy hh:mm"));
   else
     createdFeed_->setText(tr("Long ago ;-)"));
 
-  lastUpdateFeed_->setText(QString("%1 (%2)").
+  QString lastBuildDate = feedProperties.status.lastBuildDate.toString("dd.MM.yy hh:mm");
+  if (!lastBuildDate.isEmpty()) lastBuildDate = QString(" (%1)").arg(lastBuildDate);
+  lastUpdateFeed_->setText(QString("%1%2").
                            arg(feedProperties.status.lastUpdate.toString("dd.MM.yy hh:mm")).
-                           arg(feedProperties.status.lastBuildDate.toString("dd.MM.yy hh:mm"))
+                           arg(lastBuildDate)
                            );
   newsCount_->setText(QString("%1 (%2 %3, %4 %5)").
                       arg(feedProperties.status.undeleteCount).

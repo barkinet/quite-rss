@@ -22,12 +22,12 @@
 #include <QtWidgets>
 #else
 #include <QtGui>
+#include <QWizard>
 #endif
 #include <QtSql>
 
 #include "lineedit.h"
-#include "parsethread.h"
-#include "updatethread.h"
+#include "updatefeeds.h"
 
 class AddFeedWizard : public QWizard
 {
@@ -45,14 +45,16 @@ public:
   int newCount_;
 
 public slots:
-  void getUrlDone(const int &result, const QString &feedUrlStr,
-                  const QByteArray &data, const QDateTime &dtReply);
-  void slotUpdateFeed(const QString &feedUrl, const bool &, int newCount);
+  void getUrlDone(int result, int feedId, QString feedUrlStr,
+                  QString error, QByteArray data,
+                  QDateTime dtReply, QString codecName);
+  void slotUpdateFeed(int feedId, bool, int newCount, QString);
 
 signals:
-  void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,
-                     const QDateTime &dtReply);
-  void signalRequestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo);
+  void xmlReadyParse(QByteArray data, int feedId,
+                     QDateTime dtReply, QString codecName);
+  void signalRequestUrl(int feedId, QString urlString,
+                        QDateTime date, QString userInfo);
 
 protected:
   virtual bool validateCurrentPage();
@@ -70,7 +72,6 @@ private slots:
   void slotProgressBarUpdate();
   void newFolder();
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
-  void slotFeedCountsUpdate(FeedCountStruct counts);
 
 private:
   void addFeed();
@@ -78,8 +79,7 @@ private:
   void showProgressBar();
   void finish();
 
-  UpdateThread *persistentUpdateThread_;
-  ParseThread *persistentParseThread_;
+  UpdateFeeds *updateFeeds_;
   QWizardPage *createUrlFeedPage();
   QWizardPage *createNameFeedPage();
   QCheckBox *titleFeedAsName_;

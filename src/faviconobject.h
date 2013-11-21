@@ -35,15 +35,13 @@ public:
   NetworkManager *networkManager_;
 
 public slots:
-  void requestUrl(const QString &urlString, const QString &feedUrl);
+  void requestUrl(QString urlString, QString feedUrl);
   void slotGet(const QUrl &getUrl, const QString &feedUrl, const int &cnt);
-  void slotIconSave(const QString &feedUrl, const QByteArray &faviconData);
 
 signals:
   void startTimer();
   void signalGet(const QUrl &getUrl, const QString &feedUrl, const int &cnt);
-  void signalIconRecived(const QString &feedUrl, const QByteArray &byteArray);
-  void signalIconUpdate(int feedId, const QByteArray &faviconData);
+  void signalIconRecived(QString feedUrl, QByteArray byteArray, QString format);
 
 private slots:
   void getQueuedUrl();
@@ -61,6 +59,7 @@ private:
   QList<int> currentTime_;
   QList<QUrl> requestUrl_;
   QList<QNetworkReply*> networkReply_;
+  QList<QString> hostList_;
 
 };
 

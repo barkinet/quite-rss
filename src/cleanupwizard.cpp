@@ -38,6 +38,12 @@ CleanUpThread::CleanUpThread(QObject *parent)
 {
 }
 
+CleanUpThread::~CleanUpThread()
+{
+  exit();
+  wait();
+}
+
 /*virtual*/ void CleanUpThread::run()
 {
   QSqlQuery q;
@@ -176,8 +182,6 @@ CleanUpThread::CleanUpThread(QObject *parent)
 
   q.exec("VACUUM");
   q.finish();
-
-  emit signalFinishCleanUp();
 }
 
 CleanUpWizard::CleanUpWizard(QWidget *parent)
@@ -197,9 +201,6 @@ CleanUpWizard::CleanUpWizard(QWidget *parent)
 
   cleanUpThread_ = new CleanUpThread(this);
 
-  connect(this, SIGNAL(signalFinish()),
-          SLOT(finishCleanUp()), Qt::QueuedConnection);
-
   connect(button(QWizard::FinishButton), SIGNAL(clicked()),
           this, SLOT(finishButtonClicked()));
   connect(this, SIGNAL(currentIdChanged(int)),
@@ -208,7 +209,6 @@ CleanUpWizard::CleanUpWizard(QWidget *parent)
 
 CleanUpWizard::~CleanUpWizard()
 {
-  while (cleanUpThread_->isRunning());
 }
 
 /*virtual*/ void CleanUpWizard::closeEvent(QCloseEvent* event)
@@ -446,7 +446,7 @@ void CleanUpWizard::finishButtonClicked()
   cleanUpThread_->feedsIdList_ = feedsIdList;
   cleanUpThread_->foldersIdList_ = foldersIdList;
 
-  connect(cleanUpThread_, SIGNAL(signalFinishCleanUp()),
+  connect(cleanUpThread_, SIGNAL(finished()),
           this, SLOT(finishCleanUp()));
 
   cleanUpThread_->start();
