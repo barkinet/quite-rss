@@ -15,36 +15,29 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "parsethread.h"
+#ifndef LOGFILE_H
+#define LOGFILE_H
 
+#include <QCoreApplication>
+#include <QFile>
+#include <QDateTime>
 #include <QDebug>
+#include <QTextStream>
 
-ParseThread::ParseThread(QObject *parent)
-  : QThread(parent)
-  , parseObject_(0)
+const size_t maxLogFileSize = 4 * 1024 * 1024; //4 MB
+
+class LogFile
 {
-  qDebug() << "ParseThread::constructor";
+public:
+#ifdef HAVE_QT5
+  static void msgHandler(QtMsgType type, const QMessageLogContext &, const QString &msg);
+#else
+  static void msgHandler(QtMsgType type, const char *msg);
+#endif
 
-  setObjectName("parseThread_");
-  start(LowestPriority);
-}
+private:
+  explicit LogFile();
 
-ParseThread::~ParseThread()
-{
-  qDebug() << "ParseThread::~destructor";
-}
+};
 
-/*virtual*/ void ParseThread::run()
-{
-  parseObject_ = new ParseObject(parent());
-  connect(parent(), SIGNAL(xmlReadyParse(QByteArray,QString,QDateTime)),
-          parseObject_, SLOT(parseXml(QByteArray,QString,QDateTime)));
-  connect(parseObject_, SIGNAL(feedUpdated(QString, bool, int)),
-          parent(), SLOT(slotUpdateFeed(QString, bool, int)));
-
-  qRegisterMetaType<FeedCountStruct>("FeedCountStruct");
-  connect(parseObject_, SIGNAL(feedCountsUpdate(FeedCountStruct)),
-          parent(), SLOT(slotFeedCountsUpdate(FeedCountStruct)));
-
-  exec();
-}
+#endif // LOGFILE_H

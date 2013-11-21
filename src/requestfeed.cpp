@@ -15,7 +15,7 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "updateobject.h"
+#include "requestfeed.h"
 #include "VersionNo.h"
 
 #include <QDebug>
@@ -24,73 +24,82 @@
 #else
 #include <qwebkitversion.h>
 #endif
+#include <QtSql>
 
 #define REPLY_MAX_COUNT 10
 
-UpdateObject::UpdateObject(int requestTimeout, int replyCount, QObject *parent)
+RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
+                         int numberRepeats, QObject *parent)
   : QObject(parent)
-  , requestTimeout_(requestTimeout)
-  , replyCount_(replyCount)
+  , timeoutRequest_(timeoutRequest)
+  , numberRequests_(numberRequests)
+  , numberRepeats_(numberRepeats)
 {
   setObjectName("updateObject_");
 
-  QTimer *timeout = new QTimer();
+  QTimer *timeout = new QTimer(this);
   connect(timeout, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
   timeout->start(1000);
 
-  getUrlTimer_ = new QTimer();
+  getUrlTimer_ = new QTimer(this);
   getUrlTimer_->setSingleShot(true);
+  getUrlTimer_->setInterval(50);
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
   networkManager_ = new NetworkManager(this);
   connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
 
-  connect(this, SIGNAL(signalHead(QUrl,QString,QDateTime,int)),
-          SLOT(slotHead(QUrl,QString,QDateTime,int)));
-  connect(this, SIGNAL(signalGet(QUrl,QString,QDateTime,int)),
-          SLOT(slotGet(QUrl,QString,QDateTime,int)));
+  connect(this, SIGNAL(signalHead(QUrl,int,QString,QDateTime,int)),
+          SLOT(slotHead(QUrl,int,QString,QDateTime,int)),
+          Qt::QueuedConnection);
+  connect(this, SIGNAL(signalGet(QUrl,int,QString,QDateTime,int)),
+          SLOT(slotGet(QUrl,int,QString,QDateTime,int)),
+          Qt::QueuedConnection);
 }
 
 /** @brief Put URL in request queue
  *----------------------------------------------------------------------------*/
-void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
-                              const QString	&userInfo)
+void RequestFeed::requestUrl(int id, QString urlString,
+                              QDateTime date, QString userInfo)
 {
+  idsQueue_.enqueue(id);
   feedsQueue_.enqueue(urlString);
   dateQueue_.enqueue(date);
   userInfo_.enqueue(userInfo);
 
-  getUrlTimer_->start();
+  if (!getUrlTimer_->isActive())
+    getUrlTimer_->start();
 
   qDebug() << "urlsQueue_ <<" << urlString << "count=" << feedsQueue_.count();
 }
 
 /** @brief Process request queue on timer timeouts
  *----------------------------------------------------------------------------*/
-void UpdateObject::getQueuedUrl()
+void RequestFeed::getQueuedUrl()
 {
-  if ((replyCount_ <= currentFeeds_.size()) &&
+  if ((numberRequests_ <= currentFeeds_.size()) ||
       (REPLY_MAX_COUNT <= currentFeeds_.size())) {
     getUrlTimer_->start();
     return;
   }
 
   if (!feedsQueue_.isEmpty()) {
-    getUrlTimer_->start(50);
+    getUrlTimer_->start();
     QString feedUrl = feedsQueue_.head();
+
     if (hostList_.contains(QUrl(feedUrl).host())) {
-      int count = 0;
       foreach (QString url, currentFeeds_) {
         if (QUrl(url).host() == QUrl(feedUrl).host()) {
-          if (++count > 1) {
-            return;
-          }
+          return;
         }
       }
     }
-
+    int feedId = idsQueue_.dequeue();
     feedUrl = feedsQueue_.dequeue();
+
+    emit setStatusFeed(feedId, "1 Update");
+
     QUrl getUrl = QUrl::fromEncoded(feedUrl.toUtf8());
     QString userInfo = userInfo_.dequeue();
     if (!userInfo.isEmpty()) {
@@ -100,9 +109,9 @@ void UpdateObject::getQueuedUrl()
     QDateTime currentDate = dateQueue_.dequeue();
 
     if (currentDate.isValid())
-      emit signalHead(getUrl, feedUrl, currentDate);
+      emit signalHead(getUrl, feedId, feedUrl, currentDate);
     else
-      emit signalGet(getUrl, feedUrl, currentDate);
+      emit signalGet(getUrl, feedId, feedUrl, currentDate);
 
     qDebug() << "urlsQueue_ >>" << feedUrl << "count=" << feedsQueue_.count();
   }
@@ -110,7 +119,7 @@ void UpdateObject::getQueuedUrl()
 
 /** @brief Prepare and send network request to get head
  *----------------------------------------------------------------------------*/
-void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
+void RequestFeed::slotHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
                             const QDateTime &date, const int &count)
 {
   qDebug() << objectName() << "::head:" << getUrl.toEncoded() << "feed:" << feedUrl;
@@ -121,11 +130,12 @@ void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
   request.setRawHeader("Accept-Language", "en-us,en");
 
   currentUrls_.append(getUrl);
+  currentIds_.append(id);
   currentFeeds_.append(feedUrl);
   currentDates_.append(date);
   currentCount_.append(count);
   currentHead_.append(true);
-  currentTime_.append(requestTimeout_);
+  currentTime_.append(timeoutRequest_);
 
   QNetworkReply *reply = networkManager_->head(request);
   requestUrl_.append(reply->url());
@@ -134,22 +144,24 @@ void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
 
 /** @brief Prepare and send network request to get all data
  *----------------------------------------------------------------------------*/
-void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
+void RequestFeed::slotGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
                            const QDateTime &date, const int &count)
 {
   qDebug() << objectName() << "::get:" << getUrl.toEncoded() << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
+  request.setRawHeader("Accept", "text/xml, text/html, */*");
+  request.setRawHeader("Accept-Language", "en-us, en");
   QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) QuiteRSS/%2 Safari/%1").
       arg(qWebKitVersion()).arg(STRPRODUCTVER);
   request.setRawHeader("User-Agent", userAgent.toUtf8());
-  request.setRawHeader("Accept-Language", "en-us,en");
 
   currentUrls_.append(getUrl);
+  currentIds_.append(id);
   currentFeeds_.append(feedUrl);
   currentDates_.append(date);
   currentCount_.append(count);
   currentHead_.append(false);
-  currentTime_.append(requestTimeout_);
+  currentTime_.append(timeoutRequest_);
 
   QNetworkReply *reply = networkManager_->get(request);
   requestUrl_.append(reply->url());
@@ -158,7 +170,7 @@ void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
 
 /** @brief Process network reply
  *----------------------------------------------------------------------------*/
-void UpdateObject::finished(QNetworkReply *reply)
+void RequestFeed::finished(QNetworkReply *reply)
 {
   QUrl replyUrl = reply->url();
 
@@ -175,6 +187,7 @@ void UpdateObject::finished(QNetworkReply *reply)
   if (currentReplyIndex >= 0) {
     currentTime_.removeAt(currentReplyIndex);
     currentUrls_.removeAt(currentReplyIndex);
+    int feedId    = currentIds_.takeAt(currentReplyIndex);
     QString feedUrl    = currentFeeds_.takeAt(currentReplyIndex);
     QDateTime feedDate = currentDates_.takeAt(currentReplyIndex);
     int count = currentCount_.takeAt(currentReplyIndex) + 1;
@@ -184,9 +197,9 @@ void UpdateObject::finished(QNetworkReply *reply)
       qDebug() << "  error retrieving RSS feed:" << reply->error() << reply->errorString();
       if (!headOk) {
         if (reply->error() == QNetworkReply::AuthenticationRequiredError)
-          emit getUrlDone(-2, feedUrl);
+          emit getUrlDone(-2, feedId, feedUrl, tr("Server requires authentication!"));
         else if (reply->error() == QNetworkReply::ContentNotFoundError)
-          emit getUrlDone(-5, feedUrl);
+          emit getUrlDone(-5, feedId, feedUrl, tr("Server replied: Not Found!"));
         else {
           if (reply->errorString().contains("Service Temporarily Unavailable")) {
             if (!hostList_.contains(QUrl(feedUrl).host())) {
@@ -195,33 +208,33 @@ void UpdateObject::finished(QNetworkReply *reply)
             }
           }
 
-          if (count < 2) {
-            emit signalGet(replyUrl, feedUrl, feedDate, count);
+          if (count < numberRepeats_) {
+            emit signalGet(replyUrl, feedId, feedUrl, feedDate, count);
           } else {
-            emit getUrlDone(-1, feedUrl);
+            emit getUrlDone(-1, feedId, feedUrl, QString("%1 (%2)").arg(reply->errorString()).arg(reply->error()));
           }
         }
       } else {
-        emit signalGet(replyUrl, feedUrl, feedDate);
+        emit signalGet(replyUrl, feedId, feedUrl, feedDate);
       }
     } else {
       QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
       if (redirectionTarget.isValid()) {
-        if (count < 5) {
+        if (count < (numberRepeats_ + 3)) {
           QString host(QUrl::fromEncoded(feedUrl.toUtf8()).host());
           if (reply->operation() == QNetworkAccessManager::HeadOperation) {
             qDebug() << objectName() << "  head redirect...";
             if (redirectionTarget.host().isNull())
               redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
-            emit signalHead(redirectionTarget, feedUrl, feedDate, count);
+            emit signalHead(redirectionTarget, feedId, feedUrl, feedDate, count);
           } else {
             qDebug() << objectName() << "  get redirect...";
             if (redirectionTarget.host().isNull())
               redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
-            emit signalGet(redirectionTarget, feedUrl, feedDate, count);
+            emit signalGet(redirectionTarget, feedId, feedUrl, feedDate, count);
           }
         } else {
-          emit getUrlDone(-4, feedUrl);
+          emit getUrlDone(-4, feedId, feedUrl, tr("Redirect error!"));
         }
       } else {
         QDateTime replyDate = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime();
@@ -231,12 +244,17 @@ void UpdateObject::finished(QNetworkReply *reply)
         qDebug() << feedDate.toMSecsSinceEpoch() << replyDate.toMSecsSinceEpoch() << replyLocalDate.toMSecsSinceEpoch();
         if ((reply->operation() == QNetworkAccessManager::HeadOperation) &&
             ((!feedDate.isValid()) || (!replyLocalDate.isValid()) || (feedDate < replyLocalDate))) {
-          emit signalGet(replyUrl, feedUrl, feedDate);
+          emit signalGet(replyUrl, feedId, feedUrl, feedDate);
         }
         else {
+          QString codecName;
+          QRegExp rx("charset=([^\t]+)$", Qt::CaseInsensitive, QRegExp::RegExp2);
+          int pos = rx.indexIn(reply->header(QNetworkRequest::ContentTypeHeader).toString());
+          if (pos > -1) {
+            codecName = rx.cap(1);
+          }
           QByteArray data = reply->readAll().trimmed();
-
-          emit getUrlDone(feedsQueue_.count(), feedUrl, data, replyLocalDate);
+          emit getUrlDone(feedsQueue_.count(), feedId, feedUrl, "", data, replyLocalDate, codecName);
         }
       }
     }
@@ -247,18 +265,22 @@ void UpdateObject::finished(QNetworkReply *reply)
   int replyIndex = requestUrl_.indexOf(replyUrl);
   if (replyIndex >= 0) {
     requestUrl_.removeAt(replyIndex);
-    networkReply_.takeAt(replyIndex)->deleteLater();
+    networkReply_.removeAt(replyIndex);
   }
+
+  reply->abort();
+  reply->deleteLater();
 }
 
 /** @brief Timeout to delete network requests wich has no answer
  *----------------------------------------------------------------------------*/
-void UpdateObject::slotRequestTimeout()
+void RequestFeed::slotRequestTimeout()
 {
   for (int i = currentTime_.count() - 1; i >= 0; i--) {
     int time = currentTime_.at(i) - 1;
     if (time <= 0) {
       QUrl url = currentUrls_.takeAt(i);
+      int feedId    = currentIds_.takeAt(i);
       QString feedUrl = currentFeeds_.takeAt(i);
       QDateTime feedDate = currentDates_.takeAt(i);
       int count = currentCount_.takeAt(i) + 1;
@@ -267,13 +289,13 @@ void UpdateObject::slotRequestTimeout()
 
       int replyIndex = requestUrl_.indexOf(url);
       QUrl replyUrl = requestUrl_.takeAt(replyIndex);
-      networkReply_.takeAt(replyIndex)->deleteLater();
-      qCritical() << "*01" << replyUrl.toString();
-      if (count < 2) {
-        emit signalGet(replyUrl, feedUrl, feedDate, count);
+      QNetworkReply *reply = networkReply_.takeAt(replyIndex);
+      reply->deleteLater();
+
+      if (count < numberRepeats_) {
+        emit signalGet(replyUrl, feedId, feedUrl, feedDate, count);
       } else {
-        qCritical() << replyUrl.toString();
-        emit getUrlDone(-3, feedUrl);
+        emit getUrlDone(-3, feedId, feedUrl, tr("Request timeout!"));
       }
     } else {
       currentTime_.replace(i, time);

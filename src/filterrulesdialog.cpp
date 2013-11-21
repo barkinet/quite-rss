@@ -48,7 +48,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   treeItem.clear();
   treeItem << tr("All Feeds") << "0";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setCheckState(0, Qt::Checked);
+  treeWidgetItem->setCheckState(0, Qt::Unchecked);
   feedsTree_->addTopLevelItem(treeWidgetItem);
 
   QSqlQuery q;
@@ -288,8 +288,14 @@ void FilterRulesDialog::setData()
       if (action == 3) {
         int index = itemAction->comboBox2_->findData(q.value(1).toInt());
         itemAction->comboBox2_->setCurrentIndex(index);
+      } else if (action == 4) {
+        itemAction->soundPathEdit_->setText(q.value(1).toString());
+      } else if (action == 5) {
+        itemAction->colorButton_->setToolTip(q.value(1).toString());
+        QPixmap pixmap(14, 14);
+        pixmap.fill(QColor(q.value(1).toString()));
+        itemAction->colorButton_->setIcon(pixmap);
       }
-
     }
   }
 }
@@ -375,7 +381,14 @@ void FilterRulesDialog::acceptDialog()
       q.prepare(qStr);
       q.addBindValue(filterId_);
       q.addBindValue(itemAction->comboBox1_->currentIndex());
-      q.addBindValue(itemAction->comboBox2_->itemData(itemAction->comboBox2_->currentIndex()));
+      if (itemAction->comboBox1_->currentIndex() == 3)
+        q.addBindValue(itemAction->comboBox2_->itemData(itemAction->comboBox2_->currentIndex()));
+      else if (itemAction->comboBox1_->currentIndex() == 4)
+        q.addBindValue(itemAction->soundPathEdit_->text());
+      else if (itemAction->comboBox1_->currentIndex() == 5)
+        q.addBindValue(itemAction->colorButton_->toolTip());
+      else
+        q.addBindValue(0);
       q.exec();
     }
   } else {
@@ -415,7 +428,14 @@ void FilterRulesDialog::acceptDialog()
       q.prepare(qStr);
       q.addBindValue(filterId_);
       q.addBindValue(itemAction->comboBox1_->currentIndex());
-      q.addBindValue(itemAction->comboBox2_->itemData(itemAction->comboBox2_->currentIndex()));
+      if (itemAction->comboBox1_->currentIndex() == 3)
+        q.addBindValue(itemAction->comboBox2_->itemData(itemAction->comboBox2_->currentIndex()));
+      else if (itemAction->comboBox1_->currentIndex() == 4)
+        q.addBindValue(itemAction->soundPathEdit_->text());
+      else if (itemAction->comboBox1_->currentIndex() == 5)
+        q.addBindValue(itemAction->colorButton_->toolTip());
+      else
+        q.addBindValue(0);
       q.exec();
     }
   }

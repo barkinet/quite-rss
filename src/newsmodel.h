@@ -25,6 +25,8 @@
 #endif
 #include <QtSql>
 
+class RSSListing;
+
 class NewsModel : public QSqlTableModel
 {
   Q_OBJECT
@@ -45,6 +47,8 @@ public:
   QString formatTime_;
   bool simplifiedDateTime_;
   QString textColor_;
+  QString newNewsTextColor_;
+  QString unreadNewsTextColor_;
   QString focusedNewsTextColor_;
   QString focusedNewsBGColor_;
 
@@ -53,6 +57,7 @@ signals:
 
 private:
   QTreeView *view_;
+  RSSListing *rssl_;
 
 };
 

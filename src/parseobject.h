@@ -79,19 +79,21 @@ public:
   explicit ParseObject(QObject *parent);
 
 public slots:
-  void parseXml(const QByteArray &data, const QString &feedUrl,
-                const QDateTime &dtReply);
+  void parseXml(QByteArray data, int feedId,
+                QDateTime dtReply, QString codecName);
+  void runUserFilter(int feedId, int filterId = -1);
 
 signals:
-  void signalReadyParse(const QByteArray &xml, const QString &feedUrl,
-                        const QDateTime &dtReply);
-  void feedUpdated(const QString &feedUrl, const bool &changed, int newCount);
+  void signalReadyParse(const QByteArray &xml, const int &feedId,
+                        const QDateTime &dtReply, const QString &codecName);
+  void signalFinishUpdate(int feedId, bool changed, int newCount, QString status);
   void feedCountsUpdate(FeedCountStruct counts);
+  void signalPlaySound(const QString &soundPath);
 
 private slots:
   void getQueuedXml();
-  void slotParse(const QByteArray &xmlData, const QString &feedUrl,
-                 const QDateTime &dtReply);
+  void slotParse(const QByteArray &xmlData, const int &feedId,
+                 const QDateTime &dtReply, const QString &codecName);
   void addAtomNewsIntoBase(NewsItemStruct &newsItem);
   void addRssNewsIntoBase(NewsItemStruct &newsItem);
 
@@ -103,14 +105,14 @@ private:
   int recountFeedCounts(int feedId, const QString &feedUrl,
                         const QString &updated, const QString &lastBuildDate);
 
-  RSSListing* rssl_;
+  RSSListing *rssl_;
+  QSqlDatabase db_;
   QTimer *parseTimer_;
-  QString currentFeedUrl_;
-  QByteArray currentXml_;
-  QDateTime currentDtReady_;
-  QQueue<QString> feedsQueue_;
+  int currentFeedId_;
+  QQueue<int> idsQueue_;
   QQueue<QByteArray> xmlsQueue_;
   QQueue<QDateTime> dtReadyQueue_;
+  QQueue<QString> codecNameQueue_;
 
   int parseFeedId_;
   bool duplicateNewsMode_;

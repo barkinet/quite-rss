@@ -258,6 +258,23 @@ void OptionsDialog::createGeneralWidget()
 
   updateCheckEnabled_ = new QCheckBox(tr("Automatically check for updates"));
   storeDBMemory_ = new QCheckBox(tr("Store a DB in memory (requires program restart)"));
+  storeDBMemory_->setChecked(false);
+  saveDBMemFileInterval_ = new QSpinBox();
+  saveDBMemFileInterval_->setRange(1, 999);
+
+  QHBoxLayout *saveDBMemFileLayout = new QHBoxLayout();
+  saveDBMemFileLayout->setContentsMargins(15, 0, 0, 0);
+  saveDBMemFileLayout->addWidget(new QLabel(tr("Save DB stored in memory to file every")));
+  saveDBMemFileLayout->addWidget(saveDBMemFileInterval_);
+  saveDBMemFileLayout->addWidget(new QLabel(tr("minutes")));
+  saveDBMemFileLayout->addStretch();
+
+  QWidget *saveDBMemFileWidget = new QWidget();
+  saveDBMemFileWidget->setEnabled(false);
+  saveDBMemFileWidget->setLayout(saveDBMemFileLayout);
+
+  connect(storeDBMemory_, SIGNAL(toggled(bool)),
+          saveDBMemFileWidget, SLOT(setEnabled(bool)));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->addWidget(showSplashScreen_);
@@ -280,6 +297,7 @@ void OptionsDialog::createGeneralWidget()
 
   generalLayout->addWidget(updateCheckEnabled_);
   generalLayout->addWidget(storeDBMemory_);
+  generalLayout->addWidget(saveDBMemFileWidget);
 
   generalWidget_ = new QFrame();
   generalWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
@@ -342,15 +360,15 @@ void OptionsDialog::createTraySystemWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createNetworkConnectionsWidget()
 {
-  systemProxyButton_ = new QRadioButton(
-        tr("System proxy configuration (if available)"));
   directConnectionButton_ = new QRadioButton(
         tr("Direct connection to the Internet"));
+  systemProxyButton_ = new QRadioButton(
+        tr("System proxy configuration (if available)"));
   manualProxyButton_ = new QRadioButton(tr("Manual proxy configuration:"));
 
   QVBoxLayout *networkConnectionsLayout = new QVBoxLayout();
-  networkConnectionsLayout->addWidget(systemProxyButton_);
   networkConnectionsLayout->addWidget(directConnectionButton_);
+  networkConnectionsLayout->addWidget(systemProxyButton_);
   networkConnectionsLayout->addWidget(manualProxyButton_);
 
   editHost_ = new LineEdit();
@@ -391,6 +409,27 @@ void OptionsDialog::createNetworkConnectionsWidget()
   manualWidget_->setLayout(manualLayout);
 
   networkConnectionsLayout->addWidget(manualWidget_);
+  networkConnectionsLayout->addStretch();
+
+  timeoutRequest_ = new QSpinBox();
+  timeoutRequest_->setRange(0, 300);
+  numberRequests_ = new QSpinBox();
+  numberRequests_->setRange(1, 10);
+  numberRepeats_ = new QSpinBox();
+  numberRepeats_->setRange(1, 10);
+
+  QGridLayout *requestLayout = new QGridLayout();
+  requestLayout->setColumnStretch(1, 1);
+  requestLayout->setContentsMargins(15, 0, 5, 0);
+  requestLayout->addWidget(new QLabel(tr("Timeout request:")), 0, 0);
+  requestLayout->addWidget(timeoutRequest_, 0, 1, 1, 1, Qt::AlignLeft);
+  requestLayout->addWidget(new QLabel(tr("Number requests:")), 1, 0);
+  requestLayout->addWidget(numberRequests_, 1, 1, 1, 1, Qt::AlignLeft);
+  requestLayout->addWidget(new QLabel(tr("Number repeats:")), 2, 0);
+  requestLayout->addWidget(numberRepeats_, 2, 1, 1, 1, Qt::AlignLeft);
+
+  networkConnectionsLayout->addWidget(new QLabel(tr("Options network requests when updating feeds (requires program restart):")));
+  networkConnectionsLayout->addLayout(requestLayout);
 
   networkConnectionsWidget_ = new QFrame();
   networkConnectionsWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
@@ -417,6 +456,10 @@ void OptionsDialog::createBrowserWidget()
 
   javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
   pluginsEnable_ = new QCheckBox(tr("Enable plug-ins"));
+  defaultZoomPages_ = new QSpinBox();
+  defaultZoomPages_->setMaximum(300);
+  defaultZoomPages_->setMinimum(30);
+  defaultZoomPages_->setSuffix(" %");
 
   openLinkInBackgroundEmbedded_ = new QCheckBox(tr("Open links in embedded browser in background"));
   openLinkInBackground_ = new QCheckBox(tr("Open links in external browser in background (experimental)"));
@@ -444,10 +487,16 @@ void OptionsDialog::createBrowserWidget()
   externalBrowserBox->addButton(defaultExternalBrowserOn_);
   externalBrowserBox->addButton(otherExternalBrowserOn_);
 
+  QHBoxLayout *zoomLayout = new QHBoxLayout();
+  zoomLayout->addWidget(new QLabel(tr("Default zoom on pages:")));
+  zoomLayout->addWidget(defaultZoomPages_);
+  zoomLayout->addStretch();
+
   QVBoxLayout *contentBrowserLayout = new QVBoxLayout();
   contentBrowserLayout->setContentsMargins(15, 0, 5, 10);
   contentBrowserLayout->addWidget(javaScriptEnable_);
   contentBrowserLayout->addWidget(pluginsEnable_);
+  contentBrowserLayout->addLayout(zoomLayout);
 
   QGridLayout *userStyleBrowserLayout = new QGridLayout();
   userStyleBrowserLayout->setContentsMargins(15, 0, 5, 10);
@@ -780,8 +829,8 @@ void OptionsDialog::createFeedsWidget()
 
   changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
 
-  notDeleteStarred_ = new QCheckBox(tr("labeled news"));
-  notDeleteLabeled_ = new QCheckBox(tr("starred news"));
+  notDeleteStarred_ = new QCheckBox(tr("starred news"));
+  notDeleteLabeled_ = new QCheckBox(tr("labeled news"));
 
   markIdenticalNewsRead_ = new QCheckBox(tr("Automatically mark identical news as read"));
 
@@ -968,7 +1017,7 @@ void OptionsDialog::createNotifierWidget()
   widthTitleNewsNotify_ = new QSpinBox();
   widthTitleNewsNotify_->setRange(50, 500);
   timeShowNewsNotify_ = new QSpinBox();
-  timeShowNewsNotify_->setRange(1, 99);
+  timeShowNewsNotify_->setRange(0, 999);
 
   QPushButton *showNotifer = new QPushButton(tr("Review"));
   connect(showNotifer, SIGNAL(clicked()), this, SLOT(showNotification()));
@@ -1125,15 +1174,15 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "QuiteRSS Team" << "";
   QTreeWidgetItem *languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_EN"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_EN"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "ar" << QString::fromUtf8("العربية [AR]")
-           << QString(STRPRODUCTVER)
+           << "0.13.3"
            << "ahmadzxc" << "ahmad.almomani5@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_AR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_AR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1141,7 +1190,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Matej Szendi") << "matej.szendi@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_CZ"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_CZ"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1149,15 +1198,15 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "Lyudmila Kremova" << "alis-dcm@yandex.ru";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_DE"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_DE"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "el_GR" << QString::fromUtf8("Ελληνικά (Greece) [el_GR]")
-           << "0.13.0"
+           << QString(STRPRODUCTVER)
            << "Dimitris Siakavelis" << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_GR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_GR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1165,15 +1214,15 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Cesar Muñoz") << "csarg@live.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_ES"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_ES"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "fa" << QString::fromUtf8("فارسی [FA]")
-           << QString(STRPRODUCTVER)
+           << "0.13.2"
            << "H.Mohamadi" << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_FA"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_FA"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1181,15 +1230,15 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_FR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_FR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "hu" << QString::fromUtf8("Magyar [HU]")
-           << QString(STRPRODUCTVER)
+           << "0.13.3"
            << "ZityiSoft" << "zityisoft@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_HU"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_HU"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1197,7 +1246,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "ZeroWis" << "lightflash@hotmail.it";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_IT"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_IT"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1205,7 +1254,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "Masato Hashimoto" << "cabezon.hashimoto@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_JA"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_JA"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1213,15 +1262,15 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Yonghee Lee") << "v4321v@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_KO"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_KO"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "lt" << QString::fromUtf8("Lietuvių [LT]")
-           << "0.12.4"
+           << "0.14.0"
            << QString::fromUtf8("keturidu") << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_LT"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_LT"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1229,23 +1278,23 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "TeLLie" << "elbert.pol@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_NL"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_NL"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "pl" << QString::fromUtf8("Polski [PL]")
-           << "0.13.0"
+           << QString(STRPRODUCTVER)
            << QString::fromUtf8("Piotr Pecka") << "piotr.pecka@outlook.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_PL"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_PL"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "pt_BR" << QString::fromUtf8("Português (Brazil) [pt_BR]")
-           << QString(STRPRODUCTVER)
+           << "0.13.3"
            << QString::fromUtf8("Marcos M. Ribeiro") << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_BR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_BR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1253,7 +1302,15 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Sérgio Marques") << "smarquespt@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_PT"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_PT"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "ro_RO" << QString::fromUtf8("Limba română [ro_RO]")
+           << QString(STRPRODUCTVER)
+           << QString::fromUtf8("Jaff (Oprea Nicolae)") << "Jaff2002@yahoo.com";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/flags/flag_RO"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1261,15 +1318,15 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "QuiteRSS Team" << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_RU"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_RU"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "sk" << QString::fromUtf8("Slovenčina [SK]")
-           << "0.12.5"
+           << "0.14.0"
            << "" << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_SK"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_SK"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1277,7 +1334,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "Ozzii" << "ozzii.translate@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_SR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_SR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1285,23 +1342,23 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Åke Engelbrektson") << "eson57@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_SV"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_SV"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "tg_TJ" << QString::fromUtf8("Тоҷикӣ [tg_TJ]")
-           << QString(STRPRODUCTVER)
+           << "0.13.3"
            << QString::fromUtf8("Kobilov Iskandar") << "kabilov.iskandar@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_TJ"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_TJ"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "tr" << QString::fromUtf8("Türkçe [TR]")
-           << "0.12.5"
-           << QString::fromUtf8("") << "";
+           << "0.13.3"
+           << QString::fromUtf8("Mert Başaranoğlu") << "mertbasaranoglu@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_TR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_TR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1309,31 +1366,31 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Сергій Левицький") << "leon21sl@myopera.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_UK"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_UK"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "vi" << QString::fromUtf8("Tiếng Việt [VI]")
-           << "0.13.1"
+           << "0.13.3"
            << QString::fromUtf8("Phan Anh") << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_VI"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_VI"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "zh_CN" << QString::fromUtf8("中文 (China) [zh_CN]")
-           << QString(STRPRODUCTVER)
+           << "0.13.3"
            << QString::fromUtf8("wwj402") << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_CN"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_CN"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
   treeItem << "zh_TW" << QString::fromUtf8("中文 (Taiwan) [zh_TW]")
-           << QString(STRPRODUCTVER)
+           << "0.13.3"
            << QString::fromUtf8("Hulen (破滅刃)") << "shift0106@hotmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_TW"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_TW"));
   languageFileList_->addTopLevelItem(languageItem);
 
   QString linkWikiStr =
@@ -1355,6 +1412,8 @@ void OptionsDialog::createLanguageWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createFontsColorsWidget()
 {
+  //! tab "Fonts"
+
   fontsTree_ = new QTreeWidget();
   fontsTree_->setObjectName("fontTree");
   fontsTree_->setColumnCount(3);
@@ -1394,32 +1453,14 @@ void OptionsDialog::createFontsColorsWidget()
   fontsButtonLayout->addWidget(fontReset);
   fontsButtonLayout->addStretch(1);
 
-  browserMinFontSize_ = new QSpinBox();
-  browserMinFontSize_->setRange(0, 99);
-  browserMinLogFontSize_ = new QSpinBox();
-  browserMinLogFontSize_->setRange(0, 99);
-
-  QGridLayout *browserFontSizeLayout = new QGridLayout();
-  browserFontSizeLayout->addWidget(
-        new QLabel(tr("Minimum font size of browser")), 0, 0);
-  browserFontSizeLayout->addWidget(browserMinFontSize_, 0, 1);
-  browserFontSizeLayout->addWidget(
-        new QLabel(tr("Minimum logical font size of browser")), 1, 0);
-  browserFontSizeLayout->addWidget(browserMinLogFontSize_, 1, 1);
-  browserFontSizeLayout->setColumnStretch(2, 1);
-
-  QVBoxLayout *fontsLayout = new QVBoxLayout();
-  fontsLayout->setMargin(0);
-  fontsLayout->addWidget(fontsTree_, 1);
-  fontsLayout->addLayout(browserFontSizeLayout);
-
   QHBoxLayout *mainFontsLayout = new QHBoxLayout();
-  mainFontsLayout->addLayout(fontsLayout, 1);
+  mainFontsLayout->addWidget(fontsTree_, 1);
   mainFontsLayout->addLayout(fontsButtonLayout);
 
   QWidget *fontsWidget = new QWidget();
   fontsWidget->setLayout(mainFontsLayout);
 
+  //! tab "Colors"
 
   colorsTree_ = new QTreeWidget(this);
   colorsTree_->setObjectName("colorsTree_");
@@ -1460,6 +1501,9 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem << tr("Author color");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
+  treeItem << tr("News text color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
   treeItem << tr("News title background");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
@@ -1470,6 +1514,12 @@ void OptionsDialog::createFontsColorsWidget()
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << tr("Count of news unread in feeds tree");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Text color of new news ");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Text color of unread news ");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   colorsTree_->setCurrentItem(colorsTree_->topLevelItem(0));
@@ -1493,8 +1543,66 @@ void OptionsDialog::createFontsColorsWidget()
   QWidget *colorsWidget_ = new QWidget(this);
   colorsWidget_->setLayout(colorsLayout);
 
+  //! tab "Fonts Browser"
+
+  browserStandardFont_ = new QFontComboBox();
+  browserFixedFont_ = new QFontComboBox();
+  browserSerifFont_ = new QFontComboBox();
+  browserSansSerifFont_ = new QFontComboBox();
+  browserCursiveFont_ = new QFontComboBox();
+  browserFantasyFont_ = new QFontComboBox();
+
+  QGridLayout *browserFontFamiliesLayout = new QGridLayout();
+  browserFontFamiliesLayout->setColumnStretch(2, 1);
+  browserFontFamiliesLayout->setContentsMargins(15, 0, 5, 10);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Standard")), 0, 0);
+  browserFontFamiliesLayout->addWidget(browserStandardFont_, 0, 1);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Fixed")), 1, 0);
+  browserFontFamiliesLayout->addWidget(browserFixedFont_, 1, 1);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Serif")), 2, 0);
+  browserFontFamiliesLayout->addWidget(browserSerifFont_, 2, 1);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Sans Serif")), 3, 0);
+  browserFontFamiliesLayout->addWidget(browserSansSerifFont_, 3, 1);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Cursive")), 4, 0);
+  browserFontFamiliesLayout->addWidget(browserCursiveFont_, 4, 1);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Fantasy")), 5, 0);
+  browserFontFamiliesLayout->addWidget(browserFantasyFont_, 5, 1);
+
+  browserDefaultFontSize_ = new QSpinBox();
+  browserDefaultFontSize_->setRange(0, 99);
+  browserFixedFontSize_ = new QSpinBox();
+  browserFixedFontSize_->setRange(0, 99);
+  browserMinFontSize_ = new QSpinBox();
+  browserMinFontSize_->setRange(0, 99);
+  browserMinLogFontSize_ = new QSpinBox();
+  browserMinLogFontSize_->setRange(0, 99);
+
+  QGridLayout *browserFontSizesLayout = new QGridLayout();
+  browserFontSizesLayout->setColumnStretch(2, 1);
+  browserFontSizesLayout->setContentsMargins(15, 0, 5, 0);
+  browserFontSizesLayout->addWidget(new QLabel(tr("Default font size")), 0, 0);
+  browserFontSizesLayout->addWidget(browserDefaultFontSize_, 0, 1);
+  browserFontSizesLayout->addWidget(new QLabel(tr("Fixed font size")), 1, 0);
+  browserFontSizesLayout->addWidget(browserFixedFontSize_, 1, 1);
+  browserFontSizesLayout->addWidget(new QLabel(tr("Minimum font size")), 2, 0);
+  browserFontSizesLayout->addWidget(browserMinFontSize_, 2, 1);
+  browserFontSizesLayout->addWidget(new QLabel(tr("Minimum logical font size")), 3, 0);
+  browserFontSizesLayout->addWidget(browserMinLogFontSize_, 3, 1);
+
+  QVBoxLayout *fontsBrowserLayout = new QVBoxLayout();
+  fontsBrowserLayout->addWidget(new QLabel(tr("Font families:")));
+  fontsBrowserLayout->addLayout(browserFontFamiliesLayout);
+  fontsBrowserLayout->addWidget(new QLabel(tr("Font sizes:")));
+  fontsBrowserLayout->addLayout(browserFontSizesLayout);
+  fontsBrowserLayout->addStretch();
+
+  QWidget *fontsBrowserWidget_ = new QWidget(this);
+  fontsBrowserWidget_->setLayout(fontsBrowserLayout);
+
+
   fontsColorsWidget_ = new QTabWidget();
   fontsColorsWidget_->addTab(fontsWidget, tr("Fonts"));
+  fontsColorsWidget_->addTab(fontsBrowserWidget_, tr("Fonts Browser"));
   fontsColorsWidget_->addTab(colorsWidget_, tr("Colors"));
 }
 
@@ -1717,19 +1825,26 @@ void OptionsDialog::slotColorReset()
   QString colorName;
   int row = colorsTree_->currentIndex().row();
   switch (row) {
-  case 0: case 2: case 4:
+  case 1: case 3: case 5:
+    colorName = "";
+    break;
+  case 6: case 7:
+    colorName = "#0066CC";
+    break;
+  case 8: case 9:
+    colorName = "#666666";
+    break;
+  case 10:
+    colorName = "#000000";
+    break;
+  case 11: case 12:
+    colorName = "#FFFFFF";
+    break;
+  case 13: case 14:
+    colorName = qApp->palette().brush(QPalette::Link).color().name();
+    break;
+  default:
     colorName = qApp->palette().brush(QPalette::WindowText).color().name();
-    break;
-  case 1: case 3: case 5: colorName = "";
-    break;
-  case 6: case 7: colorName = "#0066CC";
-    break;
-  case 8: case 9: colorName = "#666666";
-    break;
-  case 10: case 11: colorName = "#FFFFFF";
-    break;
-  case 12: case 13: colorName = qApp->palette().brush(QPalette::Link).color().name();
-    break;
   }
   QPixmap pixmapColor(14, 14);
   if (colorName.isEmpty())
@@ -2371,6 +2486,9 @@ void OptionsDialog::loadNotifier()
 //----------------------------------------------------------------------------
 void OptionsDialog::applyNotifier()
 {
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  rssl_->idFeedsNotifyList_.clear();
+
   feedsTreeNotify_->expandAll();
   QTreeWidgetItem *treeWidgetItem =
       feedsTreeNotify_->itemBelow(feedsTreeNotify_->topLevelItem(0));
@@ -2383,6 +2501,9 @@ void OptionsDialog::applyNotifier()
     QString qStr = QString("UPDATE feeds_ex SET value='%1' WHERE feedId='%2' AND name='showNotification'").
         arg(check).arg(treeWidgetItem->text(1).toInt());
     q.exec(qStr);
+
+    if (check && onlySelectedFeeds_->isChecked())
+      rssl_->idFeedsNotifyList_.append(treeWidgetItem->text(1).toInt());
 
     treeWidgetItem = feedsTreeNotify_->itemBelow(treeWidgetItem);
   }

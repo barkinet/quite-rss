@@ -179,8 +179,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
       if (!iconFeed.isNull())
         newsItem->iconNews_->setPixmap(iconFeed);
       newsItem->iconNews_->setToolTip(titleFeed);
-      connect(newsItem, SIGNAL(signalMarkRead(int)),
-              this, SLOT(markRead(int)));
+      connect(newsItem, SIGNAL(signalMarkRead(int, int, int)),
+              this, SIGNAL(signalMarkRead(int, int, int)));
       connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
               this, SIGNAL(signalOpenNews(int, int)));
       connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
@@ -215,8 +215,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
       newsItem->iconNews_->setPixmap(QPixmap(":/images/feed"));
       newsItem->iconNews_->setToolTip("Title Feed");
-      connect(newsItem, SIGNAL(signalMarkRead(int)),
-              this, SLOT(markRead(int)));
+      connect(newsItem, SIGNAL(signalMarkRead(int, int, int)),
+              this, SIGNAL(signalMarkRead(int, int, int)));
       connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
               this, SIGNAL(signalOpenNews(int, int)));
       connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
@@ -249,7 +249,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   connect(rightButton_, SIGNAL(clicked()),
           this, SLOT(nextPage()));
 
-  showTimer_->start(timeShowNews_*1000);
+  if (timeShowNews_ != 0)
+    showTimer_->start(timeShowNews_*1000);
 }
 
 /*virtual*/ void NotificationWidget::showEvent(QShowEvent*)
@@ -294,7 +295,8 @@ bool NotificationWidget::eventFilter(QObject *obj, QEvent *event)
 
 /*virtual*/ void NotificationWidget::leaveEvent(QEvent*)
 {
-  showTimer_->start(timeShowNews_*1000);
+  if (timeShowNews_ != 0)
+    showTimer_->start(timeShowNews_*1000);
 }
 
 void NotificationWidget::nextPage()

@@ -436,6 +436,8 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
     restoreState(state);
   }
 
+  int sortBy;
+  int sortType;
   indexColumnsStr = rssl->feedsTreeModel_->dataField(indexFeed, "columns").toString();
   if (!indexColumnsStr.isEmpty()) {
     QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
@@ -447,9 +449,8 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
       QString indexStr = indexColumnsList.at(i);
       moveSection(visualIndex(indexStr.toInt()), i);
     }
-    int sortBy = rssl->feedsTreeModel_->dataField(indexFeed, "sort").toInt();
-    int sortType = rssl->feedsTreeModel_->dataField(indexFeed, "sortType").toInt();
-    setSortIndicator(sortBy, Qt::SortOrder(sortType));
+    sortBy = rssl->feedsTreeModel_->dataField(indexFeed, "sort").toInt();
+    sortType = rssl->feedsTreeModel_->dataField(indexFeed, "sortType").toInt();
   } else {
     indexColumnsStr = rssl->settings_->value("columns").toString();
     QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
@@ -461,17 +462,23 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
       QString indexStr = indexColumnsList.at(i);
       moveSection(visualIndex(indexStr.toInt()), i);
     }
-    int sortBy = rssl->settings_->value("sortBy", model_->fieldIndex("published")).toInt();
-    int sortType = rssl->settings_->value("sortOrder", Qt::DescendingOrder).toInt();
-    setSortIndicator(sortBy, Qt::SortOrder(sortType));
+    sortBy = rssl->settings_->value("sortBy", model_->fieldIndex("published")).toInt();
+    sortType = rssl->settings_->value("sortOrder", Qt::DescendingOrder).toInt();
   }
   rssl->settings_->endGroup();
+
+  if ((sortBy != sortIndicatorSection()) || (sortType != sortIndicatorOrder()))
+    setSortIndicator(sortBy, Qt::SortOrder(sortType));
 
   createMenu();
 
   moveSection(visualIndex(model_->fieldIndex("id")), 0);
-  if ((state != saveState()) && isVisible())
+
+  int tWidth = 0;
+  for (int i = 0; i < count(); i++) tWidth += sectionSize(i);
+  if (((state != saveState()) || (tWidth != size().width())) && isVisible())
     adjustAllColumnsWidths(size().width()+1);
+
   move_ = true;
 }
 
@@ -490,7 +497,7 @@ QString NewsHeader::columnsList()
 
 void NewsHeader::saveStateColumns(RSSListing *rssl, NewsTabWidget *newsTabWidget)
 {
-  if (newsTabWidget->type_ == TAB_CAT_DEL) return;
+  if (newsTabWidget->type_ == NewsTabWidget::TabTypeDel) return;
 
   int feedId = newsTabWidget->feedId_;
   QModelIndex indexOld = rssl->feedsTreeModel_->getIndexById(feedId);

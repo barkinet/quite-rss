@@ -18,7 +18,7 @@
 #include "newsfiltersdialog.h"
 #include "filterrulesdialog.h"
 #include "rsslisting.h"
-#include "db_func.h"
+#include "parseobject.h"
 
 NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   : Dialog(parent)
@@ -27,7 +27,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("News Filters"));
   setMinimumWidth(500);
-  setMinimumHeight(250);
+  setMinimumHeight(300);
 
   filtersTree_ = new QTreeWidget(this);
   filtersTree_->setObjectName("filtersTree");
@@ -104,6 +104,11 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   moveDownButton_->setEnabled(false);
   connect(moveDownButton_, SIGNAL(clicked()), this, SLOT(moveDownFilter()));
 
+  runFilterButton_ = new QPushButton(tr("Run Filter"), this);
+  runFilterButton_->setEnabled(false);
+  buttonsLayout->insertWidget(0, runFilterButton_);
+  connect(runFilterButton_, SIGNAL(clicked()), SLOT(applyFilter()));
+
   QVBoxLayout *buttonsVLayout = new QVBoxLayout();
   buttonsVLayout->addWidget(newButton);
   buttonsVLayout->addWidget(editButton_);
@@ -112,6 +117,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   buttonsVLayout->addWidget(moveUpButton_);
   buttonsVLayout->addWidget(moveDownButton_);
   buttonsVLayout->addStretch();
+  buttonsVLayout->addWidget(runFilterButton_);
 
   QHBoxLayout *mainlayout = new QHBoxLayout();
   mainlayout->setMargin(0);
@@ -120,12 +126,9 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
 
   pageLayout->addLayout(mainlayout);
 
-  applyFilterButton_ = new QPushButton(tr("Apply Selected Filter"), this);
-  applyFilterButton_->setEnabled(false);
-  buttonsLayout->insertWidget(0, applyFilterButton_);
-  connect(applyFilterButton_, SIGNAL(clicked()), SLOT(applyFilter()));
-
   buttonBox->addButton(QDialogButtonBox::Close);
+
+  filtersTree_->setCurrentIndex(QModelIndex());
 
   connect(filtersTree_, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
           this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
@@ -354,19 +357,18 @@ void NewsFiltersDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
     deleteButton_->setEnabled(false);
     moveUpButton_->setEnabled(false);
     moveDownButton_->setEnabled(false);
-    applyFilterButton_->setEnabled(false);
+    runFilterButton_->setEnabled(false);
   } else {
     editButton_->setEnabled(true);
     deleteButton_->setEnabled(true);
-    if (current->checkState(1) == Qt::Checked)
-      applyFilterButton_->setEnabled(true);
-    else
-      applyFilterButton_->setEnabled(false);
+    runFilterButton_->setEnabled(true);
   }
 }
 
 void NewsFiltersDialog::applyFilter()
 {
+  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
   int filterRow = filtersTree_->currentIndex().row();
   int filterId = filtersTree_->topLevelItem(filterRow)->text(0).toInt();
   int feedId = -1;
@@ -379,7 +381,7 @@ void NewsFiltersDialog::applyFilter()
   if (q.next()) {
     QStringList strIdFeeds = q.value(0).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
-      setUserFilter(strIdFeed.toInt(), filterId);
+      rssl_->runUserFilter(strIdFeed.toInt(), filterId);
       NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(rssl_->stackedWidget_->currentWidget());
       if (widget->feedId_ == strIdFeed.toInt()) feedId = strIdFeed.toInt();
     }
@@ -389,6 +391,8 @@ void NewsFiltersDialog::applyFilter()
     rssl_->slotUpdateNews();
   rssl_->slotUpdateStatus(feedId);
   rssl_->recountCategoryCounts();
+
+  QApplication::restoreOverrideCursor();
 }
 
 void NewsFiltersDialog::slotItemChanged(QTreeWidgetItem *item, int column)
@@ -401,8 +405,5 @@ void NewsFiltersDialog::slotItemChanged(QTreeWidgetItem *item, int column)
     QString qStr = QString("UPDATE filters SET enable='%1' WHERE id=='%2'").
         arg(enable).arg(item->text(0).toInt());
     q.exec(qStr);
-
-    if (filtersTree_->currentItem() == item)
-      applyFilterButton_->setEnabled(enable);
   }
 }
