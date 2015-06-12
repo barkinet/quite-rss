@@ -1,0 +1,1 @@
+&lt;wiki:gadget url="http://file.quite-rss.googlecode.com/hg/count\_run\_aplication.xml" border="0"/&gt;
